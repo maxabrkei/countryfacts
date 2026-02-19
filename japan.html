@@ -13,18 +13,119 @@
     <!-- NAVIGERING -->
     <nav class="bg-gray-950 shadow-lg sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-            <a href="home.html" class="text-2xl font-bold text-white hover:text-red-400 transition">🌍 Fakta om Länder</a>
+            <a href="index.html" class="text-2xl font-bold text-white hover:text-red-400 transition">🌍 Fakta om Länder</a>
             <div class="flex gap-6 items-center">
-                <a href="home.html" class="text-gray-300 hover:text-white transition">Hem</a>
-                <div id="google_translate_element"></div>
-                <script type="text/javascript">
-                function googleTranslateElementInit() {
-                  new google.translate.TranslateElement({pageLanguage: 'sv', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-                }
-                </script>
-                <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                <a href="index.html" class="text-gray-300 hover:text-white transition">Hem</a>
 
-                <!-- Dropdown-meny för "Andra länder" -->
+                <!-- Språk-dropdown -->
+                <div class="relative group">
+                    <button class="text-gray-300 hover:text-white transition flex items-center gap-1">
+                        Språk
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="absolute right-0 top-full mt-2 w-48 bg-gray-800 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 max-h-96 overflow-y-auto">
+                        <!-- Göm Google Translate-elementet men låt det finnas kvar för funktionen -->
+                        <div id="google_translate_element" class="hidden"></div>
+                        
+                        <button onclick="doGTranslate('sv')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-t-xl transition flex items-center gap-2"><span>🇸🇪</span> Svenska</button>
+                        <button onclick="doGTranslate('af')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇿🇦</span> Afrikaans</button>
+                        <button onclick="doGTranslate('sq')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇦🇱</span> Albanska</button>
+                        <button onclick="doGTranslate('am')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇪🇹</span> Amhariska</button>
+                        <button onclick="doGTranslate('ar')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇸🇦</span> Arabiska</button>
+                        <button onclick="doGTranslate('hy')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇦🇲</span> Armeniska</button>
+                        <button onclick="doGTranslate('az')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇦🇿</span> Azerbajdzjanska</button>
+                        <button onclick="doGTranslate('eu')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇪🇸</span> Baskiska</button>
+                        <button onclick="doGTranslate('bn')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇧🇩</span> Bengaliska</button>
+                        <button onclick="doGTranslate('bs')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇧🇦</span> Bosniska</button>
+                        <button onclick="doGTranslate('bg')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇧🇬</span> Bulgariska</button>
+                        <button onclick="doGTranslate('da')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇩🇰</span> Danska</button>
+                        <button onclick="doGTranslate('en')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇬🇧</span> Engelska</button>
+                        <button onclick="doGTranslate('et')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇪🇪</span> Estniska</button>
+                        <button onclick="doGTranslate('fi')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇫🇮</span> Finska</button>
+                        <button onclick="doGTranslate('fr')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇫🇷</span> Franska</button>
+                        <button onclick="doGTranslate('gl')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇪🇸</span> Galiciska</button>
+                        <button onclick="doGTranslate('ka')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇬🇪</span> Georgiska</button>
+                        <button onclick="doGTranslate('el')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇬🇷</span> Grekiska</button>
+                        <button onclick="doGTranslate('gu')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇮🇳</span> Gujarati</button>
+                        <button onclick="doGTranslate('ht')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇭🇹</span> Haitisk kreol</button>
+                        <button onclick="doGTranslate('ha')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇳🇬</span> Hausa</button>
+                        <button onclick="doGTranslate('iw')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇮🇱</span> Hebreiska</button>
+                        <button onclick="doGTranslate('hi')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇮🇳</span> Hindi</button>
+                        <button onclick="doGTranslate('id')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇮🇩</span> Indonesiska</button>
+                        <button onclick="doGTranslate('ga')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇮🇪</span> Irländska</button>
+                        <button onclick="doGTranslate('is')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇮🇸</span> Isländska</button>
+                        <button onclick="doGTranslate('it')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇮🇹</span> Italienska</button>
+                        <button onclick="doGTranslate('ja')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇯🇵</span> Japanska</button>
+                        <button onclick="doGTranslate('jw')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇮🇩</span> Javanesiska</button>
+                        <button onclick="doGTranslate('yi')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇮🇱</span> Jiddisch</button>
+                        <button onclick="doGTranslate('kn')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇮🇳</span> Kannada</button>
+                        <button onclick="doGTranslate('ca')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇪🇸</span> Katalanska</button>
+                        <button onclick="doGTranslate('kk')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇰🇿</span> Kazakiska</button>
+                        <button onclick="doGTranslate('km')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇰🇭</span> Khmer</button>
+                        <button onclick="doGTranslate('zh-CN')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇨🇳</span> Kinesiska (Förenklad)</button>
+                        <button onclick="doGTranslate('zh-TW')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇹🇼</span> Kinesiska (Traditionell)</button>
+                        <button onclick="doGTranslate('ko')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇰🇷</span> Koreanska</button>
+                        <button onclick="doGTranslate('co')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇫🇷</span> Korsikanska</button>
+                        <button onclick="doGTranslate('hr')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇭🇷</span> Kroatiska</button>
+                        <button onclick="doGTranslate('ku')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇹🇷</span> Kurdiska</button>
+                        <button onclick="doGTranslate('ky')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇰🇬</span> Kirgiziska</button>
+                        <button onclick="doGTranslate('lo')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇱🇦</span> Lao</button>
+                        <button onclick="doGTranslate('la')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇻🇦</span> Latin</button>
+                        <button onclick="doGTranslate('lv')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇱🇻</span> Lettiska</button>
+                        <button onclick="doGTranslate('lt')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇱🇹</span> Litauiska</button>
+                        <button onclick="doGTranslate('lb')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇱🇺</span> Luxemburgska</button>
+                        <button onclick="doGTranslate('mk')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇲🇰</span> Makedonska</button>
+                        <button onclick="doGTranslate('mg')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇲🇬</span> Malagasy</button>
+                        <button onclick="doGTranslate('ms')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇲🇾</span> Malajiska</button>
+                        <button onclick="doGTranslate('ml')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇮🇳</span> Malayalam</button>
+                        <button onclick="doGTranslate('mt')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇲🇹</span> Maltesiska</button>
+                        <button onclick="doGTranslate('mi')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇳🇿</span> Maori</button>
+                        <button onclick="doGTranslate('mr')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇮🇳</span> Marathi</button>
+                        <button onclick="doGTranslate('mn')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇲🇳</span> Mongoliska</button>
+                        <button onclick="doGTranslate('my')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇲🇲</span> Myanmar (Burmesiska)</button>
+                        <button onclick="doGTranslate('nl')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇳🇱</span> Nederländska</button>
+                        <button onclick="doGTranslate('ne')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇳🇵</span> Nepali</button>
+                        <button onclick="doGTranslate('no')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇳🇴</span> Norska</button>
+                        <button onclick="doGTranslate('ps')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇦🇫</span> Pashto</button>
+                        <button onclick="doGTranslate('fa')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇮🇷</span> Persiska</button>
+                        <button onclick="doGTranslate('pl')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇵🇱</span> Polska</button>
+                        <button onclick="doGTranslate('pt')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇵🇹</span> Portugisiska</button>
+                        <button onclick="doGTranslate('pa')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇮🇳</span> Punjabi</button>
+                        <button onclick="doGTranslate('ro')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇷🇴</span> Rumänska</button>
+                        <button onclick="doGTranslate('ru')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇷🇺</span> Ryska</button>
+                        <button onclick="doGTranslate('sm')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇼🇸</span> Samoanska</button>
+                        <button onclick="doGTranslate('sr')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇷🇸</span> Serbiska</button>
+                        <button onclick="doGTranslate('sn')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇿🇼</span> Shona</button>
+                        <button onclick="doGTranslate('sd')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇵🇰</span> Sindhi</button>
+                        <button onclick="doGTranslate('si')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇱🇰</span> Singalesiska</button>
+                        <button onclick="doGTranslate('gd')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🏴󠁧󠁢󠁳󠁣󠁴󠁿</span> Skotsk gaeliska</button>
+                        <button onclick="doGTranslate('sk')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇸🇰</span> Slovakiska</button>
+                        <button onclick="doGTranslate('sl')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇸🇮</span> Slovenska</button>
+                        <button onclick="doGTranslate('so')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇸🇴</span> Somaliska</button>
+                        <button onclick="doGTranslate('es')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇪🇸</span> Spanska</button>
+                        <button onclick="doGTranslate('su')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇮🇩</span> Sundanesiska</button>
+                        <button onclick="doGTranslate('sw')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇰🇪</span> Swahili</button>
+                        <button onclick="doGTranslate('tg')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇹🇯</span> Tadzjikiska</button>
+                        <button onclick="doGTranslate('ta')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇮🇳</span> Tamil</button>
+                        <button onclick="doGTranslate('te')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇮🇳</span> Telugu</button>
+                        <button onclick="doGTranslate('th')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇹🇭</span> Thailändska</button>
+                        <button onclick="doGTranslate('cs')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇨🇿</span> Tjeckiska</button>
+                        <button onclick="doGTranslate('tr')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇹🇷</span> Turkiska</button>
+                        <button onclick="doGTranslate('de')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇩🇪</span> Tyska</button>
+                        <button onclick="doGTranslate('uk')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇺🇦</span> Ukrainska</button>
+                        <button onclick="doGTranslate('hu')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇭🇺</span> Ungerska</button>
+                        <button onclick="doGTranslate('ur')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇵🇰</span> Urdu</button>
+                        <button onclick="doGTranslate('uz')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇺🇿</span> Uzbekiska</button>
+                        <button onclick="doGTranslate('vi')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇻🇳</span> Vietnamesiska</button>
+                        <button onclick="doGTranslate('be')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇧🇾</span> Vitryska</button>
+                        <button onclick="doGTranslate('cy')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🏴󠁧󠁢󠁷󠁬󠁳󠁿</span> Walesiska</button>
+                        <button onclick="doGTranslate('xh')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇿🇦</span> Xhosa</button>
+                        <button onclick="doGTranslate('yo')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇳🇬</span> Yoruba</button>
+                        <button onclick="doGTranslate('zu')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-b-xl transition flex items-center gap-2"><span>🇿🇦</span> Zulu</button>
+                    </div>
+                </div>
+
+                 <!-- Dropdown-meny för "Andra länder" -->
                 <div class="relative group">
                     <button class="text-gray-300 hover:text-white transition flex items-center gap-1">
                         Andra länder
@@ -103,5 +204,20 @@
     <footer class="bg-gray-950 text-center py-6 text-gray-500 text-sm">
         <p>Skapad av Max &copy; 2026</p>
     </footer>
+
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'sv', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+    }
+    
+    function doGTranslate(lang_pair) {
+        var teCombo = document.querySelector('.goog-te-combo');
+        if (teCombo) {
+            teCombo.value = lang_pair;
+            teCombo.dispatchEvent(new Event('change'));
+        }
+    }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
