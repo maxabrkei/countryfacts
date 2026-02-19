@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<!-- Detta talar om för webbläsaren att detta är en HTML5-sida -->
+<html lang="sv">
+<!-- lang="sv" = sidan är på svenska -->
+
+<head>
+    <!-- head innehåller information OM sidan (syns inte på själva sidan) -->
+
+    <meta charset="UTF-8">
+    <!-- Gör att å, ä, ö fungerar -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Gör att sidan ser bra ut på mobilen -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Hämtar Tailwind CSS - ett stylingverktyg -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Hämtar typsnittet Poppins från Google -->
+
+    <title>Egypten - Fakta om Länder</title>
+    <!-- Texten i webbläsarens flik -->
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        /* Sätter Poppins som typsnitt på hela sidan */
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen">
+<!-- bg-gray-900 = mörk bakgrund -->
+<!-- text-white = vit text överallt -->
+<!-- min-h-screen = minst hela skärmens höjd -->
+
+    <!-- ============================================ -->
+    <!-- NAVIGERING - menyn högst upp                 -->
+    <!-- ============================================ -->
+    <nav class="bg-gray-950 shadow-lg sticky top-0 z-50">
+    <!-- sticky top-0 = fastnar högst upp vid scroll -->
+    <!-- z-50 = ligger ovanpå allt annat -->
+
+        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+            <!-- Logotyp till vänster -->
+            <a href="home.html" class="text-2xl font-bold text-white hover:text-amber-400 transition">
+                🌍 Fakta om Länder
+            </a>
+
+            <!-- Meny-länkar till höger -->
+            <div class="flex gap-6 items-center">
+                <a href="home.html" class="text-gray-300 hover:text-white transition">Hem</a>
+
+                <div id="google_translate_element"></div>
+                <script type="text/javascript">
+                function googleTranslateElementInit() {
+                  new google.translate.TranslateElement({pageLanguage: 'sv', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+                }
+                </script>
+                <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+                <!-- Dropdown-meny för alla länder -->
+                <div class="relative group">
+                    <button class="text-gray-300 hover:text-white transition flex items-center gap-1">
+                        Andra länder
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="absolute right-0 top-full mt-2 w-48 bg-gray-800 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="egypt.html" class="block px-4 py-3 text-white bg-gray-700 font-semibold rounded-t-xl transition">🇪🇬 Egypten</a>
+                        <a href="sverige.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇸🇪 Sverige</a>
+                        <a href="japan.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇯🇵 Japan</a>
+                        <a href="brasilien.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇧🇷 Brasilien</a>
+                        <a href="italien.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇮🇹 Italien</a>
+                        <a href="usa.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇺🇸 USA</a>
+                        <a href="indien.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇮🇳 Indien</a>
+                        <a href="grekland.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-b-xl transition">🇬🇷 Grekland</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================ -->
+    <!-- HERO - stor bild med titel överst            -->
+    <!-- ============================================ -->
+    <header class="relative h-96 overflow-hidden">
+    <!-- relative = gör att vi kan placera saker ovanpå med "absolute" -->
+    <!-- h-96 = höjd 384px -->
+    <!-- overflow-hidden = döljer allt som sticker ut -->
+
+        <!-- Hero-bilden -->
+        <img
+            src="https://images.unsplash.com/photo-1539768942893-daf53e736b68?w=1200&q=80"
+            alt="Egypten"
+            class="w-full h-full object-cover"
+        >
+        <!-- src = bildens URL (byt för att ändra bild) -->
+        <!-- w-full h-full = fyller hela utrymmet -->
+        <!-- object-cover = beskär bilden så den fyller utan att förvrängas -->
+
+        <!-- Mörkt överlägg med titel ovanpå bilden -->
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-black/40 to-transparent flex items-end">
+        <!-- absolute inset-0 = täcker hela bilden -->
+        <!-- bg-gradient-to-t = gradient som går uppåt -->
+        <!-- from-gray-900 = börjar med samma färg som body (sömlös övergång) -->
+        <!-- flex items-end = placerar innehållet längst ner -->
+
+            <div class="max-w-6xl mx-auto px-4 pb-10 w-full">
+            <!-- pb-10 = luft under -->
+            <!-- w-full = full bredd -->
+                <h1 class="text-5xl font-bold mb-2">Fakta om Egypten 🇪🇬</h1>
+                <!-- h1 = huvudrubrik, text-5xl = väldigt stor -->
+                <p class="text-xl text-gray-300">Det här är min sida om länder</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- HUVUDINNEHÅLL - all fakta om Egypten         -->
+    <!-- ============================================ -->
+    <main class="max-w-4xl mx-auto px-4 py-12 space-y-12">
+    <!-- main = huvudinnehållet på sidan -->
+    <!-- max-w-4xl = smalare maxbredd för läsbarhet -->
+    <!-- py-12 = luft ovanför och under -->
+    <!-- space-y-12 = mellanrum mellan varje sektion inuti -->
+
+        <!-- Introduktionsrubrik -->
+        <section>
+            <h2 class="text-3xl font-bold text-amber-400 mb-4">Vad Egypten är mest känt för</h2>
+            <!-- text-amber-400 = guldorange färg på rubriken -->
+        </section>
+
+        <!-- ============================================ -->
+        <!-- PYRAMIDER-SEKTION                            -->
+        <!-- ============================================ -->
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+        <!-- bg-gray-800 = lite ljusare grå bakgrund (skapar ett "kort") -->
+        <!-- rounded-2xl = rundade hörn -->
+        <!-- p-8 = luft inuti kortet -->
+        <!-- shadow-lg = skugga runt kortet -->
+
+            <h3 class="text-2xl font-bold text-amber-300 mb-4">🏛️ Pyramider</h3>
+            <!-- h3 = rubriknivå 3 -->
+            <!-- text-amber-300 = ljus guldorange -->
+
+            <p class="text-gray-300 leading-relaxed mb-6">
+            <!-- text-gray-300 = ljusgrå text -->
+            <!-- leading-relaxed = mer luft mellan raderna (lättare att läsa) -->
+            <!-- mb-6 = luft under stycket -->
+                Egyptens pyramider är några av världens mest fascinerande och välbevarade byggnadsverk.
+                De byggdes främst som gravplatser för landets faraoner under det Gamla riket (ca 2700–2200 f.Kr.).
+            </p>
+
+            <!-- Underrubrik -->
+            <h4 class="text-xl font-semibold text-white mb-3">1. De mest kända pyramiderna (Giza)</h4>
+            <!-- h4 = rubriknivå 4 (mindre rubrik) -->
+
+            <p class="text-gray-300 leading-relaxed mb-4">
+                De tre största och mest kända pyramiderna ligger på Gizaplatån utanför Kairo.
+            </p>
+
+            <!-- Tre pyramid-kort i en lista -->
+            <div class="grid gap-4 mb-6">
+            <!-- grid gap-4 = rutnät med mellanrum -->
+
+                <!-- Kort för Cheopspyramiden -->
+                <div class="bg-gray-700/50 rounded-xl p-4">
+                <!-- bg-gray-700/50 = grå bakgrund med 50% genomskinlighet -->
+                <!-- rounded-xl = rundade hörn -->
+                    <p class="font-semibold text-amber-200">Cheopspyramiden (Stora pyramiden)</p>
+                    <p class="text-gray-300 text-sm">Byggd för farao Cheops. Den var ursprungligen 146,5 meter hög och var världens högsta byggnad i över 3 800 år.</p>
+                    <!-- text-sm = liten text -->
+                </div>
+
+                <!-- Kort för Chefrens pyramid -->
+                <div class="bg-gray-700/50 rounded-xl p-4">
+                    <p class="font-semibold text-amber-200">Chefrens pyramid</p>
+                    <p class="text-gray-300 text-sm">Ser ofta högre ut än Cheops eftersom den ligger på en högre punkt, men den är något mindre. Den har kvar en del av den släta kalkstensbeklädnaden vid toppen.</p>
+                </div>
+
+                <!-- Kort för Mykerinos pyramid -->
+                <div class="bg-gray-700/50 rounded-xl p-4">
+                    <p class="font-semibold text-amber-200">Mykerinos pyramid</p>
+                    <p class="text-gray-300 text-sm">Den minsta av de tre stora i Giza.</p>
+                </div>
+            </div>
+
+            <!-- Antal pyramider -->
+            <h4 class="text-xl font-semibold text-white mb-3">2. Hur många pyramider finns det?</h4>
+            <p class="text-gray-300 leading-relaxed mb-6">
+                Arkeologer har identifierat över 100 pyramider i Egypten. Den äldsta kallas Djosers trappstegspyramid
+                i Saqqara, byggd omkring 2600 f.Kr. Innan man började bygga pyramider med släta sidor staplade man
+                flera avsatser på varandra i en trappstegsform.
+            </p>
+
+            <!-- Bygget -->
+            <h4 class="text-xl font-semibold text-white mb-3">3. Bygget – En ingenjörskonst</h4>
+            <p class="text-gray-300 leading-relaxed mb-4">
+                Det är fortfarande en delvis olöst gåta exakt hur pyramiderna byggdes, men vi vet följande:
+            </p>
+
+            <!-- Lista med fakta - varje punkt har en pil och fetstilt nyckelord -->
+            <ul class="space-y-2 text-gray-300 mb-6">
+            <!-- ul = en lista utan siffror -->
+            <!-- space-y-2 = mellanrum mellan varje li -->
+
+                <li class="flex gap-2">
+                <!-- li = ett objekt i listan -->
+                <!-- flex gap-2 = pilen och texten bredvid varandra med mellanrum -->
+                    <span class="text-amber-400">▸</span>
+                    <!-- En guldorange pil som dekoration -->
+                    <span><strong>Material:</strong> Stenblocken (mestadels kalksten och granit) väger i snitt 2,5 ton styck. Cheopspyramiden består av cirka 2,3 miljoner sådana block.</span>
+                    <!-- strong = fetstilt text -->
+                </li>
+
+                <li class="flex gap-2">
+                    <span class="text-amber-400">▸</span>
+                    <span><strong>Arbetarna:</strong> Tvärtemot vad många tror var det inte slavar som byggde dem, utan tiotusentals betalda yrkesmän och bönder som arbetade när Nilen svämmade över.</span>
+                </li>
+
+                <li class="flex gap-2">
+                    <span class="text-amber-400">▸</span>
+                    <span><strong>Precision:</strong> Sidorna på Cheopspyramiden är nästan exakt inriktade efter de fyra väderstrecken med bara några centimeters felmarginal.</span>
+                </li>
+            </ul>
+
+            <!-- Varför den formen -->
+            <h4 class="text-xl font-semibold text-white mb-3">4. Varför just den formen?</h4>
+            <ul class="space-y-2 text-gray-300">
+                <li class="flex gap-2">
+                    <span class="text-amber-400">▸</span>
+                    <span><strong>Religiös symbolik:</strong> Formen tros representera solens strålar. Egyptierna trodde att faraons ande kunde "klättra" uppför pyramiden för att förenas med solguden Ra.</span>
+                </li>
+                <li class="flex gap-2">
+                    <span class="text-amber-400">▸</span>
+                    <span><strong>Dödsriket:</strong> Nästan alla pyramider byggdes på Nilens västra strand, eftersom solen går ner i väster – en symbol för ingången till dödsriket.</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- ÖKNEN-SEKTION                                -->
+        <!-- ============================================ -->
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-amber-300 mb-4">🏜️ Öknen</h3>
+
+            <p class="text-gray-300 leading-relaxed mb-6">
+                Egypten är till över 90 % täckt av öken. Landet delas upp i tre stora ökenområden
+                som alla har sin egen unika karaktär:
+            </p>
+
+            <!-- Tre öknar visas som kort BREDVID varandra -->
+            <div class="grid md:grid-cols-3 gap-4 mb-6">
+            <!-- md:grid-cols-3 = 3 kolumner på medelstora skärmar -->
+            <!-- På mobilen blir det 1 kolumn automatiskt -->
+
+                <!-- Västra öknen -->
+                <div class="bg-gray-700/50 rounded-xl p-5">
+                    <h4 class="font-bold text-amber-200 mb-2">Västra öknen</h4>
+                    <p class="text-gray-300 text-sm">
+                        Den största delen av Egypten. Här finns gigantiska sanddyner, Vita öknen med kritvita
+                        klippformationer, Svarta öknen med vulkaniska kullar, och stora oaser som Siwa.
+                    </p>
+                </div>
+
+                <!-- Östra öknen -->
+                <div class="bg-gray-700/50 rounded-xl p-5">
+                    <h4 class="font-bold text-amber-200 mb-2">Östra öknen</h4>
+                    <p class="text-gray-300 text-sm">
+                        En klippöken med höga bergskedjor och uttorkade flodbäddar (wadis).
+                        Sedan antikens tid har man brutit guld, ädelstenar och granit här.
+                    </p>
+                </div>
+
+                <!-- Sinaiöknen -->
+                <div class="bg-gray-700/50 rounded-xl p-5">
+                    <h4 class="font-bold text-amber-200 mb-2">Sinaiöknen</h4>
+                    <p class="text-gray-300 text-sm">
+                        Här finns Egyptens högsta berg, Katarinaberget (2 629 m), och det berömda Sinaiberget.
+                        Känt för sina färgstarka klippor i nyanser av rött, gult och lila.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Faktaruta med speciell bakgrundsfärg -->
+            <div class="bg-amber-900/30 border border-amber-700/50 rounded-xl p-4">
+            <!-- bg-amber-900/30 = mörk guldorange bakgrund med 30% synlighet -->
+            <!-- border border-amber-700/50 = en tunn ram runt rutan -->
+                <p class="text-amber-200 font-semibold mb-1">Visste du?</p>
+                <p class="text-gray-300 text-sm">
+                    De gamla egyptierna kallade öknen för <em>Deshret</em> ("det röda landet"). De såg den som en plats
+                    för fara och kaos, men den fungerade också som ett naturligt skydd mot fiender.
+                    Motsatsen var <em>Kemet</em> ("det svarta landet"), den bördiga svarta jorden längs Nilen.
+                </p>
+                <!-- em = kursiv text (emphasis) -->
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- NILEN-SEKTION                                -->
+        <!-- ============================================ -->
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-amber-300 mb-4">🌊 Nilen</h3>
+
+            <p class="text-gray-300 leading-relaxed mb-6">
+                Nilen är inte bara en flod, den är själva förutsättningen för att Egypten överhuvudtaget existerar.
+                Utan Nilen skulle hela landet vara en öde öken.
+            </p>
+
+            <h4 class="text-xl font-semibold text-white mb-3">1. Världens längsta flod?</h4>
+            <p class="text-gray-300 leading-relaxed mb-6">
+                Nilen anses traditionellt vara världens längsta flod, även om vissa forskare idag menar att
+                Amazonfloden kan vara längre. Den är cirka 6 650 till 6 670 kilometer lång och rinner genom
+                11 länder i Afrika innan den når Egypten och mynnar ut i Medelhavet.
+            </p>
+
+            <h4 class="text-xl font-semibold text-white mb-3">2. Flodens två källor</h4>
+            <p class="text-gray-300 leading-relaxed mb-2">
+                Nilen bildas av två stora floder som flyter samman vid staden Khartoum i Sudan:
+            </p>
+            <ul class="space-y-2 text-gray-300 mb-6">
+                <li class="flex gap-2">
+                    <span class="text-amber-400">▸</span>
+                    <span><strong>Vita Nilen:</strong> Har sitt ursprung vid de stora sjöarna i Centralafrika (bland annat Victoriasjön).</span>
+                </li>
+                <li class="flex gap-2">
+                    <span class="text-amber-400">▸</span>
+                    <span><strong>Blå Nilen:</strong> Kommer från Tanasjön i de etiopiska högländerna. Det är Blå Nilen som historiskt fört med sig det mesta av det viktiga vattnet och slammet till Egypten.</span>
+                </li>
+            </ul>
+
+            <h4 class="text-xl font-semibold text-white mb-3">3. "Egypten är en gåva från Nilen"</h4>
+            <p class="text-gray-300 leading-relaxed mb-6">
+                Detta kända citat från historikern Herodotos sammanfattar flodens betydelse perfekt.
+                Förr svämmade Nilen över varje år mellan juni och september, och det svarta slammet (<em>kemet</em>)
+                som blev kvar var extremt näringsrikt. Än idag bor nästan hela Egyptens befolkning (över 95 %)
+                längs Nilens stränder.
+            </p>
+
+            <h4 class="text-xl font-semibold text-white mb-3">4. Nilens delta</h4>
+            <p class="text-gray-300 leading-relaxed mb-6">
+                Norr om Kairo delar Nilen upp sig i många mindre armar och bildar ett delta – en gigantisk,
+                solfjädersformad yta av bördig mark. I antiken fanns här sju huvudgrenar, men idag återstår
+                främst två: Damietta i öster och Rosetta i väster.
+            </p>
+
+            <h4 class="text-xl font-semibold text-white mb-3">5. Aswandammen</h4>
+            <p class="text-gray-300 leading-relaxed mb-4">
+                År 1970 färdigställdes den stora Aswandammen i södra Egypten. Denna damm förändrade allt:
+            </p>
+
+            <!-- Lista med plus och minus - grön bock för fördelar, rött kryss för nackdelar -->
+            <ul class="space-y-2 text-gray-300 mb-6">
+                <li class="flex gap-2">
+                    <span class="text-green-400">✓</span>
+                    <!-- text-green-400 = grön färg för positiva saker -->
+                    <span>Stoppade de naturliga översvämningarna för att reglera vattnet året runt</span>
+                </li>
+                <li class="flex gap-2">
+                    <span class="text-green-400">✓</span>
+                    <span>Skapade Nassersjön, en av världens största konstgjorda sjöar</span>
+                </li>
+                <li class="flex gap-2">
+                    <span class="text-green-400">✓</span>
+                    <span>Ger Egypten en enorm mängd elektricitet (vattenkraft)</span>
+                </li>
+                <li class="flex gap-2">
+                    <span class="text-red-400">✗</span>
+                    <!-- text-red-400 = röd färg för negativa saker -->
+                    <span>Nackdelen: Det naturliga slammet når inte längre åkrarna</span>
+                </li>
+            </ul>
+
+            <h4 class="text-xl font-semibold text-white mb-3">6. Transport och kultur</h4>
+            <p class="text-gray-300 leading-relaxed">
+                Under tusentals år var Nilen Egyptens "huvudväg". Man fraktade mat, soldater och de enorma
+                stenblocken till pyramiderna på floden. Eftersom Nilen flyter från söder till norr, men vinden
+                oftast blåser från norr till söder, kunde man enkelt segla uppför floden och låta strömmen
+                föra en nedför den.
+            </p>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- BILDGALLERI - bilder om Egypten              -->
+        <!-- ============================================ -->
+        <section>
+            <h2 class="text-3xl font-bold text-amber-400 mb-6">Bilder om Egypten</h2>
+
+            <!-- Bilderna visas i ett rutnät med 2 kolumner -->
+            <div class="grid md:grid-cols-2 gap-4">
+                <img
+                    src="https://turistkompaniet.nu/wp-content/uploads/2021/08/Egypten-nilen.jpg"
+                    alt="Egypten och Nilen"
+                    class="rounded-xl shadow-lg w-full h-64 object-cover"
+                >
+                <!-- rounded-xl = rundade hörn -->
+                <!-- shadow-lg = skugga -->
+                <!-- h-64 = fast höjd -->
+                <!-- object-cover = beskär bilden snyggt -->
+
+                <img
+                    src="https://www.researchgate.net/profile/Dr-Yohannes-Woldeyohannes/publication/317372179/figure/fig4/AS:667934481469447@1536259398320/Map-showing-the-Nile-River-with-its-main-branches-White-and-Blue-Niles-and-the-site-of_Q320.jpg"
+                    alt="Karta över Nilen"
+                    class="rounded-xl shadow-lg w-full h-64 object-cover"
+                >
+
+                <!-- Ny bild tillagd -->
+                <img
+                    src="https://images.unsplash.com/photo-1568503446072-5c1c127b9bfd?w=800&q=80"
+                    alt="Sfinxen"
+                    class="rounded-xl shadow-lg w-full h-64 object-cover md:col-span-2"
+                >
+            </div>
+
+            <!-- Bildtext under bilderna -->
+            <p class="text-gray-400 text-sm mt-4 italic">
+            <!-- mt-4 = luft ovanför -->
+            <!-- italic = kursiv text -->
+                Nilen kallas Egyptens "moder" eftersom dess årliga översvämningar lämnade efter sig näringsrikt
+                slam som möjliggjorde jordbruk i den omgivande öknen.
+            </p>
+        </section>
+
+    </main>
+    <!-- Slut på huvudinnehållet -->
+
+    <!-- ============================================ -->
+    <!-- SIDFOT                                       -->
+    <!-- ============================================ -->
+    <footer class="bg-gray-950 text-center py-6 text-gray-500 text-sm">
+        <p>Skapad av Max &copy; 2026</p>
+    </footer>
+
+</body>
+</html>

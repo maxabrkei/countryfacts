@@ -1,0 +1,30 @@
+h1 {
+
+    color: rgb(0, 0, 0);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+nav {
+
+    background-color: black;
+    color: antiquewhite;
+    font-size: 18px;
+
+}
+
+p {
+
+    font-style: italic;
+}
+
+a {
+    color: antiquewhite;
+}
+
+.homehero {
+
+    position:relative;
+    size: 150;
+    
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Japan - Fakta om Länder</title>
+    <style>body { font-family: 'Poppins', sans-serif; }</style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+
+    <!-- NAVIGERING -->
+    <nav class="bg-gray-950 shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+            <a href="home.html" class="text-2xl font-bold text-white hover:text-red-400 transition">🌍 Fakta om Länder</a>
+            <div class="flex gap-6 items-center">
+                <a href="home.html" class="text-gray-300 hover:text-white transition">Hem</a>
+                <div id="google_translate_element"></div>
+                <script type="text/javascript">
+                function googleTranslateElementInit() {
+                  new google.translate.TranslateElement({pageLanguage: 'sv', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+                }
+                </script>
+                <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+                <!-- Dropdown-meny för "Andra länder" -->
+                <div class="relative group">
+                    <button class="text-gray-300 hover:text-white transition flex items-center gap-1">
+                        Andra länder
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="absolute right-0 top-full mt-2 w-48 bg-gray-800 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="egypt.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-t-xl transition">🇪🇬 Egypten</a>
+                        <a href="sverige.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇸🇪 Sverige</a>
+                        <a href="japan.html" class="block px-4 py-3 text-white bg-gray-700 font-semibold transition">🇯🇵 Japan</a>
+                        <a href="brasilien.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇧🇷 Brasilien</a>
+                        <a href="italien.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇮🇹 Italien</a>
+                        <a href="usa.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇺🇸 USA</a>
+                        <a href="indien.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇮🇳 Indien</a>
+                        <a href="grekland.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-b-xl transition">🇬🇷 Grekland</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="relative h-96 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1200&q=80" alt="Japan" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-black/40 to-transparent flex items-end">
+            <div class="max-w-6xl mx-auto px-4 pb-10 w-full">
+                <h1 class="text-5xl font-bold mb-2">Fakta om Japan 🇯🇵</h1>
+                <p class="text-xl text-gray-300">Kultur, teknik och tradition</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- HUVUDINNEHÅLL - fyll i din fakta här! -->
+    <main class="max-w-4xl mx-auto px-4 py-12 space-y-12">
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-red-300 mb-4">🇯🇵 Fakta om Japan</h3>
+            
+            <p class="text-gray-300 leading-relaxed mb-6">
+                Japan, känt som "soluppgångens land", är en konstitutionell monarki i Östasien bestående av över 6 800 öar. 
+                Landet är en världsledande teknisk och ekonomisk stormakt där tradition möter ultramodern teknik.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-gray-700/50 p-5 rounded-xl">
+                    <h4 class="font-bold text-red-200 mb-2">Snabba Fakta</h4>
+                    <ul class="text-gray-300 text-sm space-y-1">
+                        <li><strong>Huvudstad:</strong> Tokyo (världens största metropol)</li>
+                        <li><strong>Befolkning:</strong> Ca 126 miljoner</li>
+                        <li><strong>Högsta berg:</strong> Mount Fuji (3 776 m)</li>
+                        <li><strong>Valuta:</strong> Japansk yen (JPY)</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-700/50 p-5 rounded-xl">
+                    <h4 class="font-bold text-red-200 mb-2">Kultur & Nöje</h4>
+                    <ul class="text-gray-300 text-sm space-y-1">
+                        <li><strong>Anime:</strong> 60% av världens animerade film görs här</li>
+                        <li><strong>Mat:</strong> Sushi, Ramen, Tempura</li>
+                        <li><strong>Historia:</strong> Samurajer, Shoguns, Kejsare</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4 class="text-xl font-bold text-white mb-3">Geografi och Natur</h4>
+            <p class="text-gray-300 leading-relaxed mb-6">
+                Japan är ett örike i en över 300 mil lång båge. Över 70 % av ytan består av berg och landet har över 200 vulkaner.
+                Klimatet varierar från snöiga vintrar i norr (Hokkaido) till tropiska stränder i söder (Okinawa).
+            </p>
+
+            <h4 class="text-xl font-bold text-white mb-3">Varför heter det Japan?</h4>
+            <p class="text-gray-300 leading-relaxed">
+                Japan kallas <em>Nihon</em> eller <em>Nippon</em> på japanska, vilket betyder "solens ursprung". 
+                Det är därför landet ofta kallas "Soluppgångens land". Det engelska namnet Japan tros komma från ett kinesiskt uttal av namnet.
+            </p>
+        </section>
+    </main>
+
+    <footer class="bg-gray-950 text-center py-6 text-gray-500 text-sm">
+        <p>Skapad av Max &copy; 2026</p>
+    </footer>
+</body>
+</html>

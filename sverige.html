@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!-- Detta talar om för webbläsaren att detta är en HTML5-sida -->
+<html lang="sv">
+<!-- lang="sv" = sidan är på svenska -->
+
+<head>
+    <!-- head innehåller information OM sidan (syns inte) -->
+
+    <meta charset="UTF-8">
+    <!-- Gör att å, ä, ö fungerar -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Gör att sidan ser bra ut på mobilen -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Hämtar Tailwind CSS -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Hämtar typsnittet Poppins -->
+
+    <title>Sverige - Fakta om Länder</title>
+    <!-- Texten i webbläsarens flik -->
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        /*Sätter Poppins som typsnitt*/
+    
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen">
+<!-- bg-gray-900 = mörk bakgrund -->
+<!-- text-white = vit text -->
+<!-- min-h-screen = minst hela skärmhöjden -->
+
+    <!-- ============================================ -->
+    <!-- NAVIGERING - menyn högst upp                 -->
+    <!-- ============================================ -->
+    <nav class="bg-gray-950 shadow-lg sticky top-0 z-50">
+    <!-- sticky top-0 = fastnar högst upp vid scroll -->
+
+        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+            <!-- Logotyp -->
+            <a href="home.html" class="text-2xl font-bold text-white hover:text-blue-400 transition">
+                🌍 Fakta om Länder
+            </a>
+
+            <!-- Meny-länkar -->
+            <div class="flex gap-6 items-center">
+                <a href="home.html" class="text-gray-300 hover:text-white transition">Hem</a>
+                
+                <div id="google_translate_element"></div>
+                <script type="text/javascript">
+                function googleTranslateElementInit() {
+                  new google.translate.TranslateElement({pageLanguage: 'sv', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+                }
+                </script>
+                <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+                <!-- Dropdown-meny för alla länder -->
+                <div class="relative group">
+                    <button class="text-gray-300 hover:text-white transition flex items-center gap-1">
+                        Andra länder
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="absolute right-0 top-full mt-2 w-48 bg-gray-800 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="egypt.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-t-xl transition">🇪🇬 Egypten</a>
+                        <a href="sverige.html" class="block px-4 py-3 text-white bg-gray-700 font-semibold transition">🇸🇪 Sverige</a>
+                        <a href="japan.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇯🇵 Japan</a>
+                        <a href="brasilien.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇧🇷 Brasilien</a>
+                        <a href="italien.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇮🇹 Italien</a>
+                        <a href="usa.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇺🇸 USA</a>
+                        <a href="indien.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇮🇳 Indien</a>
+                        <a href="grekland.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-b-xl transition">🇬🇷 Grekland</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================ -->
+    <!-- HERO - stor bild med titel                   -->
+    <!-- ============================================ -->
+    <header class="relative h-96 overflow-hidden">
+    <!-- relative = gör att vi kan lägga saker ovanpå bilden -->
+    <!-- h-96 = höjd 384px -->
+
+        <!-- Bakgrundsbild -->
+        <img
+            src="https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=1200&q=80"
+            alt="Sverige"
+            class="w-full h-full object-cover"
+        >
+        <!-- Byt src för att ändra bilden -->
+
+        <!-- Mörkt överlägg med titel -->
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-black/40 to-transparent flex items-end">
+        <!-- Gradient som gör botten mörk så texten syns -->
+            <div class="max-w-6xl mx-auto px-4 pb-10 w-full">
+                <h1 class="text-5xl font-bold mb-2">Fakta om Sverige! 🇸🇪</h1>
+                <p class="text-xl text-gray-300">Natur, kultur och historia</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- HUVUDINNEHÅLL                                -->
+    <!-- Här kan du lägga till fler sektioner!        -->
+    <!-- Kopiera en <section> från egypt.html och     -->
+    <!-- byt ut texten för att lägga till fakta       -->
+    <!-- ============================================ -->
+    <main class="max-w-4xl mx-auto px-4 py-12 space-y-12">
+    <!-- space-y-12 = mellanrum mellan varje section -->
+
+        <!-- EXEMPEL-SEKTION - du kan kopiera denna och ändra texten -->
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+        <!-- bg-gray-800 = kortets bakgrundsfärg -->
+        <!-- rounded-2xl = rundade hörn -->
+        <!-- p-8 = luft inuti -->
+        <!-- shadow-lg = skugga -->
+
+            <h3 class="text-2xl font-bold text-blue-300 mb-4">🇸🇪 Fakta om Sverige</h3>
+            
+            <p class="text-gray-300 leading-relaxed mb-6">
+                Sverige är en konstitutionell monarki och parlamentarisk demokrati i Norden med drygt 10,6 miljoner invånare. 
+                Landet är känt för sin stora natur med över 100 000 sjöar, högteknologisk industri, samt en hög livskvalitet. 
+                Sverige är medlem i EU och Nato.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-gray-700/50 p-5 rounded-xl">
+                    <h4 class="font-bold text-blue-200 mb-2">Grundläggande Fakta</h4>
+                    <ul class="text-gray-300 text-sm space-y-1">
+                        <li><strong>Huvudstad:</strong> Stockholm</li>
+                        <li><strong>Statschef:</strong> Kung Carl XVI Gustaf</li>
+                        <li><strong>Folkmängd:</strong> Ca 10,6 miljoner</li>
+                        <li><strong>Yta:</strong> 450 295 km²</li>
+                        <li><strong>Nationaldag:</strong> 6 juni</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-700/50 p-5 rounded-xl">
+                    <h4 class="font-bold text-blue-200 mb-2">Kultur & Innovation</h4>
+                    <ul class="text-gray-300 text-sm space-y-1">
+                        <li><strong>Kända företag:</strong> IKEA, Volvo, Spotify</li>
+                        <li><strong>Musik:</strong> ABBA, Avicii, Max Martin</li>
+                        <li><strong>Uppfinningar:</strong> Dynamiten, Kullagret, Pacemakern</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4 class="text-xl font-bold text-white mb-3">Geografi och Natur</h4>
+            <p class="text-gray-300 leading-relaxed mb-6">
+                Sverige är ett av Europas större länder till ytan och består till största delen av skogar, berg och sjöar. 
+                Barrskogens mörkgröna täcke dominerar naturen. I norr har fjällen en karg prägel, medan södra Sverige har lummigare skogar och öppna landskap.
+                Vänern är Västeuropas största insjö.
+            </p>
+
+            <h4 class="text-xl font-bold text-white mb-3">Historia och Namn</h4>
+            <p class="text-gray-300 leading-relaxed mb-4">
+                Namnet <strong>Sverige</strong> kommer av "Svea rike" (svearnas rike). Den 6 juni 1523 valdes Gustav Vasa till kung, vilket markerade slutet på Kalmarunionen och början på det moderna Sverige.
+                Innan dess hade landet ingått i en union med Norge och Danmark.
+            </p>
+
+            <div class="bg-blue-900/30 border border-blue-700/50 rounded-xl p-4 mt-6">
+                <p class="text-blue-200 font-semibold mb-1">Visste du?</p>
+                <p class="text-gray-300 text-sm">
+                    Sverige är känt för sina uppfinnare! Coca-Cola-flaskan, dynamiten, skiftnyckeln och blixtlåset har alla svenska kopplingar.
+                </p>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- TIPS: Kopiera sektionen ovan och klistra in  -->
+        <!-- den här nedanför för att lägga till mer       -->
+        <!-- fakta om Sverige!                            -->
+        <!-- ============================================ -->
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- SIDFOT                                       -->
+    <!-- ============================================ -->
+    <footer class="bg-gray-950 text-center py-6 text-gray-500 text-sm">
+        <p>Skapad av Max &copy; 2026</p>
+    </footer>
+
+</body>
+</html>

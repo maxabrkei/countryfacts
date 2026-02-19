@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Fakta om Länder</title>
+    <style>body { font-family: 'Poppins', sans-serif; }</style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+
+    <!-- NAVIGERING - bara "Hem" och "Andra länder" med dropdown -->
+    <nav class="bg-gray-950 shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+            <a href="home.html" class="text-2xl font-bold text-white hover:text-amber-400 transition">🌍 Fakta om Länder</a>
+            <div class="flex gap-6 items-center">
+                <!-- Hem-länk -->
+                <a href="home.html" class="text-white font-semibold">Hem</a>
+                
+                <!-- Google Translate -->
+                <div id="google_translate_element"></div>
+                <script type="text/javascript">
+                function googleTranslateElementInit() {
+                  new google.translate.TranslateElement({pageLanguage: 'sv', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+                }
+                </script>
+                <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+                <!-- Dropdown för alla länder -->
+                <div class="relative group">
+                    <!-- Knappen som man håller musen över -->
+                    <button class="text-gray-300 hover:text-white transition flex items-center gap-1">
+                        Andra länder
+                        <!-- Liten pil nedåt -->
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <!-- Dropdown-menyn som visas vid hover -->
+                    <div class="absolute right-0 top-full mt-2 w-48 bg-gray-800 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="egypt.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-t-xl transition">🇪🇬 Egypten</a>
+                        <a href="sverige.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇸🇪 Sverige</a>
+                        <a href="japan.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇯🇵 Japan</a>
+                        <a href="brasilien.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇧🇷 Brasilien</a>
+                        <a href="italien.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇮🇹 Italien</a>
+                        <a href="usa.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇺🇸 USA</a>
+                        <a href="indien.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇮🇳 Indien</a>
+                        <a href="grekland.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-b-xl transition">🇬🇷 Grekland</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO - välkomsttext -->
+    <header class="text-center py-20 px-4">
+        <h1 class="text-5xl font-bold mb-4">Välkommen!</h1>
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+            Utforska intressanta fakta om olika länder runt om i världen.
+            Klicka på ett land nedan för att lära dig mer.
+        </p>
+    </header>
+
+    <!-- ALLA LÄNDERKORT - 8 kort i ett rutnät -->
+    <section class="max-w-6xl mx-auto px-4 pb-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- grid-cols-1 = 1 kolumn på mobil -->
+            <!-- md:grid-cols-2 = 2 kolumner på mellanstor skärm -->
+            <!-- lg:grid-cols-3 = 3 kolumner på stor skärm -->
+
+            <!-- EGYPTEN -->
+            <a href="egypt.html" class="group relative block h-64 rounded-2xl overflow-hidden shadow-xl">
+                <img src="https://images.unsplash.com/photo-1539768942893-daf53e736b68?w=800&q=80" alt="Egypten" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-5">
+                    <h2 class="text-2xl font-bold text-white mb-1">Egypten 🇪🇬</h2>
+                    <p class="text-gray-300 text-sm">Pyramider, öknar och Nilen</p>
+                </div>
+            </a>
+
+            <!-- SVERIGE -->
+            <a href="sverige.html" class="group relative block h-64 rounded-2xl overflow-hidden shadow-xl">
+                <img src="https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=800&q=80" alt="Sverige" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-5">
+                    <h2 class="text-2xl font-bold text-white mb-1">Sverige 🇸🇪</h2>
+                    <p class="text-gray-300 text-sm">Natur, kultur och historia</p>
+                </div>
+            </a>
+
+            <!-- JAPAN -->
+            <a href="japan.html" class="group relative block h-64 rounded-2xl overflow-hidden shadow-xl">
+                <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&q=80" alt="Japan" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-5">
+                    <h2 class="text-2xl font-bold text-white mb-1">Japan 🇯🇵</h2>
+                    <p class="text-gray-300 text-sm">Kultur, teknik och tradition</p>
+                </div>
+            </a>
+
+            <!-- BRASILIEN -->
+            <a href="brasilien.html" class="group relative block h-64 rounded-2xl overflow-hidden shadow-xl">
+                <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=800&q=80" alt="Brasilien" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-5">
+                    <h2 class="text-2xl font-bold text-white mb-1">Brasilien 🇧🇷</h2>
+                    <p class="text-gray-300 text-sm">Regnskog, fotboll och karneval</p>
+                </div>
+            </a>
+
+            <!-- ITALIEN -->
+            <a href="italien.html" class="group relative block h-64 rounded-2xl overflow-hidden shadow-xl">
+                <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=800&q=80" alt="Italien" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-5">
+                    <h2 class="text-2xl font-bold text-white mb-1">Italien 🇮🇹</h2>
+                    <p class="text-gray-300 text-sm">Mat, konst och historia</p>
+                </div>
+            </a>
+
+            <!-- USA -->
+            <a href="usa.html" class="group relative block h-64 rounded-2xl overflow-hidden shadow-xl">
+                <img src="https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=800&q=80" alt="USA" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-5">
+                    <h2 class="text-2xl font-bold text-white mb-1">USA 🇺🇸</h2>
+                    <p class="text-gray-300 text-sm">Frihet, innovation och natur</p>
+                </div>
+            </a>
+
+            <!-- INDIEN -->
+            <a href="indien.html" class="group relative block h-64 rounded-2xl overflow-hidden shadow-xl">
+                <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80" alt="Indien" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-5">
+                    <h2 class="text-2xl font-bold text-white mb-1">Indien 🇮🇳</h2>
+                    <p class="text-gray-300 text-sm">Kultur, kryddor och historia</p>
+                </div>
+            </a>
+
+            <!-- GREKLAND -->
+            <a href="grekland.html" class="group relative block h-64 rounded-2xl overflow-hidden shadow-xl">
+                <img src="https://images.unsplash.com/photo-1503152394-c571994fd383?w=800&q=80" alt="Grekland" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-5">
+                    <h2 class="text-2xl font-bold text-white mb-1">Grekland 🇬🇷</h2>
+                    <p class="text-gray-300 text-sm">Filosofi, myter och öar</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <footer class="bg-gray-950 text-center py-6 text-gray-500 text-sm">
+        <p>Skapad av Max &copy; 2026</p>
+    </footer>
+
+</body>
+</html>
