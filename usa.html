@@ -24,7 +24,7 @@
                     </button>
                     <div class="absolute right-0 top-full mt-2 w-48 bg-gray-800 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 max-h-96 overflow-y-auto">
                         <!-- Göm Google Translate-elementet men låt det finnas kvar för funktionen -->
-                        <div id="google_translate_element" class="hidden"></div>
+                        <div id="google_translate_element" class="absolute opacity-0 pointer-events-none"></div>
                         
                         <button onclick="doGTranslate('sv')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-t-xl transition flex items-center gap-2"><span>🇸🇪</span> Svenska</button>
                         <button onclick="doGTranslate('af')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇿🇦</span> Afrikaans</button>
@@ -140,12 +140,19 @@
                         <a href="grekland.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-b-xl transition">🇬🇷 Grekland</a>
                     </div>
                 </div>
+
+                <!-- Färg-väljare -->
+                <label class="text-gray-300 hover:text-white transition flex items-center gap-1 cursor-pointer" title="Ändra bakgrundsfärg">
+                    <span class="hidden sm:inline">Färg</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    <input type="color" class="invisible w-0 h-0 absolute" oninput="document.body.style.backgroundColor = this.value">
+                </label>
             </div>
         </div>
     </nav>
 
     <header class="relative h-96 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=1200&q=80" alt="USA" class="w-full h-full object-cover">
+        <img src="usabild.jpg" alt="USA" class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-black/40 to-transparent flex items-end">
             <div class="max-w-6xl mx-auto px-4 pb-10 w-full">
                 <h1 class="text-5xl font-bold mb-2">Fakta om USA 🇺🇸</h1>
@@ -157,13 +164,100 @@
     <main class="max-w-4xl mx-auto px-4 py-12 space-y-12">
         <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
             <h3 class="text-2xl font-bold text-blue-300 mb-4">🗽 Fakta om USA</h3>
-            <p class="text-gray-300 leading-relaxed mb-6">USA är ett land med enorm variation, från New Yorks skyskrapor till Grand Canyons djupa dalar.</p>
+            <p class="text-gray-300 leading-relaxed mb-6">
+                USA är världens tredje största land och en global supermakt. Landet består av 50 delstater och har en enorm variation i både natur och kultur.
+                Från skyskraporna i New York till stränderna i Kalifornien.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-gray-700/50 p-5 rounded-xl">
+                    <h4 class="font-bold text-blue-200 mb-2">Snabba Fakta</h4>
+                    <ul class="text-gray-300 text-sm space-y-1">
+                        <li><strong>Huvudstad:</strong> Washington, D.C.</li>
+                        <li><strong>Befolkning:</strong> Ca 330 miljoner</li>
+                        <li><strong>Valuta:</strong> US Dollar ($)</li>
+                        <li><strong>Nationaldag:</strong> 4 juli</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-700/50 p-5 rounded-xl">
+                    <h4 class="font-bold text-red-200 mb-2">Kända Företag</h4>
+                    <ul class="text-gray-300 text-sm space-y-1">
+                        <li>Apple, Microsoft, Google (Teknik)</li>
+                        <li>Tesla (Bilar)</li>
+                        <li>McDonald's (Mat)</li>
+                        <li>Disney (Underhållning)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-red-300 mb-4">📜 Historia</h3>
+            <p class="text-gray-300 leading-relaxed mb-4">
+                USA började som 13 brittiska kolonier som förklarade sig självständiga 1776. Under 1800-talet expanderade landet västerut ("The Wild West").
+                Efter andra världskriget blev USA en supermakt och ledde utvecklingen inom teknik och rymdfart – de var först på månen 1969!
+            </p>
+        </section>
+
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-white mb-4">🎬 Kultur & Nöje</h3>
+            <div class="grid md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-gray-700/50 p-4 rounded-xl">
+                    <h4 class="font-bold text-blue-200">Hollywood</h4>
+                    <p class="text-sm text-gray-300">Centrum för världens filmindustri.</p>
+                </div>
+                <div class="bg-gray-700/50 p-4 rounded-xl">
+                    <h4 class="font-bold text-blue-200">Musik</h4>
+                    <p class="text-sm text-gray-300">Hemlandet för Jazz, Rock n' Roll och Hiphop.</p>
+                </div>
+                <div class="bg-gray-700/50 p-4 rounded-xl">
+                    <h4 class="font-bold text-blue-200">Sport</h4>
+                    <p class="text-sm text-gray-300">Basket (NBA), Amerikansk fotboll (NFL) och Baseball.</p>
+                </div>
+            </div>
             
             <div class="rounded-xl overflow-hidden shadow-lg">
                 <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&q=80" alt="Golden Gate Bridge" class="w-full h-80 object-cover">
                 <div class="bg-gray-700 p-4">
                     <p class="text-gray-300 text-sm italic">Golden Gate-bron i San Francisco är ett av världens mest kända landmärken.</p>
                 </div>
+            </div>
+        </section>
+
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-blue-300 mb-4">📘 Fördjupning om USA</h3>
+            <div class="text-gray-300 space-y-4 leading-relaxed">
+                <p>USA, eller United States, är en federal republik i Nordamerika som består av 50 delstater och ett federalt distrikt där huvudstaden Washington D.C. ligger. Landet sträcker sig från Atlanten i öster till Stilla havet i väster, med Kanada i norr och Mexiko i söder, och omfattar dessutom Alaska i nordväst och ögruppen Hawaii i Stilla havet. Med en yta på cirka 9,8 miljoner kvadratkilometer är det världens tredje största land och med över 330 miljoner invånare är det också det tredje mest folkrika. USA är känt för sin enorma geografiska variation: arktiska landskap i Alaska, tropiskt klimat i Hawaii och södra Florida, öknar i Arizona och Nevada, bördiga slätter i Mellanvästern, bergskedjor som Klippiga bergen och Appalacherna samt stora flodsystem som Mississippi och Missouri som har varit avgörande för handel, jordbruk och expansion. De Stora sjöarna i norr bildar världens största sammanhängande sötvattenssystem och är centrala för industri och transport. Nationalparker som Yellowstone, Yosemite och Grand Canyon skyddar unika naturmiljöer och symboliserar landets satsning på naturvård.</p>
+                
+                <p>Historiskt befolkades området först av ursprungsfolk som utvecklade avancerade kulturer långt innan européerna anlände. På 1500- och 1600-talet började europeiska makter kolonisera området, och de tretton brittiska kolonierna längs östkusten utvecklades så småningom till ett självständigt land efter självständighetsförklaringen den 4 juli 1776. Efter revolutionskriget antogs konstitutionen 1787, som skapade en federal stat med maktdelning mellan president, kongress och högsta domstol. Under 1800-talet expanderade landet västerut genom köp, avtal och krig, vilket kraftigt ökade territoriet men också ledde till konflikter med ursprungsbefolkningar och ökade spänningar kring slaveriet. Dessa motsättningar ledde till inbördeskriget 1861–1865, där nordstaterna segrade och slaveriet avskaffades. Efter kriget industrialiserades landet snabbt, järnvägar byggdes och miljoner immigranter anlände från Europa.</p>
+                
+                <p>Under 1900-talet växte USA till en global stormakt. Landet deltog i första världskriget och spelade en avgörande roll i andra världskriget. Efter 1945 gick USA in i det kalla kriget mot Sovjetunionen, vilket präglade internationell politik i nästan 50 år. Rymdkapplöpningen ledde till bildandet av NASA och månlandningen 1969. Samtidigt pågick stora sociala förändringar inom landet, där medborgarrättsrörelsen, kvinnorörelsen och senare HBTQ-rörelsen förändrade lagar och samhällsstrukturer.</p>
+                
+                <p>Ekonomiskt är USA världens största ekonomi med en blandning av tjänstesektor, industri, jordbruk och högteknologi. New York är finanscentrum med världens största börser, Silicon Valley i Kalifornien är centrum för teknologisk innovation och Hollywood i Los Angeles dominerar filmindustrin globalt. Landet är ledande inom forskning, medicin, bioteknik, rymdteknik och artificiell intelligens. Dollarn fungerar som global reservvaluta och amerikanska företag har enormt internationellt inflytande.</p>
+                
+                <p>Politiskt är systemet uppbyggt kring maktdelning och federalism. Kongressen består av senaten och representanthuset, presidenten leder den verkställande makten och högsta domstolen tolkar lagarna. Två partier – Demokratiska och Republikanska – dominerar politiken. Val hålls regelbundet och politiska frågor som sjukvård, skatter, immigration och vapenkontroll debatteras intensivt.</p>
+                
+                <p>Demografiskt är USA ett av världens mest mångkulturella länder. Befolkningen består av människor med rötter i Europa, Afrika, Asien och Latinamerika. Engelska är huvudspråk men spanska talas av miljontals invånare. Religionen är varierad med kristendom som största religion men även betydande judiska, muslimska, buddhistiska och sekulära grupper. Invandring har format landets identitet och kultur.</p>
+                
+                <p>Kulturellt har USA haft enorm global påverkan genom musikgenrer som jazz, blues, rock och hiphop, genom filmindustrin i Hollywood och genom sporter som amerikansk fotboll, basket och baseboll. Evenemang som Super Bowl är nationella fenomen. Matkulturen varierar från barbecue i södern till skaldjur i nordost och mexikanskinspirerad mat i sydväst.</p>
+                
+                <p>Miljön och naturresurserna i USA är av enorm betydelse både för ekonomin, energiproduktion och livskvalitet. Landet har omfattande reserver av olja, kol, naturgas, skog, jordbruksyta och vattenkraft. Oljereserver finns i Texas, Alaska, North Dakota och Mexikanska golfen, medan kol finns i Appalachian Mountains och Midwestern delstater, vilket historiskt har drivit industrins utveckling och energiproduktion. Vattenkraft produceras i Hoover Dam i Nevada/Arizona och Grand Coulee Dam i Washington, medan sol- och vindkraft ökar snabbt i Kalifornien, Texas, Iowa och Oklahoma. Landet står samtidigt inför utmaningar som klimatförändringar, extremväder, skogsbränder i Kalifornien, översvämningar i Louisiana och Florida, torka i sydväst och stigande havsnivåer längs östkusten. Miljölagar som Clean Air Act (1970) och Clean Water Act (1972), samt federal myndighet Environmental Protection Agency (EPA), har varit centrala för miljöskydd, men delstater har egna regler och initiativ, såsom Kaliforniens avancerade klimatlagstiftning och New Yorks satsningar på förnybar energi. Nationalparksystemet, med över 400 skyddade områden, bevarar ekosystem, djurarter som björnar, bison, vargar och örnar samt naturhistoria och kulturarv för framtida generationer.</p>
+                
+                <p>Transportinfrastrukturen i USA är omfattande och komplex, med mer än 6 miljoner kilometer vägar, över 46 000 km interstate highways som sammanbinder alla delstater, och ett omfattande järnvägsnät som Amtrak och freight-linjer. Stora internationella flygplatser som JFK i New York, LAX i Los Angeles, O’Hare i Chicago, Atlanta Hartsfield-Jackson och Dallas/Fort Worth hanterar miljontals passagerare och transporter varje år. Hamnar som Los Angeles, New York/New Jersey, Houston, Savannah och Long Beach möjliggör global handel, medan inlandskanaler och floder historiskt har varit viktiga för transport och industri. Digital infrastruktur med fiberoptik, mobilnätverk och satellitkommunikation gör landet ledande inom global kommunikation och teknologi.</p>
+                
+                <p>USA är en global supermakt med omfattande diplomatiska och ekonomiska relationer. Landet är medlem i FN, Nato, WTO, G7 och andra internationella organisationer. Diplomati används parallellt med militär och ekonomisk makt för att främja nationella intressen, mänskliga rättigheter och global säkerhet. Militärmakten är världens största, med över 1,3 miljoner aktiva soldater, avancerad teknologi, kärnvapenarsenal och baser i över 70 länder. Armén, marinen, flygvapnet, marinkåren och kustbevakningen samverkar globalt. USA har varit involverat i stora konflikter som Koreakriget, Vietnamkriget, Gulfkriget, kriget i Afghanistan och Irak samt i internationella fredsbevarande operationer. Försvarspolitik och militär forskning driver innovation inom rymd-, cybersäkerhet och AI-teknologi.</p>
+                
+                <p>Delstatsfakta visar USA:s mångfald på alla nivåer. Alaska har tundra och arktiska ekosystem, Kalifornien är centrum för teknologi och filmindustri, Texas är starkt inom energi och jordbruk, Florida lockar turism och subtropiska ekosystem, medan New York är finanscentrum och kulturellt nav med Broadway, museer och media. Mellanvästern är hjärtat av jordbruk och industri, södern har historiskt präglats av plantagekultur och civil rights-rörelser, medan nordost är känt för högre utbildning och historiska städer som Boston, Philadelphia och Washington D.C., landets huvudstad.</p>
+                
+                <p>Kulturellt är USA extremt varierat. Musik har global påverkan med genrer som jazz, blues, rock, country, hiphop, pop och R&B. Filmindustrin i Hollywood dominerar internationellt, och Broadway är centrum för teater. Litteratur, konst och arkitektur är starkt influerade av både inhemska och internationella traditioner. Matkultur varierar regionalt; New England är känd för seafood och clam chowder, södern för soul food och BBQ, sydväst för mexikansk fusion, medan västkusten erbjuder innovativ, ekologisk och fusionbaserad mat. Sport är central, med professionella ligor som NFL, NBA, MLB, NHL och populära collegiatävlingar som March Madness i basket och college football. Olympiska prestationer och internationella tävlingar skapar nationell stolthet, och friluftsaktiviteter som vandring i Rocky Mountains, skidåkning i Aspen och Colorado, surfing i Hawaii och Kalifornien, samt fiske och camping är viktiga delar av livsstil.</p>
+                
+                <p>Vetenskap och teknologi är centrala i USA:s globala inflytande. NASA:s rymdprogram, inklusive Apollo 11:s månlandning 1969, Space Shuttle-programmet och privat rymdindustri som SpaceX och Blue Origin, driver innovation och rymdutforskning. Bioteknik och medicinsk forskning, med NIH som centrum, har lett till framsteg inom cancerbehandling, genetik och vaccinproduktion, inklusive utvecklingen av COVID-19-vaccin på rekordtid. Universitet och forskningscenter som MIT, Harvard, Stanford, UC Berkeley, Caltech och Johns Hopkins är världsledande inom AI, teknologi, medicin, klimatforskning och energiteknik.</p>
+                
+                <p>Politik och samhällsstruktur bygger på federalism, där delstater har stor autonomi. Demokratiska partiet och Republikanska partiet dominerar, medan tredje partier har mindre inflytande. Maktdelning mellan presidenten, kongressen och Högsta domstolen säkerställer kontrollsystem. Sociala rörelser, inklusive medborgarrättsrörelsen, kvinnorörelsen, HBTQ+-rättigheter och miljörörelser, har format modern amerikansk kultur och lagstiftning.</p>
+                
+                <p>USA:s ekonomi är diversifierad och globalt integrerad. Jordbruk, energi, teknologi, tjänster och industri skapar en komplex ekonomisk struktur. New York och Silicon Valley är världens finans- och teknologihubbar, medan Mellanvästern, Texas och södern bidrar med jordbruk, energi och industri. Innovation och entreprenörskap är centrala, med startups och globala företag som driver ekonomisk tillväxt och teknologiska framsteg.</p>
+                
+                <p>Demografi och kultur är starkt präglade av invandring och mångfald. Afroamerikaner, latinamerikaner, asiatiska amerikaner, ursprungsamerikaner och blandade etniciteter bidrar till samhälle, politik, kultur och ekonomi. Religion är varierad, med kristna, judar, muslimer, buddhister, hinduer och sekulära grupper. Engelska är huvudspråk, medan spanska, kinesiska, franska och tyska används i olika regioner.</p>
             </div>
         </section>
     </main>
@@ -185,6 +279,30 @@
         }
     }
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Tillbaka till toppen-knapp -->
+    <button id="to-top-button" title="Gå till toppen"
+            class="hidden fixed bottom-8 right-8 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition-opacity duration-300 z-50">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+        const toTopButton = document.getElementById('to-top-button');
+        if (toTopButton) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    toTopButton.classList.remove('hidden');
+                } else {
+                    toTopButton.classList.add('hidden');
+                }
+            });
+            toTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
 </body>
 </html>

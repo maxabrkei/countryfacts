@@ -25,7 +25,7 @@
                     </button>
                     <div class="absolute right-0 top-full mt-2 w-48 bg-gray-800 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 max-h-96 overflow-y-auto">
                         <!-- Göm Google Translate-elementet men låt det finnas kvar för funktionen -->
-                        <div id="google_translate_element" class="hidden"></div>
+                        <div id="google_translate_element" class="absolute opacity-0 pointer-events-none"></div>
                         
                         <button onclick="doGTranslate('sv')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-t-xl transition flex items-center gap-2"><span>🇸🇪</span> Svenska</button>
                         <button onclick="doGTranslate('af')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇿🇦</span> Afrikaans</button>
@@ -141,6 +141,13 @@
                         <a href="grekland.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-b-xl transition">🇬🇷 Grekland</a>
                     </div>
                 </div>
+
+                <!-- Färg-väljare -->
+                <label class="text-gray-300 hover:text-white transition flex items-center gap-1 cursor-pointer" title="Ändra bakgrundsfärg">
+                    <span class="hidden sm:inline">Färg</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    <input type="color" class="invisible w-0 h-0 absolute" oninput="document.body.style.backgroundColor = this.value">
+                </label>
             </div>
         </div>
     </nav>
@@ -189,21 +196,82 @@
                 Brasilien är världens mest framgångsrika fotbollsnation med fem VM-guld. Landet har producerat legendariska spelare som Pelé, Ronaldo, Ronaldinho och Neymar. Fotboll är mer än en sport här – det är en del av kulturen.
             </p>
 
-            <h4 class="text-xl font-bold text-white mb-3">Amazonas Regnskog</h4>
-            <p class="text-gray-300 leading-relaxed mb-6">
-                Världens största regnskog, Amazonas, ligger till stor del i Brasilien. Den är otroligt viktig för jordens klimat och har en enorm artrikedom med tusentals växter och djur som inte finns någon annanstans.
-            </p>
+            <div class="bg-green-900/30 border border-green-500/30 p-4 rounded-xl mb-6">
+                <h4 class="text-lg font-bold text-green-200 mb-2">🌿 Amazonas Regnskog</h4>
+                <p class="text-gray-300 text-sm mb-2">
+                    Världens största tropiska regnskog täcker stora delar av norra Brasilien. Den kallas ofta "jordens lungor" och är hem för miljontals arter.
+                    Genom skogen rinner Amazonfloden, en av världens längsta floder.
+                </p>
+            </div>
+        </section>
 
-            <h4 class="text-xl font-bold text-white mb-3">Karnevalen</h4>
-            <p class="text-gray-300 leading-relaxed">
-                Brasiliens karneval är världens största folkfest. Den hålls varje år innan fastan och är känd för sina enorma parader med sambaskolor, särskilt i Rio de Janeiro.
-            </p>
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-yellow-400 mb-4">📜 Historia & Ekonomi</h3>
+            
+            <div class="space-y-4 text-gray-300">
+                <p>
+                    Brasilien var en portugisisk koloni från år 1500 fram till självständigheten 1822. Det är därför man pratar portugisiska här, till skillnad från grannländerna som pratar spanska.
+                </p>
+                <p>
+                    Idag har Brasilien Latinamerikas största ekonomi. Landet är en stor exportör av kaffe (världens största!), sojabönor och järnmalm.
+                </p>
+            </div>
+        </section>
+
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-blue-300 mb-4">🎉 Kultur & Mat</h3>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="font-bold text-white mb-2">Karnevalen</h4>
+                    <p class="text-gray-300 text-sm">
+                        Karnevalen i Rio är världens största fest. Sambaskolor tävlar i enorma parader med färgglada dräkter och dans.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-2">Maträtter</h4>
+                    <ul class="text-gray-300 text-sm list-disc list-inside">
+                        <li><strong>Feijoada:</strong> En gryta med svarta bönor och kött.</li>
+                        <li><strong>Churrasco:</strong> Brasiliansk grillning.</li>
+                        <li><strong>Pão de queijo:</strong> Små ostbröd.</li>
+                    </ul>
+                </div>
+            </div>
         </section>
 
         <!-- Bildsektion -->
         <section>
             <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=1200&q=80" alt="Brasilien" class="rounded-2xl shadow-lg w-full h-80 object-cover">
             <p class="text-gray-400 text-sm mt-2 italic text-center">Rio de Janeiro är en av världens vackraste städer.</p>
+        </section>
+
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-green-300 mb-4">📘 Fördjupning om Brasilien</h3>
+            <div class="text-gray-300 space-y-4 leading-relaxed">
+                <p>Brasilien är det största landet i Sydamerika och det femte största i världen både till yta och befolkning, med en yta på cirka 8 515 767 kvadratkilometer och en befolkning på över 215 miljoner människor år 2026. Landet sträcker sig från den tropiska nordligaste regionen vid gränsen mot Venezuela, Guyana och Surinam till subtropiska och tempererade områden i söder, och gränsar till nästan alla sydamerikanska länder utom Chile och Ecuador. Landets geografi är oerhört varierad med tropiska regnskogar, savanner, bergskedjor, vidsträckta floddeltan och lång kust mot Atlanten. Den mest kända naturregionen är Amazonas, världens största tropiska regnskog, som täcker stora delar av norra Brasilien och innehåller en otrolig biologisk mångfald med tusentals växt- och djurarter, inklusive jaguarer, anacondas, tukaner, papegojor och en mängd olika fiskarter i floden Amazonas och dess bifloder som Madeira, Negro och Tapajós. Amazonas regnskog spelar en avgörande roll för världens klimat och koldioxidbalans, och skogsskövling har varit en långvarig miljöfråga med både nationella och internationella konsekvenser.</p>
+                
+                <p>I centrala Brasilien ligger Brasilianska höglandet med stora savanner som kallas cerrado, vilket är en unik ekologisk zon med gräsmarker, buskar och spridda träd som fungerar som en viktig vattenreservoar för floder som Paraná, São Francisco och Tocantins. Cerrado är biologiskt rikt men hotat av jordbruksutveckling och boskapsskötsel. I söder finns den bördiga regionen Pampas, där jordbruk och boskap är dominerande, och klimatet är mer tempererat med fyra tydliga årstider. Landets kustlinje sträcker sig över 7 491 kilometer och inkluderar stränder, klippor och skärgårdar som är populära turistmål, inklusive Rio de Janeiros kända stränder Copacabana och Ipanema, samt det tropiska paradisområdet i nordost med städer som Salvador och Recife.</p>
+                
+                <p>Brasiliens klimat varierar från ekvatorialt i Amazonas med höga temperaturer och konstant nederbörd, till tropiskt i nordost med regn- och torrperioder, och subtropiskt i södra delarna med mer varierade temperaturer och frost under vintern. Monsuner och tropiska stormar kan påverka vissa kustområden, medan inlandet och höglandet ofta har kraftiga temperaturvariationer mellan dag och natt.</p>
+                
+                <p>Historiskt har Brasilien en lång mänsklig närvaro som började med ursprungsbefolkningar för tiotusentals år sedan, inklusive grupper som Tupi-Guarani, Yanomami, Ticuna och många andra stammar som utvecklade komplexa samhällen, jordbrukssystem och kulturella traditioner. År 1500 anlände den portugisiske upptäcktsresanden Pedro Álvares Cabral, vilket markerade början på portugisisk kolonisation. Brasilien förblev en portugisisk koloni i över tre århundraden, där sockerplantager, kaffeodling och guldgruvor var centrala ekonomiska aktiviteter. Slaveri av afrikanska människor var utbrett under kolonialtiden, vilket har lämnat ett bestående arv på kultur, musik, religion och samhälle.</p>
+                
+                <p>År 1822 deklarerade Brasilien sin självständighet från Portugal under ledning av Dom Pedro I, som blev landets första kejsare. Landet utvecklades därefter som ett kejsardöme fram till 1889, då en republik etablerades efter politiska och sociala spänningar. Slaveriet avskaffades 1888 med Lei Áurea, vilket gjorde Brasilien till det sista landet i Amerika att avskaffa slaveriet. Under 1900-talet präglades landet av ekonomisk tillväxt, industrialisering, urbanisering och perioder av politisk instabilitet, inklusive militärdiktatur från 1964 till 1985, då pressfrihet, politiska rättigheter och medborgerliga friheter begränsades.</p>
+                
+                <p>Brasiliens regering är idag en federal republik med 26 delstater och ett federalt distrikt, där presidenten fungerar som både stats- och regeringschef. Landets konstitution från 1988 garanterar demokratiska rättigheter, yttrandefrihet, valfrihet och rättigheter för ursprungsbefolkningar samt nationella minoriteter. Den federala strukturen innebär att delstaterna har viss autonomi över utbildning, hälsovård och lokala resurser, medan federala institutioner hanterar försvar, utrikespolitik och större ekonomiska frågor.</p>
+                
+                <p>Ekonomiskt är Brasilien Sydamerikas största ekonomi och rankas som en av världens största ekonomier. Landet är rikt på naturresurser med omfattande produktion av järnmalm, bauxit, koppar, olja och jordbruksprodukter som soja, kaffe, sockerrör, kakao och apelsiner. Jordbruket och boskapsskötseln spelar en avgörande roll, medan industrin omfattar fordonsproduktion, flyg, elektronik, textil, kemikalier och livsmedelsindustri. Brasilien är även ledande inom energi med stora vattenkraftverk som Itaipú, världens största vattenkraftsanläggning efter Kinas Three Gorges Dam, samt ökande satsningar på sol- och vindkraft för att diversifiera energiproduktionen.</p>
+                
+                <p>Kulturellt är Brasilien extremt mångfacetterat och påverkat av europeiska, afrikanska och ursprungsbefolkningars traditioner. Musik, dans och festligheter är centrala i det brasilianska samhället, med kända genrer som samba, bossa nova, forró, frevo, och karnevalstraditioner i Rio de Janeiro, Salvador och Olinda som lockar miljontals turister varje år. Brasilianska festivaler kombinerar religion, musik och dans och är kända för färgstarka kostymer, trummor och samhörighet. Fotboll är den mest populära sporten och Brasilien har en rik tradition med stjärnor som Pelé, Zico, Ronaldo, Ronaldinho och Neymar, samt har vunnit FIFA World Cup fler gånger än något annat land med totalt fem titlar. Volleyboll, basket, MMA och capoeira (en blandning av kampsport och dans) är också populära sporter som utövas över hela landet.</p>
+                
+                <p>Brasilien har ett stort antal urbana centrum, där São Paulo är landets största stad och ekonomiska motor med en befolkning på över 22 miljoner i storstadsområdet. São Paulo är ett globalt finanscentrum med internationella företag, banker, kulturinstitutioner och universitet. Rio de Janeiro, känt för sina stränder, karneval och Kristusstatyn (Cristo Redentor), är kulturellt och turistiskt centrum. Brasília, planerad och byggd på 1960-talet, fungerar som huvudstad och är känd för sin modernistiska arkitektur designad av Oscar Niemeyer och stadsplanering av Lúcio Costa. Andra viktiga städer inkluderar Salvador, Recife, Fortaleza, Belo Horizonte och Porto Alegre.</p>
+                
+                <p>Befolkningen är mångkulturell med arv från europeiska immigranter (främst portugiser, italienare, tyskar och spanjorer), afrikanska slavar, ursprungsbefolkningar och asiatisk invandring (framför allt japaner i São Paulo). Denna mångfald syns i religion, språk, mat, musik och konst. Katolicism är den största religionen, följt av protestantiska samfund och afrobrasilianska religioner som candomblé och umbanda.</p>
+                
+                <p>Brasiliens natur och miljö är unika med Amazonas regnskog, Pantanal (världens största våtmark), Iguaçu-fallen (ett av världens största vattenfallssystem), Atlantregnskogen (Mata Atlântica), Cerrado-savannerna och södra Araucaria-skogar. Biodiversiteten är enorm, men hotas av avskogning, urbanisering, gruvindustri och klimatförändringar. Miljöskydd och hållbarhetsinsatser är centrala frågor både nationellt och internationellt, och Brasilien deltar i globala klimatavtal för att minska utsläpp och bevara regnskog.</p>
+                
+                <p>Ekonomi, kultur, sport, natur, historia och befolkning samverkar i Brasilien för att skapa en komplex, dynamisk nation som är regionalt dominerande i Sydamerika, globalt inflytelserik inom kultur, musik, sport och naturresurser, och som fortsätter att utvecklas i en värld med sociala, ekonomiska och miljömässiga utmaningar. Från Amazonas floder till Atlanten, från Pampas till Cerrado, från pulserande stadsliv i São Paulo och Rio till små byar i nordöstra Brasilien, representerar landet en rik väv av historia, folk, traditioner, innovation och natur som gör Brasilien unikt på den globala scenen.</p>
+            </div>
         </section>
     </main>
 
@@ -224,6 +292,30 @@
         }
     }
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Tillbaka till toppen-knapp -->
+    <button id="to-top-button" title="Gå till toppen"
+            class="hidden fixed bottom-8 right-8 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-opacity duration-300 z-50">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+        const toTopButton = document.getElementById('to-top-button');
+        if (toTopButton) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    toTopButton.classList.remove('hidden');
+                } else {
+                    toTopButton.classList.add('hidden');
+                }
+            });
+            toTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
 </body>
 </html>

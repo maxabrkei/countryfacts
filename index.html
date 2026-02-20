@@ -26,7 +26,7 @@
                     </button>
                     <div class="absolute right-0 top-full mt-2 w-48 bg-gray-800 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 max-h-96 overflow-y-auto">
                         <!-- Göm Google Translate-elementet men låt det finnas kvar för funktionen -->
-                        <div id="google_translate_element" class="hidden"></div>
+                        <div id="google_translate_element" class="absolute opacity-0 pointer-events-none"></div>
                         
                         <button onclick="doGTranslate('sv')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-t-xl transition flex items-center gap-2"><span>🇸🇪</span> Svenska</button>
                         <button onclick="doGTranslate('af')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇿🇦</span> Afrikaans</button>
@@ -143,6 +143,13 @@
                         <a href="grekland.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-b-xl transition">🇬🇷 Grekland</a>
                     </div>
                 </div>
+
+                <!-- Färg-väljare -->
+                <label class="text-gray-300 hover:text-white transition flex items-center gap-1 cursor-pointer" title="Ändra bakgrundsfärg">
+                    <span class="hidden sm:inline">Färg</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    <input type="color" class="invisible w-0 h-0 absolute" oninput="document.body.style.backgroundColor = this.value">
+                </label>
             </div>
         </div>
     </nav>
@@ -165,7 +172,7 @@
 
             <!-- EGYPTEN -->
             <a href="egypt.html" class="group relative block h-64 rounded-2xl overflow-hidden shadow-xl">
-                <img src="https://images.unsplash.com/photo-1539768942893-daf53e736b68?w=800&q=80" alt="Egypten" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <img src="pyramider.jpg" alt="Egypten" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-5">
                     <h2 class="text-2xl font-bold text-white mb-1">Egypten 🇪🇬</h2>
@@ -215,7 +222,7 @@
 
             <!-- USA -->
             <a href="usa.html" class="group relative block h-64 rounded-2xl overflow-hidden shadow-xl">
-                <img src="https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=800&q=80" alt="USA" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <img src="usabild.jpg" alt="USA" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-5">
                     <h2 class="text-2xl font-bold text-white mb-1">USA 🇺🇸</h2>
@@ -251,11 +258,58 @@
         <div class="bg-gray-800 rounded-2xl p-8 shadow-lg space-y-10">
             <!-- Allmän fakta -->
             <div>
-                <h2 class="text-3xl font-bold text-amber-400 mb-4">Visste du att?</h2>
-                <ul class="space-y-2 text-gray-300 list-disc list-inside text-lg">
-                    <li>Det finns totalt 195 länder i världen.</li>
-                    <li>Det talas mellan 7000 och 7200 olika språk.</li>
-                </ul>
+                <h2 class="text-3xl font-bold text-amber-400 mb-6">Visste du att?</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    
+                    <div class="bg-gray-700/50 p-5 rounded-xl flex gap-4 items-start hover:bg-gray-700 transition">
+                        <span class="text-4xl">🌊</span>
+                        <div>
+                            <h4 class="font-bold text-white text-lg mb-1">Vattentäckt planet</h4>
+                            <p class="text-gray-300 leading-relaxed">Ungefär 71 % av jordens yta är täckt av vatten, och haven innehåller över 96 % av allt vatten.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-700/50 p-5 rounded-xl flex gap-4 items-start hover:bg-gray-700 transition">
+                        <span class="text-4xl">🏔️</span>
+                        <div>
+                            <h4 class="font-bold text-white text-lg mb-1">Mount Everest växer</h4>
+                            <p class="text-gray-300 leading-relaxed">Världens högsta berg, Mount Everest, blir cirka 4 millimeter högre varje år på grund av tektoniska plattors rörelser.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-700/50 p-5 rounded-xl flex gap-4 items-start hover:bg-gray-700 transition">
+                        <span class="text-4xl">🌍</span>
+                        <div>
+                            <h4 class="font-bold text-white text-lg mb-1">Jorden är inte helt rund</h4>
+                            <p class="text-gray-300 leading-relaxed">Den är faktiskt lite tillplattad vid polerna och buktar ut vid ekvatorn.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-700/50 p-5 rounded-xl flex gap-4 items-start hover:bg-gray-700 transition">
+                        <span class="text-4xl">🔥</span>
+                        <div>
+                            <h4 class="font-bold text-white text-lg mb-1">Varmare än solen</h4>
+                            <p class="text-gray-300 leading-relaxed">Jordens inre kärna är extremt varm, med temperaturer som kan mäta sig med solens yta.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-700/50 p-5 rounded-xl flex gap-4 items-start hover:bg-gray-700 transition">
+                        <span class="text-4xl">🦈</span>
+                        <div>
+                            <h4 class="font-bold text-white text-lg mb-1">Träd vs. hajar</h4>
+                            <p class="text-gray-300 leading-relaxed">Hajar har funnits på jorden i över 400 miljoner år, vilket är längre än träd har funnits (cirka 350 miljoner år).</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-700/50 p-5 rounded-xl flex gap-4 items-start hover:bg-gray-700 transition">
+                        <span class="text-4xl">🦦</span>
+                        <div>
+                            <h4 class="font-bold text-white text-lg mb-1">Sömniga utter</h4>
+                            <p class="text-gray-300 leading-relaxed">Sjöottrar håller händer när de sover för att inte driva ifrån varandra.</p>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
             <!-- Flaggfakta -->
@@ -272,7 +326,7 @@
                     </div>
                     <div>
                         <h4 class="text-xl font-semibold text-white mb-2">🇯🇵 Japan</h4>
-                        <p class="text-gray-300 leading-relaxed">Japans flagga är vit med en röd cirkel i mitten. Den röda cirkeln föreställer solen, eftersom Japan ofta kallas "Solens uppgångs land". Flaggan kallas Nisshōki eller Hinomaru.</p>
+                        <p class="text-gray-300 leading-relaxed">Japan flagga är vit med en röd cirkel i mitten. Den röda cirkeln föreställer solen, eftersom Japan ofta kallas "Solens uppgångs land". Flaggan kallas Nisshōki eller Hinomaru.</p>
                     </div>
                     <div>
                         <h4 class="text-xl font-semibold text-white mb-2">🇧🇷 Brasilien</h4>
@@ -344,7 +398,31 @@
         }
     }
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Tillbaka till toppen-knapp -->
+    <button id="to-top-button" title="Gå till toppen"
+            class="hidden fixed bottom-8 right-8 bg-amber-500 hover:bg-amber-600 text-white p-3 rounded-full shadow-lg transition-opacity duration-300 z-50">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+        const toTopButton = document.getElementById('to-top-button');
+        if (toTopButton) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    toTopButton.classList.remove('hidden');
+                } else {
+                    toTopButton.classList.add('hidden');
+                }
+            });
+            toTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
 
 </body>
 </html>

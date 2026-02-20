@@ -57,7 +57,7 @@
                     </button>
                     <div class="absolute right-0 top-full mt-2 w-48 bg-gray-800 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 max-h-96 overflow-y-auto">
                         <!-- Göm Google Translate-elementet men låt det finnas kvar för funktionen -->
-                        <div id="google_translate_element" class="hidden"></div>
+                        <div id="google_translate_element" class="absolute opacity-0 pointer-events-none"></div>
                         
                         <button onclick="doGTranslate('sv')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-t-xl transition flex items-center gap-2"><span>🇸🇪</span> Svenska</button>
                         <button onclick="doGTranslate('af')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇿🇦</span> Afrikaans</button>
@@ -174,6 +174,13 @@
                         <a href="grekland.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-b-xl transition">🇬🇷 Grekland</a>
                     </div>
                 </div>
+
+                <!-- Färg-väljare -->
+                <label class="text-gray-300 hover:text-white transition flex items-center gap-1 cursor-pointer" title="Ändra bakgrundsfärg">
+                    <span class="hidden sm:inline">Färg</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    <input type="color" class="invisible w-0 h-0 absolute" oninput="document.body.style.backgroundColor = this.value">
+                </label>
             </div>
         </div>
     </nav>
@@ -212,68 +219,171 @@
     <main class="max-w-4xl mx-auto px-4 py-12 space-y-12">
     <!-- space-y-12 = mellanrum mellan varje section -->
 
-        <!-- EXEMPEL-SEKTION - du kan kopiera denna och ändra texten -->
         <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
-        <!-- bg-gray-800 = kortets bakgrundsfärg -->
-        <!-- rounded-2xl = rundade hörn -->
-        <!-- p-8 = luft inuti -->
-        <!-- shadow-lg = skugga -->
-
             <h3 class="text-2xl font-bold text-blue-300 mb-4">🇸🇪 Fakta om Sverige</h3>
             
             <p class="text-gray-300 leading-relaxed mb-6">
-                Sverige är en konstitutionell monarki och parlamentarisk demokrati i Norden med drygt 10,6 miljoner invånare. 
-                Landet är känt för sin stora natur med över 100 000 sjöar, högteknologisk industri, samt en hög livskvalitet. 
-                Sverige är medlem i EU och Nato.
+                Sverige ligger i norra Europa på den skandinaviska halvön. Landet är cirka 450 295 km² stort, vilket gör det till det femte största landet i Europa. 
+                Med en befolkning på drygt 10,5 miljoner invånare är Sverige känt för sin vackra natur, innovationer och välfärd.
             </p>
 
             <div class="grid md:grid-cols-2 gap-6 mb-8">
                 <div class="bg-gray-700/50 p-5 rounded-xl">
-                    <h4 class="font-bold text-blue-200 mb-2">Grundläggande Fakta</h4>
+                    <h4 class="font-bold text-blue-200 mb-2">Snabba Fakta</h4>
                     <ul class="text-gray-300 text-sm space-y-1">
                         <li><strong>Huvudstad:</strong> Stockholm</li>
                         <li><strong>Statschef:</strong> Kung Carl XVI Gustaf</li>
-                        <li><strong>Folkmängd:</strong> Ca 10,6 miljoner</li>
-                        <li><strong>Yta:</strong> 450 295 km²</li>
-                        <li><strong>Nationaldag:</strong> 6 juni</li>
+                        <li><strong>Statsskick:</strong> Konstitutionell monarki</li>
+                        <li><strong>Valuta:</strong> Svensk krona (SEK)</li>
+                        <li><strong>Språk:</strong> Svenska</li>
                     </ul>
                 </div>
                 <div class="bg-gray-700/50 p-5 rounded-xl">
-                    <h4 class="font-bold text-blue-200 mb-2">Kultur & Innovation</h4>
+                    <h4 class="font-bold text-blue-200 mb-2">Kända Svenska Märken</h4>
                     <ul class="text-gray-300 text-sm space-y-1">
-                        <li><strong>Kända företag:</strong> IKEA, Volvo, Spotify</li>
-                        <li><strong>Musik:</strong> ABBA, Avicii, Max Martin</li>
-                        <li><strong>Uppfinningar:</strong> Dynamiten, Kullagret, Pacemakern</li>
+                        <li>Volvo & Scania (Fordon)</li>
+                        <li>IKEA (Möbler)</li>
+                        <li>Spotify (Musikstreaming)</li>
+                        <li>Ericsson (Telekom)</li>
+                        <li>H&M (Mode)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-yellow-400 mb-4">🌲 Geografi och Natur</h3>
+            
+            <p class="text-gray-300 leading-relaxed mb-4">
+                Sverige är ett avlångt land med stor variation i naturen. Landet delas in i tre landsdelar:
+                <strong>Norrland</strong> (60% av ytan, men få invånare), <strong>Svealand</strong> (mellersta Sverige) och <strong>Götaland</strong> (södra delen).
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-gray-700/50 p-4 rounded-xl">
+                    <h4 class="font-bold text-white mb-1">Skogar</h4>
+                    <p class="text-sm text-gray-300">Ca 70% av ytan är täckt av skog, mestadels tall och gran.</p>
+                </div>
+                <div class="bg-gray-700/50 p-4 rounded-xl">
+                    <h4 class="font-bold text-white mb-1">Sjöar</h4>
+                    <p class="text-sm text-gray-300">Det finns nästan 100 000 sjöar. Vänern är den största.</p>
+                </div>
+                <div class="bg-gray-700/50 p-4 rounded-xl">
+                    <h4 class="font-bold text-white mb-1">Fjäll</h4>
+                    <p class="text-sm text-gray-300">Kebnekaise är högsta toppen (ca 2 096 m).</p>
+                </div>
+            </div>
+
+            <h4 class="text-xl font-semibold text-white mb-2">Unika naturfenomen</h4>
+            <ul class="list-disc list-inside text-gray-300 space-y-1 ml-2">
+                <li><strong>Midnattssol:</strong> Norr om polcirkeln går solen inte ner under delar av sommaren.</li>
+                <li><strong>Norrsken:</strong> Under vintern kan man se det magiska ljusspelet på himlen i norr.</li>
+            </ul>
+        </section>
+
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-blue-300 mb-4">⚔️ Historia</h3>
+            
+            <div class="space-y-4 text-gray-300">
+                <div>
+                    <h4 class="text-lg font-bold text-white">Vikingatiden (800–1050)</h4>
+                    <p>Svenska vikingar reste österut mot Ryssland och handlade med pälsar och järn.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-white">Stormaktstiden (1611–1718)</h4>
+                    <p>Sverige var en av Europas starkaste militärmakter och kontrollerade stora områden runt Östersjön.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-white">Det moderna Sverige</h4>
+                    <p>Sverige var neutralt under världskrigen och byggde därefter upp en stark välfärdsstat. Landet gick med i EU 1995.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-yellow-400 mb-4">🎵 Kultur & Sport</h3>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold text-white mb-2">Musik & Litteratur</h4>
+                    <p class="text-gray-300 mb-2">Sverige är en av världens största musikexportörer.</p>
+                    <ul class="list-disc list-inside text-gray-300 text-sm">
+                        <li><strong>Musik:</strong> ABBA, Avicii, Max Martin, Roxette.</li>
+                        <li><strong>Litteratur:</strong> Astrid Lindgren är älskad världen över.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold text-white mb-2">Idrott</h4>
+                    <p class="text-gray-300 mb-2">Fotboll och ishockey är de största sporterna.</p>
+                    <ul class="list-disc list-inside text-gray-300 text-sm">
+                        <li><strong>Zlatan Ibrahimović:</strong> En av världens bästa fotbollsspelare.</li>
+                        <li><strong>Vintersporter:</strong> Sverige är framgångsrikt i skidor och hockey.</li>
                     </ul>
                 </div>
             </div>
 
-            <h4 class="text-xl font-bold text-white mb-3">Geografi och Natur</h4>
-            <p class="text-gray-300 leading-relaxed mb-6">
-                Sverige är ett av Europas större länder till ytan och består till största delen av skogar, berg och sjöar. 
-                Barrskogens mörkgröna täcke dominerar naturen. I norr har fjällen en karg prägel, medan södra Sverige har lummigare skogar och öppna landskap.
-                Vänern är Västeuropas största insjö.
-            </p>
-
-            <h4 class="text-xl font-bold text-white mb-3">Historia och Namn</h4>
-            <p class="text-gray-300 leading-relaxed mb-4">
-                Namnet <strong>Sverige</strong> kommer av "Svea rike" (svearnas rike). Den 6 juni 1523 valdes Gustav Vasa till kung, vilket markerade slutet på Kalmarunionen och början på det moderna Sverige.
-                Innan dess hade landet ingått i en union med Norge och Danmark.
-            </p>
-
-            <div class="bg-blue-900/30 border border-blue-700/50 rounded-xl p-4 mt-6">
-                <p class="text-blue-200 font-semibold mb-1">Visste du?</p>
-                <p class="text-gray-300 text-sm">
-                    Sverige är känt för sina uppfinnare! Coca-Cola-flaskan, dynamiten, skiftnyckeln och blixtlåset har alla svenska kopplingar.
-                </p>
+            <div class="mt-6 bg-blue-900/30 border border-blue-500/30 p-4 rounded-xl">
+                <p class="text-blue-200 font-semibold">Visste du?</p>
+                <p class="text-gray-300 text-sm">Nobelpriset, världens mest prestigefyllda pris, instiftades av svensken Alfred Nobel 1895.</p>
             </div>
         </section>
 
-        <!-- ============================================ -->
-        <!-- TIPS: Kopiera sektionen ovan och klistra in  -->
-        <!-- den här nedanför för att lägga till mer       -->
-        <!-- fakta om Sverige!                            -->
-        <!-- ============================================ -->
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-blue-300 mb-4">📘 Fördjupning om Sverige</h3>
+            <div class="text-gray-300 space-y-4 leading-relaxed">
+                <p>Sverige är ett nordiskt land beläget på Skandinaviska halvön i Nordeuropa, som gränsar till Norge i väster och Finland i nordost samt har långa kustlinjer mot Östersjön i öster och Bottenhavet i nordost och Sydsverige i söder med Öresund, som är det smala sundet mellan Sverige och Danmark. Landets totala yta är cirka 450 295 km², vilket gör Sverige till det största landet i Norden och det femte största i Europa efter Ryssland, Ukraina, Frankrike och Spanien. Sverige sträcker sig nästan 1 600 kilometer från Treriksröset i norr till Smygehuk i söder, vilket innebär enorm variation i klimat, naturtyper, kultur och befolkningstäthet.</p>
+                
+                <p>Sverige delas in i tre traditionella geografiska regioner: Norrland, Svealand och Götaland. Norrland omfattar ungefär 60 % av landets yta men har endast omkring 12 % av befolkningen, eftersom klimatet är kallare och landskapet mer glest befolkat. Svealand täcker cirka 33 % av ytan och har ungefär 40 % av befolkningen, och Götaland i söder är det mest tätbefolkade området med stora städer, bördig jordbruksmark och omfattande industri. Det samlade befolkningsantalet i Sverige är runt 11 miljoner personer år 2026. Officiellt språk är svenska, men flera erkända minoritetsspråk talas också, inklusive finska, meänkieli (tornedalsfinska), samiska (flera varianter) och romani chib.</p>
+                
+                <p>Norrland domineras av vidsträckta skogar av tall, gran och björk som täcker stora områden, och i de nordligaste delarna finns fjällkedjan som sträcker sig från Härjedalen i söder till Kebnekaise i norr, där Sveriges högsta punkt når 2 097 meter över havet. I Norrlands fjällvärld finns stora nationalparker som Sarek, där storslagna, orörda vildmarksområden sträcker sig över berg, dalar och glaciärer, och Abisko nationalpark, känt för sin storslagna utsikt över Lapporten och som ett av de mest pålitliga ställena i världen att se norrsken (aurora borealis) under vintermånaderna. Norrland rymmer också viktiga stadskärnor som Kiruna, som har byggts om i stor skala på grund av malmrytningar i gruvorna, Luleå vid Bottenviken med sitt tekniska universitet och teknologiklustret runt Luleå tekniska universitet (LTU), samt Umeå, med stor universitetsstad och kulturliv, och Sundsvall, känt för sin historia inom träindustrin och sin stenstad från 1800-talets stadsbränder.</p>
+                
+                <p>Stora älvar som Luleälven, Piteälven och Klarälven rinner genom Norrland, vilket har gjort regionen till en viktig kärna för vattenkraftproduktion som står för en stor del av Sveriges elproduktion. Södra Norrland runt Gävleborgs län och Dalarna har böljande skogslandskap, sjöar och jordbruksmarker, medan norra Norrland är mer kuperat och bergigt. Norrlands flora och fauna inkluderar arter som älg, ren, björn, lo, varg och järv, och landskapet är rik på bär som hjortron, lingon och blåbär som plockas under sommaren och hösten.</p>
+                
+                <p>Svealand, som sträcker sig över centrala Sverige, är hem för stora insjöar som Mälaren, Sveriges tredje största sjö, samt sjöarna Hjälmaren och Vättern, den senare den näst största sjön i Sverige och känd för sitt klara vatten och djupa bassäng. Området runt Mälaren har varit historiskt betydelsefullt sedan järnåldern och medeltiden, och detta är området där Sveriges huvudstad Stockholm växte fram som en handelsplats vid Mälarens utlopp i Östersjön. Stockholm är landets största stad med över 1,6 miljoner invånare i storstadsområdet, och staden är politiskt, ekonomiskt och kulturellt centrum, med Riksdag, regeringskansli och många internationella företag samt kulturinstitutioner som Operan, Dramaten, Moderna museet och Nationalmuseum.</p>
+                
+                <p>I Svealand ligger också Uppsala, en av Sveriges äldsta städer med en historia som rör sig tillbaka till vikingatidens Uppsala högar och domkyrkan som är Nordens största kyrkobyggnad. Uppsala är också en universitetsstad med Uppsala universitet, grundat 1477, vilket gör det till ett av de äldsta universiteten i Norden och en central punkt för forskning och utbildning i Sverige. Västerås och Örebro är andra viktiga städer i Svealand, med varierande industri, handel och service. Svealand har också kulturlandskap som Dalarna, känt för sina röda stugor, dalahästar, folkdräkter och starka traditioner i midsommarfirande, samt Dalarnas museum som berättar om regionens rika historia.</p>
+                
+                <p>Götaland omfattar södra Sverige och inkluderar landskap som Västergötland, Östergötland, Småland, Skåne, Halland och Bohuslän. Götaland är hem för storstäder som Göteborg, Malmö, Linköping och Jönköping. Göteborg, beläget vid västkusten, är Sveriges näst största stad med en stor hamn som är en av de mest trafikerade i Skandinavien. Göteborg har också ett starkt kultur- och musikliv, tekniska universitet och en lång tradition av varvsindustri och handel. Malmö, längst i söder vid Öresund, är sammanbundet med Köpenhamn i Danmark via Öresundsbron, en spektakulär bro- och tågfärdsförbindelse som har bidragit till en dynamisk Öresundsregion där svensk-dansk integration inom arbetsmarknad, kultur och utbildning har vuxit fram sedan bron öppnades 2000.</p>
+                
+                <p>Skåne, med sina bördiga slätter, är ett av Sveriges mest produktiva jordbruksområden och har en blandning av kulturarv från den tid då regionen var en del av Danmark fram till freden i Roskilde 1658. Städer som Helsingborg och Lund bidrar med historisk charm och akademiska traditioner, där Lunds universitet är en central institution i sydsvensk utbildning och forskning. Småland, känt för sina skogar, glasbrukstradition och entreprenörskap, har fött internationellt kända företag som IKEA, grundat av Ingvar Kamprad i Älmhult, och glasbruk i områden som Kosta, Boda och Orrefors som är känt för svenskt glasdesign. Västergötland och Östergötland har slättlandskap, historiska städer som Skara och Linköping, gamla domkyrkor och fästen som kopplar tillbaka till medeltidens kyrkliga stärka och borgar.</p>
+                
+                <p>Sverige har ett klimat som varierar från kallt subarktiskt i norra Norrland till tempererat i centrala Svealand och milt kustklimat i Götaland. Den långa kustlinjen gör att havet har stor inverkan på klimatet i de södra och västra delarna, med milda vintrar och svala somrar jämfört med inlandet. Sverige upplever tydliga årstider med snöiga vintrar, blommande vårar, varma somrar och färgsprakande höstar, vilket har präglat svensk kultur och livsstil i århundraden.</p>
+                
+                <p>Historiskt har Sverige spelat en betydande roll i europeisk politik och konflikter. Under vikingatiden (cirka 800–1050 e.Kr.) reste svenska vikingar österut och etablerade handelsvägar och bosättningar, särskilt runt handelsplatsen Birka på Björkö i Mälaren som var en rik handelsstad och viktig knutpunkt för handel med både varor och idéer från Europa och Asien. Under medeltiden kristnades Sverige och blev gradvis centraliserat under en kungamakt, och kungar som Olof Skötkonung och senare Erik den helige lade grunden för Sveriges utveckling som en enad stat. På 1300-talet bildades Kalmarunionen under drottning Margareta, som förde samman Sverige, Norge och Danmark under en gemensam monark, men unionen präglades av interna konflikter och maktkamp bland adeln. År 1523 valdes Gustav Vasa till kung, vilket markerade början på en självständig svensk stat och Vasaättens tid vid makten.</p>
+                
+                <p>Under 1600-talet expanderade Sverige till en stormakt i norra Europa under ledning av kungar som Gustav II Adolf och Karl X Gustav. Gustav II Adolf deltog i trettioåriga kriget (1618–1648) och förde Sverige till segrar som gjorde landet till en av de största militära makterna i Europa, med territorier i dagens norra Tyskland, Estland och Lettland. Den svenska stormaktstiden innebar både politiskt och militärt inflytande, men slutade med nederlag i det stora nordiska kriget (1700–1721) mot en koalition ledd av Ryssland, vilket ledde till att Sverige förlorade många av sina kronbesittningar och försvagades som stormakt.</p>
+                
+                <p>Under 1800-talet förändrades Sverige genom industrialisering, urbanisering och social omvandling. År 1809 förlorade Sverige Finland till Ryssland efter finska kriget, och samma år antogs en ny regeringsform som gav riksdagen större makt och lade grunden för modern parlamentarism. Under senare delen av 1800-talet och början av 1900-talet genomgick Sverige en snabb industrialisering med utveckling av järnvägar, fabriker och urban infrastruktur. Stora företag som Volvo, ASEA (senare ABB), SKF och andra industriföretag växte fram och gjorde Sverige till en konkureransstark industrination.</p>
+                
+                <p>Under 1900-talet lyckades Sverige hålla sig utanför båda världskrigen genom en lång neutralitetspolitik, men landet utvecklade samtidigt en omfattande välfärdsstat med offentliga system för sjukvård, utbildning, social trygghet och bostäder. Efter andra världskriget genomförde Sverige stora sociala reformer som gav medborgarna rätt till sjukförsäkring, pensioner, arbetslöshetsstöd och subventionerad utbildning, vilket bidrog till en hög levnadsstandard och låg fattigdom. Sverige blev medlem i Europeiska unionen 1995, men valde att behålla sin egen valuta, svenska kronan, istället för att gå med i eurozonen.</p>
+                
+                <p>Befolkningen i Sverige består av människor med olika bakgrund. Förutom ursprungsbefolkningen samerna, som har bott i norra Sverige, Norge, Finland och Ryssland i tusentals år och har ett eget språk, kultur och traditioner, så finns det stora grupper med finsk bakgrund, särskilt i nordligaste Sverige, och många invånare har rötter i andra delar av Europa, Mellanöstern, Afrika och Asien på grund av invandring under senare decennier. Sveriges migrationspolitik har förändrats över tid, med ökade flyktingströmmar under 1900- och 2000-talen från länder som Jugoslavien på 1990-talet och Syrien under 2010-talets konflikter, vilket har bidragit till ett mångkulturellt samhälle med olika traditioner, religioner och språk.</p>
+                
+                <p>Det svenska utbildningssystemet är välutvecklat och inkluderar grundskola, gymnasium och högskolor/universitet, där många institutioner är internationellt erkända. Utöver Uppsala universitet och Lunds universitet finns Karolinska Institutet i Stockholm, som är ett av världens ledande medicinska universitet och ansvarigt för Nobelpriset i fysiologi eller medicin. Det finns också tekniska universitet och högskolor i Göteborg, Linköping, Luleå och andra städer, vilket bidrar till forskning och innovation inom teknik, medicin, skogsbruk, energi och samhällsvetenskap.</p>
+                
+                <p>Sverige är känt för sin starka kultursektor som inkluderar litteratur, musik, design och film. Den svenska musikscenen har haft global påverkan med artister som ABBA, som vann Eurovision Song Contest 1974 och blev internationellt fenomen, Roxette, Ace of Base, Avicii, Robyn, Zara Larsson och många fler. Litteraturens värld är rik med författare som Astrid Lindgren, vars karaktärer som Pippi Långstrump har älskats av barn över hela världen, och Selma Lagerlöf, som var den första kvinnan att tilldelas Nobelpriset i litteratur 1909. Inom svensk design och arkitektur finns också internationellt erkända namn och företag, inklusive IKEA, som blivit ett globalt varumärke för funktionell och prisvärd design.</p>
+                
+                <p>Sport är en central del av den svenska kulturen, där fotboll och ishockey är de mest populära sporterna. Sveriges fotbollslandslag har deltagit i många världsmästerskap och europeiska mästerskap, och spelare som Zlatan Ibrahimović har blivit internationella stjärnor. Inom ishockey har Sverige ett starkt landslag, kallat Tre Kronor, som har vunnit flera VM-medaljer och olympiska medaljer, och spelare som Peter Forsberg, Nicklas Lidström och Henrik Lundqvist är internationellt kända. Längdskidåkning och alpina sporter är också populära, särskilt i norra Sverige där vintrarna är långa och snörika.</p>
+                
+                <p>Friluftsliv står högt i kurs i Sverige tack vare allemansrätten, en unik rättighet som ger alla människor möjlighet att röra sig fritt i naturen, plocka bär och svamp och campa under korta perioder så länge man visar respekt för markägare, djur och natur. Det gör att många svenskar tillbringar tid i skogar, på fjäll, vid sjöar och på kuststränderna året runt och engagerar sig i aktiviteter som vandring, cykling, paddling, fiske, skidåkning och båtliv. Sveriges nationalparker och naturreservat skyddar stora naturområden där arter som älg, björn, varg, järv, utter, ren och många fågelarter kan ses i sina naturliga miljöer.</p>
+                
+                <p>Miljövård och hållbar utveckling är centrala frågor i Sveriges politik och samhälle. Sverige har länge varit en föregångare i omställningen till förnybar energi med en stor andel vattenkraft, ökande vindkraft och satsningar på solenergi och biobränslen. Transportsektorn elektrifieras i snabb takt med elbilar och utbyggd kollektivtrafik för att minska utsläpp av växthusgaser, och städer planeras med fokus på hållbar utveckling, energieffektiva byggnader och gröna områden för att förbättra livskvalitet och klimatmål. Sverige har också ambitiösa mål för att minska klimatpåverkan i linje med internationella avtal, inklusive Parisavtalet, och arbetar med att bevara biologisk mångfald, skydda hotade arter och restaurera ekosystem.</p>
+                
+                <p>Sveriges ekonomi är diversifierad med starka industrisegment inom fordonsproduktion, telekommunikation, medicinteknik, skogsbruk, gruvdrift, informationsteknologi och tjänstesektorn. Stora svenska företag som Volvo Cars och Volvo Group, Scania, Ericsson, ABB, H&M, Spotify och Electrolux är betydande aktörer i den globala ekonomin. Sverige är också ett ledande land inom innovation och forskning, med höga investeringar i FoU (forskning och utveckling) per capita jämfört med många andra länder, och universitet och företag samarbetar för att utveckla ny teknologi inom artificiell intelligens, medicinsk forskning, hållbar energi och digital infrastruktur.</p>
+                
+                <p>Ett annat viktigt mått på Sveriges välfärd är den höga levnadsstandarden, den låga arbetslösheten (även om den varierar med konjunkturerna), god tillgång till utbildning och hälsovård samt en social trygghet som innebär att medborgare har skyddsnät genom pensioner, sjukförsäkring, föräldrapenning och arbetsmarknadsstöd. Detta sociala system bygger på höga skatter, men även en bred acceptans av att gemensamma resurser används för att skapa ett samhälle med få extrema skillnader i inkomst och livsvillkor.</p>
+                
+                <p>Demografiskt sett är Sveriges befolkning relativt ung men med en åldrande andel, vilket är en trend i många utvecklade länder. Urbaniseringen har pågått sedan 1900-talets början, och idag bor en stor del av befolkningen i storstadsområden som Stor-Stockholm, Storgöteborg och Stormalmö samt regionala centra som Uppsala, Västerås, Örebro, Linköping och Helsingborg. Samtidigt finns det stora landsbygdsområden i Norrland och delar av Svealand och Götaland där befolkningen är mer spridd, och där ekonomin ofta baseras på naturresurser, turism, småföretagande och jordbruk.</p>
+                
+                <p>Sverige har en rik historia av litteratur, konst, musik, film och teater, med många institutioner och festivaler som lockar nationellt och internationellt deltagande. Filmregissörer som Ingmar Bergman har satt Sverige på världskartan inom filmkonst med verk som undersöker mänskliga relationer, psykologi och existentiella frågor. I samtida musikscen är Sverige en av de största exportörerna av populärmusik globalt per capita och har en stark musikindustri som påverkar pop, EDM, hiphop och andra genrer.</p>
+                
+                <p>Det svenska samhället präglas också av ett starkt civilsamhälle där föreningar, idrottsklubbar, kulturföreningar, ungdomsorganisationer och volontärgrupper spelar en stor roll i människors liv och sociala nätverk. Föreningslivet är centralt för integration, fritidsaktiviteter, kulturutövning och lokalt engagemang, och idrottsföreningar är ofta navet i många små samhällen där unga och gamla möts för träning, tävling och social gemenskap.</p>
+                
+                <p>Sveriges regionala variation fortsätter också in i dialekter, mattraditioner och lokala sedvänjor. I Norrland finns rätter som surströmming, renkött och hjortronsylt som lokala delikatesser, medan i södra Sverige är skånska specialiteter som äggakaka och spettekaka populära. Fika-kulturen är närmast universell i Sverige och inkluderar allt från kaffepauser på arbetsplatser till sociala sammankomster på caféer i stadskärnor.</p>
+                
+                <p>Sammanfattningsvis är Sverige ett land som kombinerar naturskönhet, teknologisk innovation, historiskt och kulturellt arv, social trygghet och internationell påverkan på många områden. Från fjälltopparna i Lappland till skärgårdarna runt Stockholm och Göteborg, från universitetens forskningslaboratorier till den kreativa musikscenen, från välfärdssystemets trygghet till svenskarnas kärlek för natur och friluftsliv — Sverige är en nation med en komplex väv av historia, människor, landskap, innovation och identitet som fortsätter att utvecklas in i framtiden.</p>
+            </div>
+        </section>
 
     </main>
 
@@ -297,7 +407,31 @@
         }
     }
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Tillbaka till toppen-knapp -->
+    <button id="to-top-button" title="Gå till toppen"
+            class="hidden fixed bottom-8 right-8 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition-opacity duration-300 z-50">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+        const toTopButton = document.getElementById('to-top-button');
+        if (toTopButton) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    toTopButton.classList.remove('hidden');
+                } else {
+                    toTopButton.classList.add('hidden');
+                }
+            });
+            toTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
 
 </body>
 </html>

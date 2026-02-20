@@ -25,7 +25,7 @@
                     </button>
                     <div class="absolute right-0 top-full mt-2 w-48 bg-gray-800 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 max-h-96 overflow-y-auto">
                         <!-- Göm Google Translate-elementet men låt det finnas kvar för funktionen -->
-                        <div id="google_translate_element" class="hidden"></div>
+                        <div id="google_translate_element" class="absolute opacity-0 pointer-events-none"></div>
                         
                         <button onclick="doGTranslate('sv')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-t-xl transition flex items-center gap-2"><span>🇸🇪</span> Svenska</button>
                         <button onclick="doGTranslate('af')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇿🇦</span> Afrikaans</button>
@@ -142,6 +142,13 @@
                         <a href="grekland.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-b-xl transition">🇬🇷 Grekland</a>
                     </div>
                 </div>
+
+                <!-- Färg-väljare -->
+                <label class="text-gray-300 hover:text-white transition flex items-center gap-1 cursor-pointer" title="Ändra bakgrundsfärg">
+                    <span class="hidden sm:inline">Färg</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    <input type="color" class="invisible w-0 h-0 absolute" oninput="document.body.style.backgroundColor = this.value">
+                </label>
             </div>
         </div>
     </nav>
@@ -189,15 +196,92 @@
 
             <h4 class="text-xl font-bold text-white mb-3">Geografi och Natur</h4>
             <p class="text-gray-300 leading-relaxed mb-6">
-                Japan är ett örike i en över 300 mil lång båge. Över 70 % av ytan består av berg och landet har över 200 vulkaner.
-                Klimatet varierar från snöiga vintrar i norr (Hokkaido) till tropiska stränder i söder (Okinawa).
+                Japan ligger på den så kallade "Eldringen" i Stilla havet, vilket innebär att landet har över 100 aktiva vulkaner och ofta drabbas av jordbävningar.
+                Landet består av över 14 000 öar, där de fyra största är Honshu, Hokkaido, Kyushu och Shikoku.
             </p>
 
-            <h4 class="text-xl font-bold text-white mb-3">Varför heter det Japan?</h4>
-            <p class="text-gray-300 leading-relaxed">
-                Japan kallas <em>Nihon</em> eller <em>Nippon</em> på japanska, vilket betyder "solens ursprung". 
-                Det är därför landet ofta kallas "Soluppgångens land". Det engelska namnet Japan tros komma från ett kinesiskt uttal av namnet.
+            <div class="bg-gray-700/50 p-4 rounded-xl mb-6">
+                <h5 class="font-bold text-white mb-2">🌸 Årstiderna</h5>
+                <p class="text-gray-300 text-sm">
+                    Japan har fyra tydliga årstider. Mest känd är våren då körsbärsträden (Sakura) blommar, en viktig kulturell händelse som firas med picknickar under träden.
+                </p>
+            </div>
+        </section>
+
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-red-300 mb-4">🏯 Historia & Samurajer</h3>
+            <p class="text-gray-300 leading-relaxed mb-4">
+                Japan har en lång historia. Under många århundraden styrdes landet av militära ledare kallade <strong>Shoguns</strong>, medan kejsaren mest var en symbol.
+                Deras krigare, <strong>samurajerna</strong>, följde en strikt hederskod kallad Bushido.
             </p>
+            <p class="text-gray-300 leading-relaxed">
+                Under 1800-talet öppnade Japan upp sig mot omvärlden och industrialiserades snabbt. Idag är det en modern demokrati men med kejsaren kvar som statschef.
+            </p>
+        </section>
+
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-white mb-4">🤖 Teknik & Framtid</h3>
+            <p class="text-gray-300 leading-relaxed mb-6">
+                Japan är världsledande inom teknik, särskilt robotik, bilar och elektronik. Företag som Toyota, Sony och Nintendo kommer härifrån.
+                Landet är också känt för sina snabbtåg, <strong>Shinkansen</strong>, som är extremt punktliga och snabba.
+            </p>
+
+            <h4 class="text-xl font-bold text-red-200 mb-3">Populärkultur</h4>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-gray-700/50 p-4 rounded-xl">
+                    <h5 class="font-bold text-white">Anime & Manga</h5>
+                    <p class="text-sm text-gray-300">Japansk animation och serier är enormt populära globalt.</p>
+                </div>
+                <div class="bg-gray-700/50 p-4 rounded-xl">
+                    <h5 class="font-bold text-white">Spel</h5>
+                    <p class="text-sm text-gray-300">Super Mario, Pokémon och Zelda är alla japanska skapelser.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-red-300 mb-4">📘 Fördjupning om Japan</h3>
+            <div class="text-gray-300 space-y-4 leading-relaxed">
+                <p>Japan är en östat i Östasien belägen i västra Stilla havet, bestående av en lång båge av tusentals öar som sträcker sig över cirka 3 000 kilometer från norr till söder och består av fyra stora huvudöar — Hokkaido, Honshu, Shikoku och Kyushu — samt tusentals mindre öar, inklusive den subtropiska ögruppen Ryukyu-öarna med den mest kända ön Okinawa. Landets totala yta är cirka 377 975 kvadratkilometer, vilket gör det något större än Tyskland men mindre än Kalifornien och större än Storbritannien, men trots den relativt lilla ytan är Japans landskap mycket varierat med höga berg, aktiva vulkaner, tätbefolkade kuststäder, djupa skogar och bördiga floddalar. Geografiskt är Japan en del av Ring of Fire, den stora cirkeln av vulkaner och jordbävningar runt Stilla havet, vilket gör att landet ofta upplever seismisk aktivitet inklusive jordbävningar och utbrott av vulkaner som Mount Fuji, som med sina 3 776 meter är Japans högsta berg och en ikonisk symbol för nationen.</p>
+                
+                <p>Japan är omgivet av fyra hav: Östkinesiska havet, Fukushimahavet, Filippinska havet och Japanska havet, och har ett mycket långt kustlandskap med många vikar och bukter som har gjort fiske, handel och sjöfartsnäringar till viktiga delar av ekonomin och kulturen sedan antiken. Runt Tokyo-bukten, Osaka-bukten och Ise-viken har stora metropoler vuxit fram på grund av bördig mark för jordbruk, hamnfaciliteter och historisk handel. Landet har över 120 vulkaner, varav cirka 10 % är aktiva, och Japan är ett av de mest intensiva seismiskt aktiva områdena i världen, vilket gör att byggnader, infrastruktur och samhällssystem är utformade för att stå emot jordbävningar.</p>
+                
+                <p>Japans klimat varierar kraftigt från norr till söder — i norr på Hokkaido är klimatet fuktigt kontinental med kalla, snörika vintrar och milda somrar, i centrala Honshu är klimatet fuktigt subtropiskt med tydliga årstider inklusive varma, fuktiga somrar och kalla vintrar, medan de södra öarna som Kyushu och Okinawa har subtropiskt klimat med milda vintrar och varma, regniga somrar. Monsuner och tyfoner påverkar också klimatet, särskilt under sensommar och tidig höst då tropiska stormar ofta drar in över landet med kraftiga regn, vindar och översvämningar som utmanar infrastruktur och samhälle.</p>
+                
+                <p>Historien om Japan sträcker sig tusentals år tillbaka och börjar med tidiga jägar- och samlarbefolkningar som Jōmon-kulturen, känd för sina karakteristiska snirkliga keramiska redskap och bosättningar från cirka 14 000 f.Kr. genom flera tusen år framåt. Denna period avlöstes av Yayoi-perioden (cirka 300 f.Kr.–300 e.Kr.), när risodlingar, metallverktyg och avancerade samhällsstrukturer introducerades, vilket ledde till ökade insatser i jordbruk, social stratifiering och kontakt med det asiatiska fastlandet. Under Kofun-perioden (250–538 e.Kr.) växte maktcentra fram i form av stora gravhögar där gravarna tillhörande makteliten vittnar om organiserad statsmakt och social hierarki.</p>
+                
+                <p>Japans första centraliserade regering etablerades under Asuka-perioden (538–710) då buddhismen introducerades från Korea och Kina, vilket inte bara förändrade religiösa och filosofiska traditioner utan också införde skrivsystemet kanji, kallat 漢字, och administrativa strukturer som modellerades efter det kinesiska Tang-dynastins system. Under Nara-perioden (710–794) byggdes den första permanenta huvudstaden i Nara och den tidiga japanska staten började konsolidera skriven lag, buddhistiska tempel och aristokratisk kultur. Heian-perioden (794–1185) blev en tid av kulturell blomstring med litterära verk som “Genji monogatari” skriven av Murasaki Shikibu, ofta kallad världens första roman, och den kejserliga domstolen i Heian-kyo (nuvarande Kyoto) utvecklade formell konst, poesi och estetik.</p>
+                
+                <p>Efter Heian-perioden kom en period av militär dominans där samurajer och shoguner tog makten i det feodala Japan. Under Kamakura-shogunatet (1185–1333) etablerades en militär regering under Minamoto-klanen, som styrde genom krigsherrar (daimyōer) och kodifierade en samhällsstruktur baserad på lojalitet, heder och militär färdighet. Detta följdes av Muromachi-perioden (1336–1573) och den kaotiska Sengoku-perioden (cirka 1467–1603) — en tid av nästan konstant inbördeskrig där olika krigsherrar kämpade om makten. Under denna tidsperiod uppstod också betydande kulturella rörelser inklusive utvecklingen av teceremonier, zenbuddhism och traditionella konstformer.</p>
+                
+                <p>En viktig vändpunkt i Japans historia kom med Tokugawa-perioden (eller Edo-perioden, 1603–1868) då Tokugawa-shogunatet etablerade centraliserad makt och ett strikt klassystem som höll landet i fred under mer än 250 år. Under Edo-perioden isolerade sig Japan i stor utsträckning från omvärlden genom sakoku-politiken, som begränsade utländsk handel och kontakt till vissa hamnar under kontrollerade former, vilket bidrog till utvecklingen av en unik japansk kultur med kabuki-teater, haiku-dikter, ukiyo-e-träsnitt och komplexa sociala ritualer. Mot slutet av Edo-perioden började trycket från västerländska makter växa och 1853 anlände Matthew C. Perry med amerikanska slagskepp för att öppna japanska hamnar för internationell handel, ett händelseförlopp som ledde till att Japan undertecknade orättvisa handelsavtal.</p>
+                
+                <p>År 1868 markerar Meiji-restaurationen början på en drastisk förändring då kejsaren återfick verklig makt och Japan påbörjade en snabb modernisering för att undvika kolonialt inflytande från västmakterna. Under Meiji-perioden (1868–1912) industrialiserades landet snabbt med järnväg, fabrikssystem, modern utbildning och centraliserad byråkrati, och Japan öppnade sig för internationell handel, diplomati och teknologisk utveckling. Landet byggde en modern militär och moderniserade sin ekonomi på västerländsk modell, vilket gjorde Japan till en framväxande regional stormakt. Denna period av modernisering inkluderade även skapandet av ett konstitutionellt system med en riksdag baserad på västerländska idéer.</p>
+                
+                <p>Under 1900-talet deltog Japan i flera militära konflikter då landet sökte inflytande och territorier i Asien och Stillahavsområdet. Efter seger i ryska-japanska kriget 1904–1905 blev Japan den första industrialiserade nationen i Asien som besegrade en europeisk stormakt, vilket ökade dess status och territorier inklusive kontroll över Korea och delar av norra Kina. Under Andra världskriget gick Japan in i allians med Axelmakterna och utvidgade sitt territorium genom militär expansion i Asien och Stillahavsområdet, men krigsslutet 1945 kom efter att USA fällde atombomberna över Hiroshima och Nagasaki, vilket ledde till Japans kapitulation och början på en lång ockupation under amerikansk ledning som omformade Japans politiska, ekonomiska och sociala system.</p>
+                
+                <p>Efter andra världskriget antog Japan en pacifistisk konstitution 1947 som bland annat förbjuder landet från att ha en traditionell militär och satsar istället på självförsvarsstyrkor (JSDF) med syftet att garantera nationens säkerhet utan aggressiva militära medel. Denna pacifistiska grund bemyndigade också Japans snabba ekonomiska återuppbyggnad och från 1950-talet till 1980- och 90-talen upplevde landet en dramatisk ekonomisk tillväxt som gjorde det till världens näst största ekonomi under en period efter USA och före Kina. Detta ekonomiska uppsving kallades ofta “den japanska ekonomiska mirakeln” och kännetecknades av tillväxt inom bilindustrin, elektronik, robotik, maskinteknik och en exportledd strategi som gjorde märken som Toyota, Honda, Sony, Panasonic, Canon och Nintendo till globala namn.</p>
+                
+                <p>Befolkningmässigt är Japan ett av världens mest tätbefolkade länder med en befolkning runt 125 miljoner människor år 2026, men landet står inför en demografisk utmaning med en av världens snabbast åldrande befolkningar och en av de lägsta födelsetalen bland industrialiserade länder, vilket har lett till diskussioner om arbetskraftsbrist, migration, pensioner och sociala trygghetssystem. Majoriteten av befolkningen bor i tätbefolkade storstadsområden längs kusterna, särskilt i regionerna runt Tokyo-bukten, Osaka-bukten och Nagoya, där Stor-Tokyo är världens största storstadsområde med över 37 miljoner människor i dess storstadsregion.</p>
+                
+                <p>Japan har ett enhetligt administrativt system bestående av 47 prefekturer, där varje prefektur har viss lokal självstyrelse men lyder under nationella lagar och regler. De flesta prefekturer är indelade i städer, städer och byar som administreras av lokala regeringar, och Tokyo fungerar både som en prefektur och en metropol som är landets huvudstad, regeringssäte, ekonomiskt centrum och kulturnav med kungliga palatset, parlamentet (Diet), regering och högkvarter för många internationella företag.</p>
+                
+                <p>Kulturellt är Japan välkänt för att kombinera traditionella värderingar med modern teknik och livsstil. Traditionella konstformer inkluderar ikebana (blomsterarrangemang), bonsai, origami, kaligrafi, traditionell musik med instrument som koto och shamisen, samt teceremonin sadō som betonar estetik, disciplin och närvaro. Religion i Japan är mestadels en kombination av shintoism och buddhism, där shintoism är Japans ursprungliga religion med fokus på kami (andar) och naturen, medan buddhismen, introducerad från Kina och Korea, har påverkat filosofiska och ceremoniella aspekter av det japanska livet. Högtider såsom nyår (shōgatsu), hanami (körsbärsblomning), Obon (en buddhistisk festival för att hedra förfäder) och Tanabata (stjärnfestival) är djupt rotade i traditioner som kombinerar familj, naturens cykler och social gemenskap.</p>
+                
+                <p>Matkultur i Japan är också världskänd, med en stark betoning på säsongsingredienser, presentation, balans och umami. Traditionella rätter inkluderar sushi, sashimi, tempura, ramen, yakitori, okonomiyaki, udon och miso-soppa, medan japansk te- och sake-kultur också spelar viktiga roller i sociala och ceremoniella sammanhang. Japansk gastronomi erkändes globalt när flera restauranger i landet belönades med Michelinstjärnor, och japansk mat betraktas internationellt som både konstnärlig och hälsosam.</p>
+                
+                <p>Sport är också en integrerad del av japanskt samhällsliv med både traditionella och moderna aktiviteter. Sumo, Japans nationalsport, har en historia som sträcker sig över mer än tusen år och tävlingar hålls regelbundet i olika stadier där rikssportens bästa wrestlare (rikishi) tävlar om titlar som Yokozuna. Andra populära sporter inkluderar baseball, som introducerades i Japan under Meiji-perioden och blivit en av landets mest utövade idrotter med professionella ligor som Nippon Professional Baseball (NPB), samt fotboll, där J-League har vuxit snabbt sedan starten 1993 och japanska landslaget har deltagit i flera världsmästerskap. Japan har också haft framgångar i Olympiska spel med medaljer inom gymnastik, judo, brottning, simning och friidrott samt ett stort engagemang för skateboarding och esport bland yngre generationer.</p>
+                
+                <p>Inom modern teknologi och innovation fortsätter Japan att vara en global ledare. Landet är känt för sin robotteknik, elektronik, bilindustri med elfordon, hybridfordon och avancerade material, samt inom medicinteknik, rymdteknik och artificiell intelligens. Japanska företag och forskningsinstitutioner arbetar med att utveckla nästa generationer av autonoma fordon, hållbara energi­system, avancerade tillverkningsprocesser och bioteknik och bidrar till global vetenskaplig utveckling.</p>
+                
+                <p>Japan har också en stark film- och animationskultur med internationell påverkan genom anime och manga — tecknade berättelser och animationer som har en massiv global publik. Studio Ghibli, känt för filmer som “Spirited Away” (Sen to Chihiro no kamikakushi) regisserad av Hayao Miyazaki, fick international erkännande, och anime-genren har skapat en global fanbase, konvent, publiceringar och populärkulturella influenser över hela världen.</p>
+                
+                <p>Utmaningar som Japan står inför under 2000-talet inkluderar demografiska förändringar med en åldrande befolkning, behovet av att reformera arbetsmarknadspolitik och sociala förmåner, energisäkerhet efter Fukushima-katastrofen 2011 som ledde till omprövning av kärnkraft och ökade satsningar på förnybar energi samt hantering av regional säkerhetspolitik i en tid med förändrade geopolitiska spänningar i Östasien.</p>
+                
+                <p>Japans utbildningssystem är välutvecklat med obligatorisk grundskola och gymnasium samt toppuniversitet som University of Tokyo, Kyoto University, Osaka University och många tekniska institut som producerar forskare och ingenjörer som driver landets innovationskraft framåt. Det finns också internationella skolor, språkprogram och samarbeten med universitet och forskningscentra runt om i världen, vilket gör Japan till en magnet för studenter och akademiker.</p>
+                
+                <p>Sammantaget är Japan ett land där gammal tradition och hypermodern teknik samexisterar — där antika tempel står bredvid skyskrapor, där tåg som Shinkansen susar fram i över 300 kilometer per timme över landskapet, där samurajernas arv lever kvar i kultur, konst och ritualer och där dagens unga generationer formar framtidens digitala samhälle. Från de snötäckta bergen i norr till de subtropiska stränderna i söder, från torg och tempel i Kyoto till neonupplysta gator i Tokyo och Osaka, representerar Japan en komplex, dynamisk och fascinerande nation med en historia, kultur, ekonomi och identitet som fortsätter att utvecklas i en snabbt föränderlig värld.</p>
+            </div>
         </section>
     </main>
 
@@ -218,6 +302,30 @@
         }
     }
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Tillbaka till toppen-knapp -->
+    <button id="to-top-button" title="Gå till toppen"
+            class="hidden fixed bottom-8 right-8 bg-red-500 hover:bg-red-600 text-white p-3 rounded-full shadow-lg transition-opacity duration-300 z-50">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+        const toTopButton = document.getElementById('to-top-button');
+        if (toTopButton) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    toTopButton.classList.remove('hidden');
+                } else {
+                    toTopButton.classList.add('hidden');
+                }
+            });
+            toTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
 </body>
 </html>

@@ -24,7 +24,7 @@
                     </button>
                     <div class="absolute right-0 top-full mt-2 w-48 bg-gray-800 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 max-h-96 overflow-y-auto">
                         <!-- Göm Google Translate-elementet men låt det finnas kvar för funktionen -->
-                        <div id="google_translate_element" class="hidden"></div>
+                        <div id="google_translate_element" class="absolute opacity-0 pointer-events-none"></div>
                         
                         <button onclick="doGTranslate('sv')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-t-xl transition flex items-center gap-2"><span>🇸🇪</span> Svenska</button>
                         <button onclick="doGTranslate('af')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇿🇦</span> Afrikaans</button>
@@ -140,6 +140,13 @@
                         <a href="grekland.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-b-xl transition">🇬🇷 Grekland</a>
                     </div>
                 </div>
+
+                <!-- Färg-väljare -->
+                <label class="text-gray-300 hover:text-white transition flex items-center gap-1 cursor-pointer" title="Ändra bakgrundsfärg">
+                    <span class="hidden sm:inline">Färg</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    <input type="color" class="invisible w-0 h-0 absolute" oninput="document.body.style.backgroundColor = this.value">
+                </label>
             </div>
         </div>
     </nav>
@@ -156,8 +163,123 @@
 
     <main class="max-w-4xl mx-auto px-4 py-12 space-y-12">
         <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
-            <h3 class="text-2xl font-bold text-green-300 mb-4">🍕 Kommer snart...</h3>
-            <p class="text-gray-300 leading-relaxed">Här kommer det snart finnas spännande fakta om Italien!</p>
+            <h3 class="text-2xl font-bold text-green-300 mb-4">🇮🇹 Fakta om Italien</h3>
+            
+            <p class="text-gray-300 leading-relaxed mb-6">
+                Italien ligger i södra Europa och är format som en stövel som sträcker sig ut i Medelhavet. 
+                Landet är känt för sin rika historia, fantastiska mat och sitt stora kulturella inflytande på världen.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-gray-700/50 p-5 rounded-xl">
+                    <h4 class="font-bold text-green-200 mb-2">Snabba Fakta</h4>
+                    <ul class="text-gray-300 text-sm space-y-1">
+                        <li><strong>Huvudstad:</strong> Rom</li>
+                        <li><strong>Befolkning:</strong> Ca 59 miljoner</li>
+                        <li><strong>Valuta:</strong> Euro (€)</li>
+                        <li><strong>Språk:</strong> Italienska</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-700/50 p-5 rounded-xl">
+                    <h4 class="font-bold text-red-200 mb-2">Kända Varumärken</h4>
+                    <ul class="text-gray-300 text-sm space-y-1">
+                        <li>Ferrari & Lamborghini (Bilar)</li>
+                        <li>Gucci & Prada (Mode)</li>
+                        <li>Fiat (Industri)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4 class="text-xl font-bold text-white mb-3">Geografi och Natur</h4>
+            <p class="text-gray-300 leading-relaxed mb-4">
+                Italien har en varierad natur med Alperna i norr och bergskedjan Apenninerna som ryggrad genom landet.
+                Det är också ett av Europas mest vulkaniska länder med aktiva vulkaner som <strong>Etna</strong>, <strong>Vesuvius</strong> och <strong>Stromboli</strong>.
+            </p>
+        </section>
+
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-red-300 mb-4">🏛️ Historia</h3>
+            
+            <div class="space-y-6 text-gray-300">
+                <div>
+                    <h4 class="text-lg font-bold text-white">Antikens Rom</h4>
+                    <p>Romarriket, som grundades 753 f.Kr., var ett av historiens mäktigaste imperier. De gav oss vägar, lagar och fantastiska byggnader som Colosseum.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-white">Renässansen</h4>
+                    <p>På 1300-talet blev Italien centrum för konst och vetenskap. Konstnärer som Leonardo da Vinci och Michelangelo skapade mästerverk här.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-green-300 mb-4">🍕 Mat & Kultur</h3>
+            
+            <p class="text-gray-300 leading-relaxed mb-6">
+                Italiensk mat är älskad över hela världen. Pizza kommer ursprungligen från Neapel, och varje region har sina egna pastasorter.
+                Maten handlar om bra råvaror, familj och tradition.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-gray-700/50 p-4 rounded-xl text-center">
+                    <span class="text-2xl block mb-2">🍕</span>
+                    <h4 class="font-bold text-white">Pizza</h4>
+                    <p class="text-xs text-gray-400">Från Neapel</p>
+                </div>
+                <div class="bg-gray-700/50 p-4 rounded-xl text-center">
+                    <span class="text-2xl block mb-2">🍝</span>
+                    <h4 class="font-bold text-white">Pasta</h4>
+                    <p class="text-xs text-gray-400">Hundratals sorter</p>
+                </div>
+                <div class="bg-gray-700/50 p-4 rounded-xl text-center">
+                    <span class="text-2xl block mb-2">🍦</span>
+                    <h4 class="font-bold text-white">Gelato</h4>
+                    <p class="text-xs text-gray-400">Italiensk glass</p>
+                </div>
+            </div>
+
+            <h4 class="text-xl font-bold text-white mb-2">Turism & Sevärdheter</h4>
+            <ul class="list-disc list-inside text-gray-300 space-y-1">
+                <li><strong>Rom:</strong> Colosseum och Vatikanstaten.</li>
+                <li><strong>Venedig:</strong> Staden byggd på vatten.</li>
+                <li><strong>Pisa:</strong> Det lutande tornet.</li>
+            </ul>
+
+            <div class="mt-6 bg-green-900/30 border border-green-500/30 p-4 rounded-xl">
+                <p class="text-green-200 font-semibold">Visste du?</p>
+                <p class="text-gray-300 text-sm">Italien har flest världsarv i hela världen!</p>
+            </div>
+        </section>
+
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-green-300 mb-4">📘 Fördjupning om Italien</h3>
+            <div class="text-gray-300 space-y-4 leading-relaxed">
+                <p>Italien är en söreuropeisk nation belägen på Apenninska halvön och omgiven av Medelhavet, Adriatiska havet, Tyrrenska havet och Joniska havet, med en total yta på cirka 301 340 kvadratkilometer och en befolkning på över 60 miljoner människor år 2026, vilket gör landet till ett av Europas mest tätbefolkade och kulturellt inflytelserika länder. Landets geografi är karakteriserad av en distinkt form av en stövel som sträcker sig från Alperna i norr till Sicilien och Sardinien i söder, och inkluderar även flera mindre öar och arkipelager som Elba, Capri och Aeoliska öarna. Norditalien domineras av Alperna med höga bergstoppar som Mont Blanc (Monte Bianco) på gränsen mot Frankrike, Europas högsta punkt, och Dolomiterna, kända för dramatiska klippor och skidorter som Cortina d’Ampezzo och Val Gardena. Mellan Alperna och Apenninerna ligger de bördiga slätterna i Po-dalen, landets viktigaste jordbruksregion, med intensiv odling av ris, majs, vete, grönsaker och vin, samt stor koncentration av industristäder som Milano, Turin och Bologna.</p>
+                
+                <p>Apenninska bergen sträcker sig genom hela halvön och påverkar klimat och landskap, med varierande vegetation från medelhavskustens olivlundar, vinodlingar och citrusfruktsodlingar till högre bergsområden med barrskog och alpina betesmarker. I söder övergår landskapet i lågland och kustområden med vulkaner som Etna på Sicilien, Europas mest aktiva vulkan, samt Vesuvio nära Neapel, känd för sitt utbrott år 79 e.Kr. som förstörde städerna Pompeji och Herculaneum. Landets kustlinje på nästan 7 600 kilometer inkluderar både sandstränder och dramatiska klippor, med kända turistmål som Amalfi-kusten, Cinque Terre, Sardinien och Sicilien.</p>
+                
+                <p>Italiens klimat varierar från alpint i norr med kalla, snörika vintrar och milda somrar, till medelhavsklimat längs kusterna med varma, torra somrar och milda, fuktiga vintrar, och subtropiska inslag i de sydligaste regionerna. Monsuner och havsströmmar påverkar lokala temperaturer, och klimatet har stor betydelse för jordbruk, vinproduktion och turism. Landets rikedom på naturresurser inkluderar mineraler, sten och jordbruksmark, men energiresurser är begränsade, vilket gör att Italien är beroende av import av olja, gas och el, samtidigt som landet satsar på förnybar energi som sol, vind och vattenkraft.</p>
+                
+                <p>Historiskt har Italien varit ett centrum för civilisation och kultur sedan antiken. Området beboddes tidigt av etrusker, ligurer, oskiska folk och grekiska kolonister i söder, och utvecklades till Romarriket som sträckte sig över hela Medelhavet och Europa, med Rom som huvudstad. Romarrikets arv är enormt inom lag, arkitektur, vägbyggnad, konst, språk och administration. Efter Västromers rikets fall 476 e.Kr. präglades Italien av fragmentering i mindre kungadömen, stadsstater och feodala områden, inklusive Venetien, Florens, Milano, Neapel och Pisa, vilket lade grunden för den kulturella och ekonomiska blomstringen under renässansen på 1400–1500-talen, då konstnärer som Leonardo da Vinci, Michelangelo, Raphael, Donatello och arkitekter som Brunelleschi satte standarder för konst, arkitektur och vetenskap som fortfarande beundras världen över.</p>
+                
+                <p>På 1800-talet uppstod en stark rörelse för nationell enhet, kallad Risorgimento, ledd av politiker och militärer som Giuseppe Garibaldi, Camillo di Cavour och kung Vittorio Emanuele II, vilket resulterade i Italiens enande 1861 och etablerandet av Kungariket Italien, med Rom som huvudstad 1871. Landet deltog i första och andra världskriget och genomgick en period av politisk turbulens med fascismens framväxt under Benito Mussolini mellan 1922 och 1943, som ledde Italien in i Andra världskriget på axelmakternas sida. Efter krigets slut 1946 blev Italien en republik efter en folkomröstning, och landet har sedan dess varit en parlamentarisk demokrati med flerpartisystem och stark regional självstyrelse.</p>
+                
+                <p>Italiens ekonomi är bland de största i världen och en av de största i Europa, med starka sektorer inom industri, jordbruk, turism och tjänster. Norditalien domineras av industrin med företag inom mode, bilar, maskiner, kemikalier och teknologi, medan sydligare regioner har mer jordbruksbaserad ekonomi och traditionell produktion av olivolja, vin, citrusfrukter och tomater. Landet är världsledande inom mode och design med städer som Milano och Florens som globala centrum, och italienska varumärken som Gucci, Prada, Versace, Ferrari, Lamborghini och Fiat är internationellt erkända.</p>
+                
+                <p>Befolkningen är etniskt och kulturellt varierad, men med en majoritet av italiensk härkomst samt mindre grupper av tysktalande, slovenska, albanska, romer och nyare invandrare från Afrika, Mellanöstern och Sydamerika. Italienska språket är officiellt, och landets dialekter varierar kraftigt mellan regionerna. Italien har en rik matkultur som är världsberömd, med olika regionala specialiteter såsom pizza i Neapel, pasta i Rom, risotto i Milano, lasagne i Emilia-Romagna, samt olivolja, vin och ostar som Parmigiano-Reggiano och Mozzarella. Matkulturen kombinerar lokala ingredienser, tradition och innovation och har starkt internationellt inflytande.</p>
+                
+                <p>Religionen är dominerad av katolicismen, med Vatikanstaten som ett självständigt land inuti Rom och centrum för den romersk-katolska kyrkan med påven som ledare. Kulturella traditioner, högtider och konst är starkt influerade av religionen, med firanden som påsk, jul och olika lokala helgdagar som präglat samhällsliv, konst och arkitektur. Italien är också känt för sitt kulturarv med hundratals världsarv listade av UNESCO, inklusive Pompeji, Colosseum, Piazza del Duomo i Pisa, Florens historiska centrum och Venedig med dess kanaler.</p>
+                
+                <p>Sport spelar en viktig roll i italienskt samhälle, särskilt fotboll där klubbar som Juventus, AC Milan, Inter Milan, Roma och Napoli har stor popularitet, och landslaget har vunnit FIFA World Cup fyra gånger. Motorsport, särskilt Formel 1 och MotoGP, är populärt med team och fabriker som Ferrari och Ducati, medan cykling, volleyboll och basket också har betydande följare. Traditionella sporter och lokala spel bevaras i olika regioner, och idrottsevenemang kombinerar ofta kultur och gemenskap.</p>
+                
+                <p>Politiken präglas av en parlamentarisk republik med president som statschef och premiärminister som regeringschef. Landet är medlem av EU, FN, G7, G20, NATO och andra internationella organisationer. Regional autonomi är stark, särskilt i de fem autonoma regionerna Sicilien, Sardinien, Trentino-Alto Adige, Valle d’Aosta och Friuli-Venezia Giulia, vilket innebär särskilda lagar och skattesystem.</p>
+                
+                <p>Kultur och konst är centrala i Italien med världsomspännande inflytande inom musik (opera, klassisk musik), litteratur, film, teater, dans, arkitektur och mode. Operahus som La Scala i Milano och kompositörer som Verdi och Puccini har satt standarder för musikvärlden. Italienska filmer, särskilt från neorealismens era med regissörer som Federico Fellini, Roberto Rossellini och Luchino Visconti, har haft stor påverkan på internationell film.</p>
+                
+                <p>Natur och miljö inkluderar Alperna, Apenninerna, Po-dalen, vulkaner, Medelhavskust, nationalparker, sjöar som Como, Garda och Maggiore, samt unika öar med biologisk mångfald. Turism är en viktig sektor och lockar miljontals besökare till städer, stränder, landsbygden och historiska platser. Landet har även miljöutmaningar såsom jordbävningar, vulkanutbrott, kusterosion, luftförorening och behovet av hållbar stads- och jordbruksutveckling.</p>
+                
+                <p>Italien representerar en unik kombination av historia, kultur, konst, natur, innovation och samhälle där antika monument möter modern arkitektur, världsledande industri och traditionella jordbrukstraditioner samexisterar, och där regional mångfald, konstnärligt arv och kulinariska traditioner fortsätter att påverka global kultur, ekonomi och identitet. Från de alpina topparna i norr till Siciliens vulkaniska landskap, från Roms historiska forum till Venets kanaler, från Toscanas vingårdar till Amalfi-kustens klippor, representerar Italien ett mångfacetterat, dynamiskt och historiskt rikt land som har lämnat outplånliga spår i världen och fortsätter att fascinera och inspirera miljontals människor varje år.</p>
+            </div>
         </section>
     </main>
 
@@ -178,6 +300,30 @@
         }
     }
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Tillbaka till toppen-knapp -->
+    <button id="to-top-button" title="Gå till toppen"
+            class="hidden fixed bottom-8 right-8 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-opacity duration-300 z-50">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+        const toTopButton = document.getElementById('to-top-button');
+        if (toTopButton) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    toTopButton.classList.remove('hidden');
+                } else {
+                    toTopButton.classList.add('hidden');
+                }
+            });
+            toTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
 </body>
 </html>

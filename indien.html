@@ -24,7 +24,7 @@
                     </button>
                     <div class="absolute right-0 top-full mt-2 w-48 bg-gray-800 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 max-h-96 overflow-y-auto">
                         <!-- Göm Google Translate-elementet men låt det finnas kvar för funktionen -->
-                        <div id="google_translate_element" class="hidden"></div>
+                        <div id="google_translate_element" class="absolute opacity-0 pointer-events-none"></div>
                         
                         <button onclick="doGTranslate('sv')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-t-xl transition flex items-center gap-2"><span>🇸🇪</span> Svenska</button>
                         <button onclick="doGTranslate('af')" class="w-full text-left block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2"><span>🇿🇦</span> Afrikaans</button>
@@ -140,6 +140,13 @@
                         <a href="grekland.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-b-xl transition">🇬🇷 Grekland</a>
                     </div>
                 </div>
+
+                <!-- Färg-väljare -->
+                <label class="text-gray-300 hover:text-white transition flex items-center gap-1 cursor-pointer" title="Ändra bakgrundsfärg">
+                    <span class="hidden sm:inline">Färg</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    <input type="color" class="invisible w-0 h-0 absolute" oninput="document.body.style.backgroundColor = this.value">
+                </label>
             </div>
         </div>
     </nav>
@@ -156,8 +163,87 @@
 
     <main class="max-w-4xl mx-auto px-4 py-12 space-y-12">
         <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
-            <h3 class="text-2xl font-bold text-orange-300 mb-4">🕌 Kommer snart...</h3>
-            <p class="text-gray-300 leading-relaxed">Här kommer det snart finnas spännande fakta om Indien!</p>
+            <h3 class="text-2xl font-bold text-orange-400 mb-4">🇮🇳 Fakta om Indien</h3>
+            <p class="text-gray-300 leading-relaxed mb-6">
+                Indien är så stort och varierat att det nästan fungerar som en egen kontinent. Landet är cirka 3,28 miljoner kvadratkilometer och sträcker sig från snöklädda berg i norr till tropiska öar i söder.
+            </p>
+            
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                 <div class="bg-gray-700/50 p-5 rounded-xl">
+                    <h4 class="font-bold text-orange-200 mb-2">🏔️ Himalaya</h4>
+                    <p class="text-gray-300 text-sm">Världens tak i norr. Här finns glaciärer, unika kulturer och snöleoparder.</p>
+                 </div>
+                 <div class="bg-gray-700/50 p-5 rounded-xl">
+                    <h4 class="font-bold text-blue-200 mb-2">🌊 Heliga Floder</h4>
+                    <p class="text-gray-300 text-sm">Ganges är livsnerven och central inom hinduismen. Brahmaputra och Yamuna är andra viktiga floder.</p>
+                 </div>
+            </div>
+            
+            <div class="bg-orange-900/30 border border-orange-500/30 p-4 rounded-xl">
+                <h4 class="font-bold text-orange-200 mb-1">🌧️ Monsunen</h4>
+                <p class="text-gray-300 text-sm">Ett vädersystem som ger livsviktigt regn mellan juni och september, men som också kan orsaka översvämningar.</p>
+            </div>
+        </section>
+
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-white mb-4">🏛️ 5000 år av Historia</h3>
+            <div class="space-y-4">
+                <div class="border-l-4 border-orange-500 pl-4">
+                    <h4 class="font-bold text-white">Induskulturen (ca 2500 f.Kr.)</h4>
+                    <p class="text-gray-300 text-sm">En av världens första civilisationer med avancerade städer som Mohenjo-daro.</p>
+                </div>
+                <div class="border-l-4 border-white pl-4">
+                    <h4 class="font-bold text-white">Guptariket – Guldåldern</h4>
+                    <p class="text-gray-300 text-sm">Här utvecklades talet noll, decimalsystemet och avancerad astronomi.</p>
+                </div>
+                <div class="border-l-4 border-green-500 pl-4">
+                    <h4 class="font-bold text-white">Mogulriket (1500-talet)</h4>
+                    <p class="text-gray-300 text-sm">Känt för praktfull arkitektur som Taj Mahal.</p>
+                </div>
+                <div class="border-l-4 border-orange-500 pl-4">
+                    <h4 class="font-bold text-white">Självständighet (1947)</h4>
+                    <p class="text-gray-300 text-sm">Indien blev självständigt från Storbritannien genom kamp ledd av Mahatma Gandhi.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-green-400 mb-4">🎭 Kultur & Samhälle</h3>
+            
+            <div class="grid md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-gray-700/50 p-4 rounded-xl text-center">
+                    <span class="text-2xl block mb-2">🎬</span>
+                    <h4 class="font-bold text-white">Bollywood</h4>
+                    <p class="text-xs text-gray-400">Producerar fler filmer än Hollywood.</p>
+                </div>
+                <div class="bg-gray-700/50 p-4 rounded-xl text-center">
+                    <span class="text-2xl block mb-2">🍛</span>
+                    <h4 class="font-bold text-white">Mat</h4>
+                    <p class="text-xs text-gray-400">Curry, Naan, Dosa och kryddor.</p>
+                </div>
+                <div class="bg-gray-700/50 p-4 rounded-xl text-center">
+                    <span class="text-2xl block mb-2">🏏</span>
+                    <h4 class="font-bold text-white">Cricket</h4>
+                    <p class="text-xs text-gray-400">Landets mest populära sport.</p>
+                </div>
+            </div>
+
+            <h4 class="font-bold text-white mb-2">Religion & Språk</h4>
+            <p class="text-gray-300 text-sm mb-4">
+                Indien är födelseplatsen för Hinduism, Buddhism, Sikhism och Jainism. Landet har 22 officiella språk och över 1000 dialekter.
+            </p>
+        </section>
+
+        <section class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-blue-300 mb-4">📘 Fördjupning om Indien</h3>
+            <div class="text-gray-300 space-y-4 leading-relaxed">
+                <p><strong>De första städerna i världen:</strong> Runt 2500 f.Kr. uppstod Induskulturen. Städer som Mohenjo-daro och Harappa hade rätvinkliga gator, offentliga badhus och avloppssystem. Detta visar på stark central planering och handel med bland annat Mesopotamien.</p>
+                <p><strong>Religionernas födelseplats:</strong> Indien är en andlig supermakt. Hinduismen är världens äldsta levande religion. Buddhismen grundades här av Siddhartha Gautama på 500-talet f.Kr. Sikhismen uppstod på 1400-talet och betonar jämlikhet.</p>
+                <p><strong>Vetenskapliga genombrott:</strong> Under Guptariket utvecklades talet noll och det decimalsystem som används globalt idag. Indiska matematiker lade grunden för modern matematik och utförde avancerade astronomiska beräkningar.</p>
+                <p><strong>Kolonialtid och självständighet:</strong> När Storbritannien tog kontroll förändrades Indien kraftigt med järnvägar och universitet, men också ekonomisk exploatering. Självständighetskampen leddes av Mahatma Gandhi genom icke-våld. 1947 delades landet och Pakistan bildades.</p>
+                <p><strong>Djurliv och miljö:</strong> Indien har enorm biologisk mångfald med bengaliska tigrar, asiatiska lejon, elefanter och noshörningar. Nationalparker skyddar dessa arter, men klimatförändringar påverkar ekosystemen.</p>
+                <p><strong>Slutord:</strong> Indien är en uråldrig civilisation och en modern tekniknation. Det är ett land där tradition möter framtid, fattigdom möter miljardindustri, och heliga floder rinner bredvid IT-parker. Indien är inte bara ett land — det är en hel värld i sig.</p>
+            </div>
         </section>
     </main>
 
@@ -178,6 +264,30 @@
         }
     }
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Tillbaka till toppen-knapp -->
+    <button id="to-top-button" title="Gå till toppen"
+            class="hidden fixed bottom-8 right-8 bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-full shadow-lg transition-opacity duration-300 z-50">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+        const toTopButton = document.getElementById('to-top-button');
+        if (toTopButton) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    toTopButton.classList.remove('hidden');
+                } else {
+                    toTopButton.classList.add('hidden');
+                }
+            });
+            toTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
 </body>
 </html>
