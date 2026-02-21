@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gissa Flaggan - Frågesport</title>
+    <!-- Vi använder samma designverktyg (Tailwind) och typsnitt som resten av din sida -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+
+    <!-- ENKEL MENY -->
+    <nav class="bg-gray-950 shadow-lg p-4">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold text-amber-400">🏳️ Gissa Flaggan</h1>
+            <a href="index.html" class="text-white font-semibold">Hem</a>
+           
+        </div>
+    </nav>
+
+    <!-- SPEL-RUTAN -->
+    <!-- Här visas själva spelet centrerat på skärmen -->
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="bg-gray-800 p-8 rounded-2xl shadow-2xl max-w-2xl w-full text-center border border-gray-700">
+            
+            <!-- Här visas poängen -->
+            <div class="text-gray-400 text-sm mb-4 flex justify-between">
+                <span id="question-counter">Fråga 1 av ?</span>
+                <span id="score-display">Poäng: 0</span>
+            </div>
+
+            <!-- Här visas frågan -->
+            <h2 id="question-text" class="text-5xl font-bold mb-8 text-white">Laddar fråga...</h2>
+
+            <!-- Här är de 4 svarsknapparna -->
+            <div id="answer-buttons" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Knapparna skapas automatiskt av JavaScriptet nedan -->
+            </div>
+
+            <!-- Knapp för att starta om (syns bara när spelet är slut) -->
+            <button id="restart-btn" class="hidden mt-8 bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full transition transform hover:scale-105">
+                Spela igen
+            </button>
+
+        </div>
+    </main>
+
+    <!-- JAVASCRIPT - HÄR ÄR HJÄRNAN I SPELET -->
+    <script>
+        // ---------------------------------------------------------
+        // 1. HÄR LÄGGER DU IN DINA FRÅGOR
+        // ---------------------------------------------------------
+        // Varje fråga är ett "objekt" inom måsvingar { }.
+        // "question": Själva frågan.
+        // "answers": En lista med 4 svarsalternativ.
+        // "correct": Vilket nummer är rätt? (0 är första, 1 är andra, 2 är tredje, 3 är fjärde).
+        
+        const questions = [
+            {
+                question: "Vilket land är detta? 🇸🇪",
+                answers: ["Norge", "Sverige", "Danmark", "Finland"],
+                correct: 1 // Sverige är index 1 (andra alternativet)
+            },
+            {
+                question: "Vilket land är detta? 🇯🇵",
+                answers: ["Kina", "Sydkorea", "Thailand", "Japan"],
+                correct: 3 // Japan är index 3 (fjärde alternativet)
+            },
+            {
+                question: "Vilket land är detta? 🇧🇷",
+                answers: ["Brasilien", "Argentina", "Chile", "Peru"],
+                correct: 0 // Brasilien är index 0 (första alternativet)
+            },
+            {
+                question: "Vilket land är detta? 🇺🇸",
+                answers: ["Storbritannien", "Kanada", "USA", "Australien"],
+                correct: 2 // USA är index 2
+            },
+            {
+                question: "Vilket land är detta? 🇪🇬",
+                answers: ["Marocko", "Saudiarabien", "Egypten", "Turkiet"],
+                correct: 2 // Egypten är index 2
+            },
+            {
+                question: "Vilket land är detta? 🇮🇹",
+                answers: ["Frankrike", "Spanien", "Italien", "Grekland"],
+                correct: 2 // Italien är index 2
+            },
+            {
+                question: "Vilket land är detta? 🇮🇳",
+                answers: ["Indien", "Pakistan", "Bangladesh", "Sri Lanka"],
+                correct: 0 // Indien är index 0
+            },
+           
+            {
+                question: "Vilket land är detta? 🇬🇷",
+                answers: ["Italien", "Cypern", "Grekland", "Kroatien"],
+                correct: 2 // Grekland är index 2
+            },
+            {
+                question: "Vilket land är detta? 🇺🇦",
+                answers: ["Italien", "Cypern", "Ukraina", "Kroatien"],
+                correct: 2 // Ukraina är index 2
+            },
+            {
+                question: "Vilket land är detta? 🇦🇷",
+                answers: ["Italien", "Cypern", "Argentina ", "Kroatien"],
+                correct: 2 // Argentina är index 2
+            }
+        ];
+
+        // ---------------------------------------------------------
+        // 2. VARIABLER FÖR ATT HÅLLA KOLL PÅ SPELET
+        // ---------------------------------------------------------
+        let currentQuestionIndex = 0; // Vilken fråga är vi på?
+        let score = 0;                // Hur många poäng har vi?
+        let isLocked = false;         // Förhindrar att man klickar flera gånger
+
+        // Hämta element från HTML så vi kan ändra dem
+        const questionText = document.getElementById('question-text');
+        const answerButtonsElement = document.getElementById('answer-buttons');
+        const scoreDisplay = document.getElementById('score-display');
+        const questionCounter = document.getElementById('question-counter');
+        const restartBtn = document.getElementById('restart-btn');
+
+        // ---------------------------------------------------------
+        // 3. FUNKTIONER (VAD SPELET GÖR)
+        // ---------------------------------------------------------
+
+        // Starta spelet
+        function startGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            restartBtn.classList.add('hidden'); // Göm "Spela igen"-knappen
+            showQuestion(); // Visa första frågan
+        }
+
+        // Visa nuvarande fråga och skapa knappar
+        function showQuestion() {
+            isLocked = false; // Lås upp så man kan klicka
+            
+            // Hämta datan för nuvarande fråga
+            let q = questions[currentQuestionIndex];
+            
+            // Uppdatera texten på skärmen
+            questionText.innerText = q.question;
+            questionCounter.innerText = `Fråga ${currentQuestionIndex + 1} av ${questions.length}`;
+            scoreDisplay.innerText = `Poäng: ${score}`;
+
+            // Rensa gamla knappar
+            answerButtonsElement.innerHTML = '';
+
+            // Skapa en knapp för varje svarsalternativ
+            q.answers.forEach((answer, index) => {
+                const button = document.createElement('button');
+                button.innerText = answer;
+                // Lägg till snygg design på knappen (Tailwind-klasser)
+                button.className = 'bg-gray-700 hover:bg-gray-600 text-white font-semibold py-4 px-6 rounded-xl transition border border-gray-600 text-lg';
+                
+                // Vad händer när man klickar? Kör funktionen selectAnswer
+                button.onclick = () => selectAnswer(index, button);
+                
+                // Lägg in knappen i rutan
+                answerButtonsElement.appendChild(button);
+            });
+        }
+
+        // När spelaren klickar på ett svar
+        function selectAnswer(selectedIndex, button) {
+            if (isLocked) return; // Om låst, gör inget (så man inte kan klicka 2 gånger)
+            isLocked = true;      // Lås spelet tillfälligt
+
+            const correctIndex = questions[currentQuestionIndex].correct;
+
+            // Kolla om det var rätt
+            if (selectedIndex === correctIndex) {
+                score++; // Öka poängen
+                // Ändra färg till GRÖN
+                button.classList.remove('bg-gray-700', 'hover:bg-gray-600');
+                button.classList.add('bg-green-600', 'border-green-400');
+            } else {
+                // Ändra färg till RÖD
+                button.classList.remove('bg-gray-700', 'hover:bg-gray-600');
+                button.classList.add('bg-red-600', 'border-red-400');
+
+                // Visa vilket som var rätt (genom att färga den rätta knappen grön också)
+                const allButtons = answerButtonsElement.children;
+                allButtons[correctIndex].classList.remove('bg-gray-700');
+                allButtons[correctIndex].classList.add('bg-green-600', 'opacity-50');
+            }
+
+            // Vänta 1,5 sekund, sen gå till nästa fråga
+            setTimeout(() => {
+                currentQuestionIndex++; // Gå framåt ett steg
+                
+                // Finns det fler frågor?
+                if (currentQuestionIndex < questions.length) {
+                    showQuestion(); // Visa nästa
+                } else {
+                    showScore(); // Visa resultatet
+                }
+            }, 1500);
+        }
+
+        // Visa slutresultatet
+        function showScore() {
+            questionText.innerText = `Du fick ${score} av ${questions.length} poäng!`;
+            answerButtonsElement.innerHTML = ''; // Ta bort knapparna
+            questionCounter.innerText = "Spelet slut";
+            
+            // Visa "Spela igen"-knappen
+            restartBtn.classList.remove('hidden');
+        }
+
+        // Koppla "Spela igen"-knappen till start-funktionen
+        restartBtn.addEventListener('click', startGame);
+
+        // Kör igång allt när sidan laddas!
+        startGame();
+
+    </script>
+</body>
+</html>

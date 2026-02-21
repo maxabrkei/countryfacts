@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Fakta om Länder</title>
+    <style>body { font-family: 'Poppins', sans-serif; }</style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+
+    <!-- NAVIGERING - bara "Hem" och "Andra länder" med dropdown -->
+    <nav class="bg-gray-950 shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+            <a href="index.html" class="text-2xl font-bold text-white hover:text-amber-400 transition">🌍 Fakta om Länder</a>            
+            <!-- HAMBURGER-KNAPP (Mobil) -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <!-- DESKTOP-MENY -->
+            <div class="hidden md:flex gap-6 items-center">
+                <!-- Hem-länk -->
+                <a href="index.html" class="text-white font-semibold">Hem</a>
+                  <a href="spel.html" class="text-white font-semibold">Spel</a>
+
+
+                <!-- Dropdown för alla länder -->
+                <div class="relative group">
+                    <button class="text-gray-300 hover:text-white transition flex items-center gap-1">
+                        Andra länder
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="absolute right-0 top-full mt-2 w-48 bg-gray-800 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="egypt.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-t-xl transition">🇪🇬 Egypten</a>
+                        <a href="sverige.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇸🇪 Sverige</a>
+                        <a href="japan.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇯🇵 Japan</a>
+                        <a href="brasilien.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇧🇷 Brasilien</a>
+                        <a href="italien.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇮🇹 Italien</a>
+                        <a href="usa.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇺🇸 USA</a>
+                        <a href="indien.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition">🇮🇳 Indien</a>
+                        <a href="grekland.html" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-b-xl transition">🇬🇷 Grekland</a>
+                    </div>
+                </div>
+
+                <!-- Färg-väljare -->
+                <label class="text-gray-300 hover:text-white transition flex items-center gap-1 cursor-pointer" title="Ändra bakgrundsfärg">
+                    <span class="hidden sm:inline">Färg</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    <input type="color" class="invisible w-0 h-0 absolute" oninput="document.body.style.backgroundColor = this.value">
+                </label>
+            </div>
+        </div>
+
+        <!-- MOBIL-MENY -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 border-t border-gray-800">
+            <div class="px-4 py-2 space-y-1">
+                <a href="index.html" class="block py-3 text-white font-semibold hover:bg-gray-800 rounded px-2">Hem</a>
+                <a href="spel.html" class="block py-3 text-white font-semibold hover:bg-gray-800 rounded px-2">Spel</a>
+                
+                <div class="py-2 border-t border-gray-800 mt-2">
+                    <p class="px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Länder</p>
+                    <a href="egypt.html" class="block py-2 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded">🇪🇬 Egypten</a>
+                    <a href="sverige.html" class="block py-2 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded">🇸🇪 Sverige</a>
+                    <a href="japan.html" class="block py-2 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded">🇯🇵 Japan</a>
+                    <a href="brasilien.html" class="block py-2 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded">🇧🇷 Brasilien</a>
+                    <a href="italien.html" class="block py-2 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded">🇮🇹 Italien</a>
+                    <a href="usa.html" class="block py-2 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded">🇺🇸 USA</a>
+                    <a href="indien.html" class="block py-2 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded">🇮🇳 Indien</a>
+                    <a href="grekland.html" class="block py-2 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded">🇬🇷 Grekland</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO - välkomsttext -->
+    <header class="text-center py-20 px-4">
+        <h1 class="text-5xl font-bold mb-4">Välkommen!</h1>
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+            här kan du spela spel som handlar om länder och deras flaggor, huvudstäder, språk och mycket mer! Testa dina kunskaper och lär dig nya saker på ett roligt sätt. Klicka på "Spel" i menyn för att börja spela!
+        </p>
+    </header>
+
+    <!-- ALLA spel -->
+    <section class="max-w-6xl mx-auto px-4 pb-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- grid-cols-1 = 1 kolumn på mobil -->
+            <!-- md:grid-cols-2 = 2 kolumner på mellanstor skärm -->
+            <!-- lg:grid-cols-3 = 3 kolumner på stor skärm -->
+
+            <!-- spel 1 -->
+            <a href="quiz.html" class="group relative block h-64 rounded-2xl overflow-hidden shadow-xl">
+                <img src="spelländer.webp" alt="Egypten" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-5">
+                    <h2 class="text-2xl font-bold text-white mb-1">Spel 1 🎮 </h2>
+                    <p class="text-gray-300 text-sm">här kan du spela ett spel om flaggor</p>
+                </div>
+            </a>
+
+            <!-- spel 2 -->
+            <a href="" class="group relative block h-64 rounded-2xl overflow-hidden shadow-xl">
+                <img src="" alt="Sverige" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-5">
+                    <h2 class="text-2xl font-bold text-white mb-1">Spel 2 🎮</h2>
+                    <p class="text-gray-300 text-sm">kommer snart</p>
+                </div>
+            </a>
+
+            <!-- spel 3 -->
+            <a href="" class="group relative block h-64 rounded-2xl overflow-hidden shadow-xl">
+                <img src="" alt="Japan" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-5">
+                    <h2 class="text-2xl font-bold text-white mb-1">Spel 3 🎮</h2>
+                    <p class="text-gray-300 text-sm">kommer snart</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <footer class="bg-gray-950 text-center py-6 text-gray-500 text-sm">
+        <p>Skapad av Max &copy; 2026</p>
+    </footer>
+
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'sv', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+    }
+    
+    function doGTranslate(lang_pair) {
+        var teCombo = document.querySelector('.goog-te-combo');
+        if (teCombo) {
+            teCombo.value = lang_pair;
+            teCombo.dispatchEvent(new Event('change'));
+        }
+    }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Tillbaka till toppen-knapp -->
+    <button id="to-top-button" title="Gå till toppen"
+            class="hidden fixed bottom-8 right-8 bg-amber-500 hover:bg-amber-600 text-white p-3 rounded-full shadow-lg transition-opacity duration-300 z-50">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+        const toTopButton = document.getElementById('to-top-button');
+        if (toTopButton) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    toTopButton.classList.remove('hidden');
+                } else {
+                    toTopButton.classList.add('hidden');
+                }
+            });
+            toTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+    
+</body>
+</html>
