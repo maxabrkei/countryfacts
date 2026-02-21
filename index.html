@@ -14,7 +14,17 @@
     <nav class="bg-gray-950 shadow-lg sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
             <a href="index.html" class="text-2xl font-bold text-white hover:text-amber-400 transition">🌍 Fakta om Länder</a>
-            <div class="flex gap-6 items-center">
+            
+            <!-- HAMBURGER-KNAPP (Syns bara på mobil 'md:hidden') -->
+            <!-- Denna knapp togglar menyn när man klickar på den -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <!-- DESKTOP-MENY (Gömd på mobil 'hidden', synlig på större skärmar 'md:flex') -->
+            <div class="hidden md:flex gap-6 items-center">
                 <!-- Hem-länk -->
                 <a href="index.html" class="text-white font-semibold">Hem</a>
                   <a href="spel.html" class="text-white font-semibold">Spel</a>
@@ -44,6 +54,28 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
                     <input type="color" class="invisible w-0 h-0 absolute" oninput="document.body.style.backgroundColor = this.value">
                 </label>
+            </div>
+        </div>
+
+        <!-- MOBIL-MENY (Gömd som standard 'hidden') -->
+        <!-- Denna div visas när man klickar på hamburger-knappen -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 border-t border-gray-800">
+            <div class="px-4 py-2 space-y-1">
+                <a href="index.html" class="block py-3 text-white font-semibold hover:bg-gray-800 rounded px-2">Hem</a>
+                <a href="spel.html" class="block py-3 text-white font-semibold hover:bg-gray-800 rounded px-2">Spel</a>
+                
+                <!-- Lista med länder för mobil -->
+                <div class="py-2 border-t border-gray-800 mt-2">
+                    <p class="px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Länder</p>
+                    <a href="egypt.html" class="block py-2 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded">🇪🇬 Egypten</a>
+                    <a href="sverige.html" class="block py-2 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded">🇸🇪 Sverige</a>
+                    <a href="japan.html" class="block py-2 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded">🇯🇵 Japan</a>
+                    <a href="brasilien.html" class="block py-2 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded">🇧🇷 Brasilien</a>
+                    <a href="italien.html" class="block py-2 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded">🇮🇹 Italien</a>
+                    <a href="usa.html" class="block py-2 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded">🇺🇸 USA</a>
+                    <a href="indien.html" class="block py-2 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded">🇮🇳 Indien</a>
+                    <a href="grekland.html" class="block py-2 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded">🇬🇷 Grekland</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -316,6 +348,16 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         }
+    </script>
+
+    <!-- Script för mobilmenyn -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
     </script>
     
 </body>
