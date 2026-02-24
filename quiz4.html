@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gissa Flaggan - Frågesport</title>
+    <!-- Vi använder samma designverktyg (Tailwind) och typsnitt som resten av din sida -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+
+    <!-- ENKEL MENY -->
+    <nav class="bg-gray-950 shadow-lg p-4">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold text-amber-400">🏳️ Gissa Flaggan</h1>
+            <a href="index.html" class="text-white font-semibold">Hem</a>
+
+            <a href="hemspel.html" class="text-white font-semibold">Tilbaka</a>
+
+        </div>
+    </nav>
+
+    <!-- SPEL-RUTAN -->
+    <!-- Här visas själva spelet centrerat på skärmen -->
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="bg-gray-800 p-8 rounded-2xl shadow-2xl max-w-2xl w-full text-center border border-gray-700">
+            
+            <!-- Här visas poängen -->
+            <div class="text-gray-400 text-sm mb-4 flex justify-between">
+                <span id="question-counter">Fråga 1 av ?</span>
+                <span id="score-display">Poäng: 0</span>
+            </div>
+
+            <!-- TIMER - Visar hur lång tid som är kvar -->
+            <div id="timer-display" class="text-2xl font-bold text-amber-500 mb-4">⏳ 10s</div>
+
+            <!-- Här visas frågan -->
+            <h2 id="question-text" class="text-5xl font-bold mb-8 text-white">Laddar fråga...</h2>
+
+            <!-- Här är de 4 svarsknapparna -->
+            <div id="answer-buttons" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Knapparna skapas automatiskt av JavaScriptet nedan -->
+            </div>
+
+            <!-- Knapp för att starta om (syns bara när spelet är slut) -->
+            <button id="restart-btn" class="hidden mt-8 bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full transition transform hover:scale-105">
+                Spela igen
+            </button>
+
+        </div>
+    </main>
+
+    <!-- JAVASCRIPT - HÄR ÄR HJÄRNAN I SPELET -->
+    <script>
+        // SÄKERHETSKOLL: Har man klarat nivå 3?
+        if (localStorage.getItem('level3Complete') !== 'true') {
+            alert("Du måste klara Nivå 3 (Svår) med alla rätt först!");
+            window.location.href = "hemspel.html";
+        }
+
+        // ---------------------------------------------------------
+        // 1. HÄR LÄGGER DU IN DINA FRÅGOR
+        // ---------------------------------------------------------
+        // Varje fråga är ett "objekt" inom måsvingar { }.
+        // "question": Själva frågan.
+        // "answers": En lista med 4 svarsalternativ.
+        // "correct": Vilket nummer är rätt? (0 är första, 1 är andra, 2 är tredje, 3 är fjärde).
+        
+        const questions = [
+            
+            {
+                question: "Vilket land är detta? 🇫🇷",
+                answers: ["Italien", "Belgien", "Frankrike", "Nederländerna"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇩🇪",
+                answers: ["Österrike", "Tyskland", "Belgien", "Polen"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇪🇸",
+                answers: ["Portugal", "Mexiko", "Italien", "Spanien"],
+                correct: 3
+            },
+            {
+                question: "Vilket land är detta? 🇨🇦",
+                answers: ["USA", "Kanada", "Storbritannien", "Australien"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇦🇺",
+                answers: ["Nya Zeeland", "Storbritannien", "USA", "Australien"],
+                correct: 3
+            },
+            {
+                question: "Vilket land är detta? 🇨🇳",
+                answers: ["Japan", "Vietnam", "Kina", "Sydkorea"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇿🇦",
+                answers: ["Kenya", "Nigeria", "Ghana", "Sydafrika"],
+                correct: 3
+            },
+            {
+                question: "Vilket land är detta? 🇲🇽",
+                answers: ["Italien", "Mexiko", "Ungern", "Iran"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇰🇷",
+                answers: ["Japan", "Nordkorea", "Sydkorea", "Kina"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇧🇷",
+                answers: ["Argentina", "Brasilien", "Peru", "Colombia"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇯🇵",
+                answers: ["Kina", "Sydkorea", "Japan", "Vietnam"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇬🇧",
+                answers: ["USA", "Australien", "Nya Zeeland", "Storbritannien"],
+                correct: 3
+            },
+            {
+                question: "Vilket land är detta? 🇺🇸",
+                answers: ["Kanada", "USA", "Liberia", "Malaysia"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇮🇳",
+                answers: ["Indien", "Pakistan", "Iran", "Ungern"],
+                correct: 0
+            },
+            {
+                question: "Vilket land är detta? 🇹🇷",
+                answers: ["Tunisien", "Turkiet", "Marocko", "Algeriet"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇬🇷",
+                answers: ["Cypern", "Italien", "Grekland", "Uruguay"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇦🇷",
+                answers: ["Uruguay", "Argentina", "Honduras", "El Salvador"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇪🇬",
+                answers: ["Syrien", "Irak", "Jemen", "Egypten"],
+                correct: 3
+            },
+            {
+                question: "Vilket land är detta? 🇳🇴",
+                answers: ["Sverige", "Danmark", "Norge", "Island"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇫🇮",
+                answers: ["Finland", "Estland", "Norge", "Sverige"],
+                correct: 0
+            },
+            {
+                question: "Vilket land är detta? 🇩🇰",
+                answers: ["Norge", "Danmark", "Schweiz", "Österrike"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇮🇸",
+                answers: ["Finland", "Storbritannien", "Norge", "Island"],
+                correct: 3
+            },
+            {
+                question: "Vilket land är detta? 🇵🇹",
+                answers: ["Spanien", "Brasilien", "Portugal", "Angola"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇨🇭",
+                answers: ["Schweiz", "Danmark", "Turkiet", "Polen"],
+                correct: 0
+            },
+            {
+                question: "Vilket land är detta? 🇦🇹",
+                answers: ["Lettland", "Österrike", "Libanon", "Peru"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇧🇪",
+                answers: ["Tyskland", "Belgien", "Rumänien", "Tchad"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇳🇱",
+                answers: ["Frankrike", "Ryssland", "Nederländerna", "Luxemburg"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇵🇱",
+                answers: ["Indonesien", "Monaco", "Polen", "Singapore"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇺🇦",
+                answers: ["Sverige", "Ukraina", "Kazakstan", "Rwanda"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇷🇺",
+                answers: ["Slovakien", "Slovenien", "Serbien", "Ryssland"],
+                correct: 3
+            },
+            {
+                question: "Vilket land är detta? 🇮🇪",
+                answers: ["Elfenbenskusten", "Irland", "Italien", "Indien"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇨🇱",
+                answers: ["Texas", "Chile", "Tjeckien", "Kuba"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇨🇴",
+                answers: ["Ecuador", "Venezuela", "Colombia", "Armenien"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇵🇪",
+                answers: ["Kanada", "Österrike", "Peru", "Libanon"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇻🇳",
+                answers: ["Kina", "Vietnam", "Marocko", "Turkiet"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇹🇭",
+                answers: ["Costa Rica", "Thailand", "Nordkorea", "Laos"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇮🇩",
+                answers: ["Polen", "Monaco", "Indonesien", "Singapore"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇳🇿",
+                answers: ["Australien", "Storbritannien", "Nya Zeeland", "Fiji"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇸🇦",
+                answers: ["Saudiarabien", "Iran", "Irak", "Pakistan"],
+                correct: 0
+            },
+            {
+                question: "Vilket land är detta? 🇮🇷",
+                answers: ["Italien", "Mexiko", "Iran", "Ungern"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇮🇶",
+                answers: ["Egypten", "Syrien", "Jemen", "Irak"],
+                correct: 3
+            },
+            {
+                question: "Vilket land är detta? 🇮🇱",
+                answers: ["Grekland", "Israel", "Finland", "Honduras"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇦🇪",
+                answers: ["Palestina", "Jordanien", "Förenade Arabemiraten", "Kuwait"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇲🇦",
+                answers: ["Vietnam", "Kina", "Turkiet", "Marocko"],
+                correct: 3
+            },
+            {
+                question: "Vilket land är detta? 🇳🇬",
+                answers: ["Nigeria", "Grönland", "Algeriet", "Zimbabwe"],
+                correct: 0
+            },
+            {
+                question: "Vilket land är detta? 🇰🇪",
+                answers: ["Etiopien", "Sydsudan", "Kenya", "Moçambique"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇯🇲",
+                answers: ["Sydafrika", "Jamaica", "Tanzania", "Bahamas"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇨🇺",
+                answers: ["Puerto Rico", "Kuba", "Chile", "Filippinerna"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇭🇷",
+                answers: ["Serbien", "Slovenien", "Slovakien", "Kroatien"],
+                correct: 3
+            },
+            {
+                question: "Vilket land är detta? 🇧🇦",
+                answers: ["Bosnien och Hercegovina", "Kosovo", "Albanien", "Cypern"],
+                correct: 0
+            },
+            {
+                question: "Vilket land är detta? 🇵🇭",
+                answers: ["Vietnam", "Filippinerna", "Indonesien", "Malaysia"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇲🇾",
+                answers: ["USA", "Malaysia", "Liberia", "Puerto Rico"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇸🇬",
+                answers: ["Singapore", "Monaco", "Polen", "Indonesien"],
+                correct: 0
+            },
+            {
+                question: "Vilket land är detta? 🇵🇰",
+                answers: ["Indien", "Pakistan", "Afghanistan", "Iran"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇧🇩",
+                answers: ["Japan", "Palau", "Bangladesh", "Laos"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇱🇰",
+                answers: ["Sri Lanka", "Indien", "Maldiverna", "Nepal"],
+                correct: 0
+            },
+            {
+                question: "Vilket land är detta? 🇳🇵",
+                answers: ["Kina", "Bhutan", "Nepal", "Tibet"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇶🇦",
+                answers: ["Bahrain", "Qatar", "Lettland", "Danmark"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇯🇴",
+                answers: ["Palestina", "Jordanien", "Kuwait", "Förenade Arabemiraten"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇱🇧",
+                answers: ["Kanada", "Österrike", "Libanon", "Peru"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇹🇳",
+                answers: ["Turkiet", "Tunisien", "Algeriet", "Marocko"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇩🇿",
+                answers: ["Pakistan", "Algeriet", "Nigeria", "Libyen"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇬🇭",
+                answers: ["Bolivia", "Ghana", "Senegal", "Kamerun"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇸🇳",
+                answers: ["Mali", "Senegal", "Ghana", "Guinea"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇪🇹",
+                answers: ["Etiopien", "Bolivia", "Kongo", "Ghana"],
+                correct: 0
+            },
+            {
+                question: "Vilket land är detta? 🇹🇿",
+                answers: ["Kenya", "Tanzania", "Moçambique", "Namibia"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇺🇾",
+                answers: ["Grekland", "Uruguay", "Argentina", "Honduras"],
+                correct: 1
+            },
+            {
+                question: "Vilket land är detta? 🇻🇪",
+                answers: ["Colombia", "Ecuador", "Venezuela", "Armenien"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇪🇨",
+                answers: ["Colombia", "Venezuela", "Ecuador", "Rumänien"],
+                correct: 2
+            },
+            {
+                question: "Vilket land är detta? 🇧🇴",
+                answers: ["Ghana", "Etiopien", "Bolivia", "Senegal"],
+                correct: 2
+            }
+            
+        ];
+
+        // ---------------------------------------------------------
+        // 2. VARIABLER FÖR ATT HÅLLA KOLL PÅ SPELET
+        // ---------------------------------------------------------
+        let currentQuestionIndex = 0; // Vilken fråga är vi på?
+        let score = 0;                // Hur många poäng har vi?
+        let isLocked = false;         // Förhindrar att man klickar flera gånger
+        let timer;                    // Håller koll på klockan (intervallen)
+        let timeLeft = 10;            // Hur många sekunder är kvar?
+
+        // Hämta element från HTML så vi kan ändra dem
+        const questionText = document.getElementById('question-text');
+        const answerButtonsElement = document.getElementById('answer-buttons');
+        const scoreDisplay = document.getElementById('score-display');
+        const questionCounter = document.getElementById('question-counter');
+        const timerDisplay = document.getElementById('timer-display'); // Hämta timer-texten
+        const restartBtn = document.getElementById('restart-btn');
+
+        // ---------------------------------------------------------
+        // 3. FUNKTIONER (VAD SPELET GÖR)
+        // ---------------------------------------------------------
+
+        // Starta spelet
+        function startGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            restartBtn.classList.add('hidden'); // Göm "Spela igen"-knappen
+            showQuestion(); // Visa första frågan
+        }
+
+        // Visa nuvarande fråga och skapa knappar
+        function showQuestion() {
+            isLocked = false; // Lås upp så man kan klicka
+            startTimer();     // Starta klockan för den nya frågan
+            
+            // Hämta datan för nuvarande fråga
+            let q = questions[currentQuestionIndex];
+            
+            // Uppdatera texten på skärmen
+            questionText.innerText = q.question;
+            questionCounter.innerText = `Fråga ${currentQuestionIndex + 1} av ${questions.length}`;
+            scoreDisplay.innerText = `Poäng: ${score}`;
+
+            // Rensa gamla knappar
+            answerButtonsElement.innerHTML = '';
+
+            // Skapa en knapp för varje svarsalternativ
+            q.answers.forEach((answer, index) => {
+                const button = document.createElement('button');
+                button.innerText = answer;
+                // Lägg till snygg design på knappen (Tailwind-klasser)
+                button.className = 'bg-gray-700 hover:bg-gray-600 text-white font-semibold py-4 px-6 rounded-xl transition border border-gray-600 text-lg';
+                
+                // Vad händer när man klickar? Kör funktionen selectAnswer
+                button.onclick = () => selectAnswer(index, button);
+                
+                // Lägg in knappen i rutan
+                answerButtonsElement.appendChild(button);
+            });
+        }
+
+        // Funktion för att starta timern
+        function startTimer() {
+            clearInterval(timer); // Rensa gammal timer om den finns
+            timeLeft = 10;        // Sätt tiden till 10 sekunder
+            timerDisplay.innerText = `⏳ ${timeLeft}s`; // Visa tiden
+
+            // Starta en loop som körs varje sekund (1000 millisekunder)
+            timer = setInterval(() => {
+                timeLeft--; // Minska tiden med 1
+                timerDisplay.innerText = `⏳ ${timeLeft}s`; // Uppdatera texten
+
+                // Om tiden tar slut (blir 0)
+                if (timeLeft <= 0) {
+                    clearInterval(timer); // Stoppa klockan
+                    handleTimeOut();      // Hantera att tiden är ute
+                }
+            }, 1000);
+        }
+
+        // Vad händer om tiden tar slut?
+        function handleTimeOut() {
+            isLocked = true; // Lås knapparna
+            // Visa rätt svar (markera det grönt)
+            const correctIndex = questions[currentQuestionIndex].correct;
+            answerButtonsElement.children[correctIndex].classList.add('bg-green-600', 'opacity-50');
+            
+            // Gå vidare efter 1.5 sekunder
+            setTimeout(nextQuestion, 1500);
+        }
+
+        // När spelaren klickar på ett svar
+        function selectAnswer(selectedIndex, button) {
+            if (isLocked) return; // Om låst, gör inget (så man inte kan klicka 2 gånger)
+            isLocked = true;      // Lås spelet tillfälligt
+            clearInterval(timer); // Stoppa klockan eftersom man svarat!
+
+            const correctIndex = questions[currentQuestionIndex].correct;
+
+            // Kolla om det var rätt
+            if (selectedIndex === correctIndex) {
+                score++; // Öka poängen
+                // Ändra färg till GRÖN
+                button.classList.remove('bg-gray-700', 'hover:bg-gray-600');
+                button.classList.add('bg-green-600', 'border-green-400');
+            } else {
+                // Ändra färg till RÖD
+                button.classList.remove('bg-gray-700', 'hover:bg-gray-600');
+                button.classList.add('bg-red-600', 'border-red-400');
+
+                // Visa vilket som var rätt (genom att färga den rätta knappen grön också)
+                const allButtons = answerButtonsElement.children;
+                allButtons[correctIndex].classList.remove('bg-gray-700');
+                allButtons[correctIndex].classList.add('bg-green-600', 'opacity-50');
+            }
+
+            // Vänta 1,5 sekund, sen gå till nästa fråga
+            setTimeout(nextQuestion, 1500);
+        }
+
+        // Gå till nästa fråga
+        function nextQuestion() {
+            currentQuestionIndex++; // Gå framåt ett steg
+            
+            // Finns det fler frågor?
+            if (currentQuestionIndex < questions.length) {
+                showQuestion(); // Visa nästa
+            } else {
+                showScore(); // Visa resultatet
+            }
+        }
+
+        // Visa slutresultatet
+        function showScore() {
+            questionText.innerText = `Du fick ${score} av ${questions.length} poäng!`;
+            answerButtonsElement.innerHTML = ''; // Ta bort knapparna
+            timerDisplay.innerText = '';         // Dölj timern
+            questionCounter.innerText = "Spelet slut";
+
+            // SPARA POÄNG
+            const oldScore = localStorage.getItem('quiz4Score') || 0;
+            if (score > oldScore) {
+                localStorage.setItem('quiz4Score', score);
+            }
+
+            // LÄGG TILL I TOTAL POÄNG (Du får poäng varje gång du spelar!)
+            let currentTotal = parseInt(localStorage.getItem('totalUserScore') || 0);
+            localStorage.setItem('totalUserScore', currentTotal + score);
+
+            // Om man fick ALLA rätt, lås upp nästa nivå (om det finns en nivå 5)
+            if (score === questions.length) {
+                localStorage.setItem('level4Complete', 'true');
+                questionText.innerText += " 🏆 LEGENDARISK! Du klarade Super Svår!";
+            }
+            checkRankUp(); // Kolla om vi fått en ny rank
+            
+            // Visa "Spela igen"-knappen
+            restartBtn.classList.remove('hidden');
+        }
+
+        // Koppla "Spela igen"-knappen till start-funktionen
+        restartBtn.addEventListener('click', startGame);
+
+        // Kör igång allt när sidan laddas!
+        startGame();
+
+        // Funktion för att kolla om man gått upp i rank
+        function checkRankUp() {
+            const level1Done = localStorage.getItem('level1Complete') === 'true';
+            const level2Done = localStorage.getItem('level2Complete') === 'true';
+            const level3Done = localStorage.getItem('level3Complete') === 'true';
+            const level4Done = localStorage.getItem('level4Complete') === 'true';
+            const level5Done = localStorage.getItem('level5Complete') === 'true';
+            const level2Count = parseInt(localStorage.getItem('level2CompletionCount') || 0);
+            
+            const totalScore = parseInt(localStorage.getItem('totalUserScore') || 0);
+
+            let rank = "Nybörgare";
+            if (level1Done) rank = "Nybörgare 1";
+            if (totalScore >= 50 && level2Done) rank = "Pro";
+            if (totalScore >= 100 && level2Count >= 2) rank = "Pro 1";
+            if (totalScore >= 140 && level3Done && level2Count >= 2) rank = "Expert";
+            if (totalScore >= 110 && level4Done) rank = "Expert 1";
+            if (level1Done && level2Done && level3Done && level4Done && level5Done) rank = "Mästare";
+
+            const oldRank = localStorage.getItem('currentRank') || "Nybörgare";
+
+            if (rank !== oldRank) {
+                // SPELA LJUDEFFEKT
+                const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3');
+                audio.play().catch(e => console.log("Kunde inte spela ljud automatiskt"));
+                questionText.innerText += `\n\n🎉 GRATTIS! Du har låst upp en ny rank: ${rank}!`;
+                localStorage.setItem('currentRank', rank);
+            }
+        }
+
+    </script>
+</body>
+</html>

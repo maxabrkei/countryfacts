@@ -1,0 +1,272 @@
+<script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+
+    <!-- ENKEL MENY -->
+    <nav class="bg-gray-950 shadow-lg p-4">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold text-amber-400">🏳️ Gissa Flaggan</h1>
+            <a href="index.html" class="text-white font-semibold">Hem</a>
+
+        </div>
+    </nav>
+
+    <!-- HERO - välkomsttext -->
+    <header class="text-center py-20 px-4">
+        <h1 class="text-5xl font-bold mb-4">Välkommen!</h1>
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto">Hur många av världens flaggor kan du känna igen?
+            Testa dina kunskaper och samla så många poäng du kan!
+        </p>
+        
+        <!-- VISAR TOTAL POÄNG OCH RANK -->
+        <div class="flex flex-wrap justify-center gap-4 mt-6">
+            <div class="bg-gray-800 px-6 py-3 rounded-xl border border-gray-700">
+                <p class="text-gray-400 text-sm uppercase tracking-wider">Din totala poäng</p>
+                <p id="total-score-display" class="text-4xl font-bold text-amber-400">0</p>
+            </div>
+            
+            <div class="bg-gray-800 px-6 py-3 rounded-xl border border-gray-700">
+                <p class="text-gray-400 text-sm uppercase tracking-wider">Din Rank</p>
+                <p id="rank-display" class="text-3xl font-bold text-purple-400">Nybörgare</p>
+            </div>
+        </div>
+
+        <div class="mt-4 text-gray-400 text-sm">
+            <p>För nästa rank krävs:</p>
+            <p id="next-rank-req" class="text-white font-semibold">Klara Lätt (Nivå 1)</p>
+        </div>
+
+        <div class="mt-8 flex flex-col md:flex-row justify-center gap-4">
+            
+            <!-- NIVÅ 1 - Alltid öppen -->
+            <a href="quiz.html" class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-xl transition transform hover:scale-105 shadow-lg flex flex-col items-center">
+                <span class="text-2xl">🟢 Lätt</span>
+                <span class="text-sm opacity-80">10 Frågor</span>
+            </a>
+
+            <!-- NIVÅ 2 - Låst tills man klarat nivå 1 -->
+            <a id="btn-level-2" href="quiz2.html" class="bg-gray-700 text-gray-400 cursor-not-allowed font-bold py-4 px-8 rounded-xl transition shadow-lg flex flex-col items-center pointer-events-none">
+                <span class="text-2xl">🔒 Medium</span>
+                <span class="text-sm opacity-80">Klara Lätt (10/10) först</span>
+            </a>
+
+            <!-- NIVÅ 3 - Låst tills man klarat nivå 2 -->
+            <a id="btn-level-3" href="quiz3.html" class="bg-gray-700 text-gray-400 cursor-not-allowed font-bold py-4 px-8 rounded-xl transition shadow-lg flex flex-col items-center pointer-events-none">
+                <span class="text-2xl">🔒 Svår</span>
+                <span class="text-sm opacity-80">Klara Medium (20/20) först</span>
+            </a>
+
+            <!-- NIVÅ 4 - Låst tills man klarat nivå 3 -->
+            <a id="btn-level-4" href="quiz4.html" class="bg-gray-700 text-gray-400 cursor-not-allowed font-bold py-4 px-8 rounded-xl transition shadow-lg flex flex-col items-center pointer-events-none">
+                <span class="text-2xl">🔒 Super Svår</span>
+                <span class="text-sm opacity-80">Klara Svår (50/50) först</span>
+            </a>
+
+            <!-- NIVÅ 5 - Låst tills man klarat nivå 4 -->
+            <a id="btn-level-5" href="quiz5.html" class="bg-gray-700 text-gray-400 cursor-not-allowed font-bold py-4 px-8 rounded-xl transition shadow-lg flex flex-col items-center pointer-events-none">
+                <span class="text-2xl">🔒 Expert</span>
+                <span class="text-sm opacity-80">Klara Super Svår (70/70) först</span>
+            </a>
+
+        </div>
+
+        <!-- KNAPP FÖR ATT ÅTERSTÄLLA FRAMSTEG -->
+        <div class="mt-12">
+            <button id="reset-btn" class="text-gray-500 hover:text-red-400 text-sm underline transition">
+                Återställ alla framsteg och poäng
+            </button>
+        </div>
+    </header>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-950 text-center py-6 text-gray-500 text-sm mt-auto">
+        <p>skapad av Max &copy; 2026</p>
+    </footer>
+
+    <!-- MODAL FÖR BEKRÄFTELSE AV ÅTERSTÄLLNING -->
+    <!-- Denna är gömd ('hidden') tills man klickar på återställningsknappen -->
+    <div id="confirm-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+        <div class="bg-gray-800 p-8 rounded-2xl shadow-2xl max-w-sm w-full text-center border border-gray-700">
+            <h3 class="text-xl font-bold text-white mb-4">Är du säker?</h3>
+            <p class="text-gray-300 mb-6">
+                Du kommer att radera alla dina poäng och låsa uppklarade nivåer. Detta går inte att ångra.
+            </p>
+            <div class="flex justify-center gap-4">
+                <!-- "Nej"-knappen döljer bara fönstret -->
+                <button id="confirm-no-btn" class="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-8 rounded-lg transition">
+                    Nej
+                </button>
+                <!-- "Ja"-knappen kör koden som raderar allt -->
+                <button id="confirm-yes-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-8 rounded-lg transition">
+                    Ja
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT FÖR ATT LÅSA UPP NIVÅER OCH RÄKNA POÄNG -->
+    <script>
+        // Hämta sparad data från webbläsaren
+        const level1Done = localStorage.getItem('level1Complete') === 'true';
+        const level2Done = localStorage.getItem('level2Complete') === 'true';
+        const level3Done = localStorage.getItem('level3Complete') === 'true';
+        const level4Done = localStorage.getItem('level4Complete') === 'true';
+        const level5Done = localStorage.getItem('level5Complete') === 'true';
+
+        // Hämta hur många gånger man klarat Medium (för rank Pro 1 & Expert)
+        const level2Count = parseInt(localStorage.getItem('level2CompletionCount') || 0);
+        
+        // Hämta poäng från varje nivå (om det inte finns någon poäng räknas det som 0)
+        const score1 = parseInt(localStorage.getItem('quiz1Score') || 0);
+        const score2 = parseInt(localStorage.getItem('quiz2Score') || 0);
+        const score3 = parseInt(localStorage.getItem('quiz3Score') || 0);
+        const score4 = parseInt(localStorage.getItem('quiz4Score') || 0);
+        const score5 = parseInt(localStorage.getItem('quiz5Score') || 0);
+
+        // Hämta total samlad poäng (Cumulative - alla gånger man spelat)
+        let totalScore = parseInt(localStorage.getItem('totalUserScore') || 0);
+
+        // MIGRATION: Om totalUserScore är 0 men vi har gamla highscores, sätt totalen till summan av dem
+        // Detta gör att man inte tappar sina poäng när man byter till det nya systemet
+        const sumMaxScores = score1 + score2 + score3 + score4 + score5;
+        if (totalScore === 0 && sumMaxScores > 0) {
+            totalScore = sumMaxScores;
+            localStorage.setItem('totalUserScore', totalScore);
+        }
+
+        document.getElementById('total-score-display').innerText = totalScore;
+
+        // Lås upp Nivå 2 om Nivå 1 är klar
+        if (level1Done) {
+            const btn2 = document.getElementById('btn-level-2');
+            btn2.href = "quiz2.html"; // Sätt länken
+            btn2.classList.remove('bg-gray-700', 'text-gray-400', 'cursor-not-allowed', 'pointer-events-none'); // Ta bort "låst" utseende
+            btn2.classList.add('bg-yellow-600', 'hover:bg-yellow-700', 'text-white', 'transform', 'hover:scale-105'); // Lägg till "aktiv" utseende
+            btn2.innerHTML = '<span class="text-2xl">🟡 Medium</span><span class="text-sm opacity-80">20 Frågor</span>';
+        }
+
+        // Lås upp Nivå 3 om Nivå 2 är klar
+        if (level2Done) {
+            const btn3 = document.getElementById('btn-level-3');
+            btn3.href = "quiz3.html";
+            btn3.classList.remove('bg-gray-700', 'text-gray-400', 'cursor-not-allowed', 'pointer-events-none');
+            btn3.classList.add('bg-red-600', 'hover:bg-red-700', 'text-white', 'transform', 'hover:scale-105');
+            btn3.innerHTML = '<span class="text-2xl">🔴 Svår</span><span class="text-sm opacity-80">50 Frågor</span>';
+        }
+
+        // Lås upp Nivå 4 om Nivå 3 är klar
+        if (level3Done) {
+            const btn4 = document.getElementById('btn-level-4');
+            btn4.href = "quiz4.html";
+            btn4.classList.remove('bg-gray-700', 'text-gray-400', 'cursor-not-allowed', 'pointer-events-none');
+            btn4.classList.add('bg-purple-600', 'hover:bg-purple-700', 'text-white', 'transform', 'hover:scale-105');
+            btn4.innerHTML = '<span class="text-2xl">🟣 Super Svår</span><span class="text-sm opacity-80">70 Frågor</span>';
+        }
+
+        // Lås upp Nivå 5 (Expert) om Nivå 4 är klar
+        if (level4Done) {
+            const btn5 = document.getElementById('btn-level-5');
+            btn5.href = "quiz5.html";
+            btn5.classList.remove('bg-gray-700', 'text-gray-400', 'cursor-not-allowed', 'pointer-events-none');
+            btn5.classList.add('bg-pink-600', 'hover:bg-pink-700', 'text-white', 'transform', 'hover:scale-105');
+            btn5.innerHTML = '<span class="text-2xl">👑 Expert</span><span class="text-sm opacity-80">100 Frågor</span>';
+        }
+
+        // =================================================================
+        // RANK SYSTEM
+        // =================================================================
+        let rank = "Nybörgare";
+        let nextReq = "Klara Lätt (Nivå 1)";
+
+        // Nybörgare 1: Klara Lätt
+        if (level1Done) {
+            rank = "Nybörgare 1";
+            nextReq = "50 Poäng + Klara Medium";
+        }
+
+        // Pro: 50p + Medium
+        if (totalScore >= 50 && level2Done) {
+            rank = "Pro";
+            nextReq = "100 Poäng + Klara Medium 2 gånger";
+        }
+
+        // Pro 1: 100p + Medium x2
+        if (totalScore >= 100 && level2Count >= 2) {
+            rank = "Pro 1";
+            nextReq = "140 Poäng + Klara Svår + Klara Medium 2 gånger";
+        }
+
+        // Expert: 140p + Svår + Medium x2
+        if (totalScore >= 140 && level3Done && level2Count >= 2) {
+            rank = "Expert";
+            nextReq = "110 Poäng + Klara Super Svår";
+        }
+
+        // Expert 1: 110p + Super Svår
+        if (totalScore >= 110 && level4Done) {
+            rank = "Expert 1";
+            nextReq = "Klara Expert (Nivå 5) + Alla tidigare nivåer";
+        }
+
+        // Mästare: Alla nivåer
+        if (level1Done && level2Done && level3Done && level4Done && level5Done) {
+            rank = "Mästare";
+            nextReq = "Du har nått toppen! 🏆";
+        }
+
+        document.getElementById('rank-display').innerText = rank;
+        document.getElementById('next-rank-req').innerText = nextReq;
+        localStorage.setItem('currentRank', rank); // Spara nuvarande rank så vi kan jämföra i spelen
+
+        // =================================================================
+        // SCRIPT FÖR ÅTERSTÄLLNINGSKNAPPEN
+        // =================================================================
+
+        // Hämta alla knappar och modal-fönstret vi behöver
+        const resetButton = document.getElementById('reset-btn');
+        const confirmModal = document.getElementById('confirm-modal');
+        const confirmYesBtn = document.getElementById('confirm-yes-btn');
+        const confirmNoBtn = document.getElementById('confirm-no-btn');
+
+        // Vad händer när man klickar på "Återställ alla framsteg..."?
+        resetButton.addEventListener('click', () => {
+            // Visa modal-fönstret genom att ta bort 'hidden'-klassen.
+            confirmModal.classList.remove('hidden');
+        });
+
+        // Vad händer när man klickar på "Nej" i fönstret?
+        confirmNoBtn.addEventListener('click', () => {
+            // Dölj modal-fönstret genom att lägga tillbaka 'hidden'-klassen.
+            confirmModal.classList.add('hidden');
+        });
+
+        // Vad händer när man klickar på "Ja"?
+        confirmYesBtn.addEventListener('click', () => {
+            // Detta är den farliga handlingen.
+            // 1. Ta bort all sparad data från webbläsarens minne (localStorage).
+            localStorage.removeItem('quiz1Score');
+            localStorage.removeItem('quiz2Score');
+            localStorage.removeItem('quiz3Score');
+            localStorage.removeItem('quiz4Score');
+            localStorage.removeItem('quiz5Score');
+            localStorage.removeItem('level1Complete');
+            localStorage.removeItem('level2Complete');
+            localStorage.removeItem('level3Complete');
+            localStorage.removeItem('level4Complete');
+            localStorage.removeItem('level5Complete');
+            localStorage.removeItem('level2CompletionCount'); // Rensa räknaren
+            localStorage.removeItem('currentRank'); // Rensa sparad rank
+            localStorage.removeItem('totalUserScore'); // Rensa totalpoängen
+
+            // 2. Ladda om sidan för att visa ändringarna.
+            window.location.reload();
+        });
+    </script>
+
+</body>
+</html>
