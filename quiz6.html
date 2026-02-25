@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Quiz - Länder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Poppins', sans-serif; }</style>
+</head>
+<body class="bg-blue-950 text-white min-h-screen flex flex-col items-center justify-center p-4">
+
+    <!-- LOBBY - VYN DÄR MAN SKRIVER IN KOD -->
+    <div id="lobby-screen" class="w-full max-w-md bg-white text-gray-900 rounded-2xl shadow-2xl p-8 text-center">
+        <h1 class="text-3xl font-bold mb-2 text-blue-900">Gå med i Quiz</h1>
+        <p class="text-gray-500 mb-6">Ange spelkoden för att gå med i rummet.</p>
+
+        <!-- Visar koden för spelarna (Simulerat) -->
+        <div class="mb-6 bg-blue-100 p-4 rounded-lg border border-blue-200">
+            <p class="text-sm text-blue-600 font-semibold uppercase">Spelkod:</p>
+            <p id="game-code-display" class="text-4xl font-bold tracking-widest text-blue-900">Laddar...</p>
+        </div>
+        
+        <input type="text" id="player-name" placeholder="Ditt Namn" class="w-full bg-gray-100 border border-gray-300 rounded-lg px-4 py-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg">
+        
+        <input type="number" id="game-code-input" placeholder="Spelkod (4 siffror)" class="w-full bg-gray-100 border border-gray-300 rounded-lg px-4 py-3 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg text-center tracking-widest">
+
+        <button onclick="joinGame()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition transform hover:scale-105 shadow-lg text-xl">
+            Gå med i spelet
+        </button>
+        
+        <p id="error-msg" class="text-red-500 mt-4 hidden font-semibold">Fel kod! Försök igen.</p>
+        
+        <a href="hemspel2.html" class="block mt-6 text-gray-400 text-sm hover:underline">Avbryt och gå tillbaka</a>
+    </div>
+
+    <!-- VÄNTRUM - NÄR MAN VÄNTAR PÅ ANDRA SPELARE -->
+    <div id="waiting-screen" class="hidden w-full max-w-md text-center">
+        <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-white mx-auto mb-6"></div>
+        <h2 class="text-2xl font-bold mb-2">Väntar på spelare...</h2>
+        <p class="text-blue-200 mb-8">Du är inloggad som: <span id="display-name" class="font-bold text-white"></span></p>
+        
+        <!-- QR KOD -->
+        <div class="mb-6 bg-white p-4 rounded-xl inline-block shadow-lg">
+            <img id="lobby-qr" src="" alt="Laddar QR..." class="w-40 h-40">
+            <p class="text-gray-500 text-xs mt-2 font-semibold">Skanna för att gå med</p>
+        </div>
+
+        <div class="bg-blue-900/50 p-6 rounded-xl backdrop-blur-sm">
+            <p class="text-sm uppercase tracking-wider text-blue-300 mb-4">Spelare i lobbyn:</p>
+            <ul class="space-y-2 text-left" id="player-list">
+                <!-- Här läggs spelare till med JS -->
+            </ul>
+        </div>
+        
+        <button onclick="startGame()" class="mt-8 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full transition shadow-lg">
+            Starta Quizet Nu
+        </button>
+    </div>
+
+    <!-- SPELVY - SJÄLVA QUIZET -->
+    <div id="game-screen" class="hidden w-full max-w-2xl">
+        <!-- Timer Bar -->
+        <div class="w-full bg-gray-700 h-4 rounded-full mb-6 overflow-hidden">
+            <div id="time-bar" class="bg-amber-400 h-full w-full transition-all duration-100 ease-linear"></div>
+        </div>
+
+        <div class="bg-white text-gray-900 rounded-2xl shadow-2xl p-6 md:p-10 text-center">
+            <div class="flex justify-between items-center mb-6 text-sm font-bold text-gray-400">
+                <span id="q-counter">Fråga 1</span>
+                <span id="current-score" class="text-blue-600 text-xl">0 p</span>
+            </div>
+
+            <h2 id="question-text" class="text-3xl md:text-4xl font-bold mb-8 text-gray-800">Fråga...</h2>
+
+            <div id="answers" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Knappar genereras här -->
+            </div>
+        </div>
+    </div>
+
+    <!-- RESULTATVY -->
+    <div id="result-screen" class="hidden text-center">
+        <h1 class="text-5xl font-bold mb-4">Resultat 🏆</h1>
+        <div class="bg-white text-gray-900 p-8 rounded-2xl shadow-2xl max-w-md mx-auto">
+            <p class="text-gray-500 uppercase tracking-wider text-sm">Din totala poäng</p>
+            <p id="final-score" class="text-6xl font-bold text-blue-600 my-4">0</p>
+            <p id="rank-msg" class="text-lg font-semibold text-gray-700">Bra jobbat!</p>
+            
+            <a href="hemspel2.html" class="block mt-8 bg-gray-800 hover:bg-gray-900 text-white font-bold py-4 rounded-xl transition">
+                Tillbaka till menyn
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // --- KONFIGURATION ---
+        const GAME_CODES = ["1492", "2653", "7809", "5614", "6083", "9978", "3442", "5895", "1396", "3521", "2371", "0768", "3649"];
+        const MAX_TIME = 10; // Sekunder per fråga
+        const MAX_POINTS_PER_Q = 1000; // Max poäng om man svarar direkt
+        // --- VARIABLER ---
+        let correctCode = ""; // Kommer att sättas när sidan laddas
+
+        // --- FRÅGOR (Länder) ---
+        const questions = [
+            { q: "Vilket land har denna flagga? 🇯🇵", a: ["Kina", "Sydkorea", "Japan", "Vietnam"], c: 2 },
+            { q: "Vilket land är störst till ytan?", a: ["USA", "Kina", "Ryssland", "Kanada"], c: 2 },
+            { q: "Vad heter huvudstaden i Frankrike?", a: ["Lyon", "Paris", "Marseille", "Nice"], c: 1 },
+            { q: "Vilket land ligger pyramiderna i?", a: ["Mexiko", "Sudan", "Peru", "Egypten"], c: 3 },
+            { q: "Vilken färg finns INTE i Sveriges flagga?", a: ["Gul", "Blå", "Röd", "Ingen av dem"], c: 2 }
+        ];
+
+        let currentQ = 0;
+        let timerInterval;
+        let score = 0;
+        let timeLeft;
+        let playerName = "";
+
+        // --- DOM ELEMENT ---
+        const lobbyScreen = document.getElementById('lobby-screen');
+        const waitingScreen = document.getElementById('waiting-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const timeBar = document.getElementById('time-bar');
+
+        // Körs direkt när sidan laddas
+        function initializeLobby() {
+            // Kolla om vi kom hit via en QR-kod (länk med kod)
+            const urlParams = new URLSearchParams(window.location.search);
+            const codeFromUrl = urlParams.get('code');
+
+            if (codeFromUrl) {
+                correctCode = codeFromUrl; // Använd koden från länken
+                document.getElementById('game-code-input').value = correctCode; // Fyll i rutan automatiskt
+            } else {
+                correctCode = GAME_CODES[Math.floor(Math.random() * GAME_CODES.length)]; // Slumpa ny kod
+            }
+
+            // Visa koden på skärmen
+            document.getElementById('game-code-display').innerText = correctCode;
+        }
+
+        // 1. GÅ MED I SPELET (LOBBY)
+        function joinGame() {
+            const codeInput = document.getElementById('game-code-input').value;
+            const nameInput = document.getElementById('player-name').value;
+            const errorMsg = document.getElementById('error-msg');
+
+            if (codeInput !== correctCode) {
+                errorMsg.innerText = `Fel kod! Försök igen.`;
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+            if (nameInput.trim() === "") {
+                errorMsg.innerText = "Du måste skriva ett namn!";
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+
+            // Om allt är rätt:
+            playerName = nameInput;
+            document.getElementById('display-name').innerText = playerName;
+            
+            lobbyScreen.classList.add('hidden');
+            waitingScreen.classList.remove('hidden');
+
+            // Lägg till spelaren själv i listan
+            const list = document.getElementById('player-list');
+            list.innerHTML = `<li class="flex items-center gap-2"><span class="w-2 h-2 bg-green-400 rounded-full"></span> ${playerName} (Du)</li>`;
+
+            // Generera QR-kod som innehåller länken OCH koden
+            // Detta gör att om någon skannar den, fylls koden i automatiskt (se initializeLobby ovan)
+            const baseUrl = window.location.href.split('?')[0];
+            const joinUrl = `${baseUrl}?code=${correctCode}`;
+            const qrImg = document.getElementById('lobby-qr');
+            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(joinUrl)}`;
+        }
+
+        // 2. STARTA SPELET
+        function startGame() {
+            waitingScreen.classList.add('hidden');
+            gameScreen.classList.remove('hidden');
+            loadQuestion();
+        }
+
+        // 3. LADDA FRÅGA
+        function loadQuestion() {
+            if (currentQ >= questions.length) {
+                endGame();
+                return;
+            }
+
+            const qData = questions[currentQ];
+            document.getElementById('question-text').innerText = qData.q;
+            document.getElementById('q-counter').innerText = `Fråga ${currentQ + 1} av ${questions.length}`;
+            
+            const answersDiv = document.getElementById('answers');
+            answersDiv.innerHTML = "";
+
+            qData.a.forEach((ans, index) => {
+                const btn = document.createElement('button');
+                btn.innerText = ans;
+                btn.className = "bg-gray-100 hover:bg-blue-100 text-gray-800 font-bold py-6 px-4 rounded-xl transition border-2 border-gray-200 text-lg";
+                btn.onclick = () => handleAnswer(index, btn);
+                answersDiv.appendChild(btn);
+            });
+
+            // Starta timer
+            timeLeft = MAX_TIME;
+            timeBar.style.width = "100%";
+            timeBar.classList.remove('bg-red-500');
+            timeBar.classList.add('bg-amber-400');
+            
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeLeft -= 0.1;
+                const percentage = (timeLeft / MAX_TIME) * 100;
+                timeBar.style.width = percentage + "%";
+
+                if (percentage < 30) {
+                    timeBar.classList.remove('bg-amber-400');
+                    timeBar.classList.add('bg-red-500');
+                }
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    handleAnswer(-1, null); // Tiden ute
+                }
+            }, 100);
+        }
+
+        // 4. HANTERA SVAR
+        function handleAnswer(selectedIndex, btn) {
+            clearInterval(timerInterval);
+            const correctIndex = questions[currentQ].c;
+            const allBtns = document.getElementById('answers').children;
+
+            // Visa rätt svar
+            if (allBtns[correctIndex]) {
+                allBtns[correctIndex].classList.add('bg-green-500', 'text-white', 'border-green-600');
+            }
+
+            if (selectedIndex === correctIndex) {
+                // RÄTT SVAR: Beräkna poäng baserat på tid
+                // Formel: (Tid kvar / Max tid) * Max Poäng
+                const pointsEarned = Math.round((timeLeft / MAX_TIME) * MAX_POINTS_PER_Q);
+                score += pointsEarned;
+                if(btn) btn.innerText += ` (+${pointsEarned}p)`;
+            } else if (selectedIndex !== -1) {
+                // FEL SVAR
+                btn.classList.add('bg-red-500', 'text-white', 'border-red-600');
+            }
+
+            document.getElementById('current-score').innerText = score + " p";
+
+            // Vänta lite och gå till nästa
+            setTimeout(() => {
+                currentQ++;
+                loadQuestion();
+            }, 2000);
+        }
+
+        // 5. SLUTET
+        function endGame() {
+            gameScreen.classList.add('hidden');
+            resultScreen.classList.remove('hidden');
+            document.getElementById('final-score').innerText = score;
+
+            // Ge feedback baserat på poäng
+            const maxPossible = questions.length * MAX_POINTS_PER_Q;
+            const msg = document.getElementById('rank-msg');
+            
+            if (score > maxPossible * 0.8) msg.innerText = "🥇 Otroligt! Du krossade motståndet!";
+            else if (score > maxPossible * 0.5) msg.innerText = "🥈 Bra jobbat! Du kom på pallen.";
+            else msg.innerText = "🥉 Bra kämpat, men du kan snabbare!";
+        }
+
+        // Starta lobbyn när sidan laddas
+        initializeLobby();
+
+    </script>
+</body>
+</html>

@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <title>Fakta om Länder</title>
-    <style>body { font-family: 'Poppins', sans-serif; }</style>
+    <title>Gissa Flaggan - Fakta om Länder</title>
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        /* mobillayout för nivåknappar */
+        @media (max-width: 640px) {
+            .level-buttons { flex-direction: column; }
+        }
+    </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen">
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
 
-    <!-- NAVIGERING - bara "Hem" och "Andra länder" med dropdown -->
+    <!-- NAVIGERING - samma som resten av sajten -->
 <!-- NAVIGERING - bara "Hem" och "Andra länder" med dropdown -->
 <nav class="bg-gradient-to-b from-blue-950 to-gray-900 shadow-lg sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -83,103 +89,100 @@
 
     <!-- HERO - välkomsttext -->
     <header class="text-center py-20 px-4">
-        <h1 class="text-5xl font-bold mb-4">Välkommen!</h1>
-        <p class="text-xl text-gray-400 max-w-2xl mx-auto">
-            här kan du spela spel som handlar om länder och deras flaggor, huvudstäder, språk och mycket mer! Testa dina kunskaper och lär dig nya saker på ett roligt sätt. Klicka på "Spel" i menyn för att börja spela!
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Välkommen!</h1>
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto">Hur mycket kan du om världen? Testa dina kunskaper och samla så många poäng du kan! samtidigt som du tävlar mot andra spelare.
         </p>
+
+        <!-- POÄNGVISARE -->
+        <div class="mt-8 bg-gray-800 inline-block px-8 py-4 rounded-2xl border border-gray-700 shadow-lg">
+            <p class="text-gray-400 text-sm uppercase tracking-wider mb-1">Dina totala poäng</p>
+            <p id="total-score-display" class="text-5xl font-bold text-amber-400">0</p>
+        </div>
+
+        <!-- KNAPP TILL MULTIPLAYER QUIZ -->
+        <div class="mt-12">
+            <a href="quiz6.html" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl transition transform hover:scale-105 shadow-lg inline-block text-lg">
+                Starta Multiplayer Quiz 👥
+            </a>
+        </div>
+
+        <!-- KNAPP FÖR ATT ÅTERSTÄLLA FRAMSTEG -->
+        <div class="mt-12">
+            <button id="reset-btn" class="text-gray-500 hover:text-red-400 text-sm underline transition">
+                Återställ alla framsteg och poäng
+            </button>
+        </div>
+
     </header>
 
-    <!-- ALLA spel -->
-    <section class="max-w-6xl mx-auto px-4 pb-20">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- grid-cols-1 = 1 kolumn på mobil -->
-            <!-- md:grid-cols-2 = 2 kolumner på mellanstor skärm -->
-            <!-- lg:grid-cols-3 = 3 kolumner på stor skärm -->
-
-            <!-- spel 1 -->
-            <a href="hemspel.html" class="group relative block h-64 rounded-2xl overflow-hidden shadow-xl">
-                <img src="spelländer.webp" alt="Hemspelet" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-5">
-                    <h2 class="text-2xl font-bold text-white mb-1">Spel 1 🎮 </h2>
-                    <p class="text-gray-300 text-sm">här kan du spela ett spel om flaggor</p>
-                </div>
-            </a>
-
-            <!-- spel 2 -->
-            <a href="hemspel2.html" class="group relative block h-64 rounded-2xl overflow-hidden shadow-xl">
-                <img src="" alt="Sverige" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-5">
-                    <h2 class="text-2xl font-bold text-white mb-1">Spel 2 🎮</h2>
-                    <p class="text-gray-300 text-sm">spela ett spel om quiz om världen</p>
-                </div>
-            </a>
-
-            <!-- spel 3 -->
-            <a href="" class="group relative block h-64 rounded-2xl overflow-hidden shadow-xl">
-                <img src="" alt="Japan" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-5">
-                    <h2 class="text-2xl font-bold text-white mb-1">Spel 3 🎮</h2>
-                    <p class="text-gray-300 text-sm">kommer snart</p>
-                </div>
-            </a>
-
+    <!-- MODAL FÖR BEKRÄFTELSE AV ÅTERSTÄLLNING -->
+    <div id="confirm-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+        <div class="bg-gray-800 p-8 rounded-2xl shadow-2xl max-w-sm w-full text-center border border-gray-700">
+            <h3 class="text-xl font-bold text-white mb-4">Är du säker?</h3>
+            <p class="text-gray-300 mb-6">
+                Du kommer att radera alla dina poäng och låsa uppklarade nivåer. Detta går inte att ångra.
+            </p>
+            <div class="flex justify-center gap-4">
+                <button id="confirm-no-btn" class="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-8 rounded-lg transition">
+                    Nej
+                </button>
+                <button id="confirm-yes-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-8 rounded-lg transition">
+                    Ja
+                </button>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <footer class="bg-gray-950 text-center py-6 text-gray-500 text-sm">
-        <p>Skapad av Max &copy; 2026</p>
+    <!-- FOOTER -->
+    <footer class="bg-gray-950 text-center py-6 text-gray-500 text-sm mt-auto">
+        <p>skapad av Max &copy; 2026</p>
     </footer>
 
-    <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({pageLanguage: 'sv', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
-    }
-    
-    function doGTranslate(lang_pair) {
-        var teCombo = document.querySelector('.goog-te-combo');
-        if (teCombo) {
-            teCombo.value = lang_pair;
-            teCombo.dispatchEvent(new Event('change'));
-        }
-    }
-    </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-    <!-- Tillbaka till toppen-knapp -->
-    <button id="to-top-button" title="Gå till toppen"
-            class="hidden fixed bottom-8 right-8 bg-amber-500 hover:bg-amber-600 text-white p-3 rounded-full shadow-lg transition-opacity duration-300 z-50">
-        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
-        </svg>
-    </button>
-
     <script>
-        const toTopButton = document.getElementById('to-top-button');
-        if (toTopButton) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    toTopButton.classList.remove('hidden');
-                } else {
-                    toTopButton.classList.add('hidden');
-                }
-            });
-            toTopButton.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-    </script>
+        // Hämta totalpoängen från webbläsarens minne
+        const totalScore = parseInt(localStorage.getItem('totalUserScore') || 0);
+        
+        // Visa poängen på skärmen
+        document.getElementById('total-score-display').innerText = totalScore;
 
-    <script>
+        // Mobilmeny-script
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
 
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
+        // SCRIPT FÖR ÅTERSTÄLLNINGSKNAPPEN
+        const resetButton = document.getElementById('reset-btn');
+        const confirmModal = document.getElementById('confirm-modal');
+        const confirmYesBtn = document.getElementById('confirm-yes-btn');
+        const confirmNoBtn = document.getElementById('confirm-no-btn');
+
+        resetButton.addEventListener('click', () => {
+            confirmModal.classList.remove('hidden');
+        });
+
+        confirmNoBtn.addEventListener('click', () => {
+            confirmModal.classList.add('hidden');
+        });
+
+        confirmYesBtn.addEventListener('click', () => {
+            // Ta bort all sparad data
+            localStorage.removeItem('quiz1Score');
+            localStorage.removeItem('quiz2Score');
+            localStorage.removeItem('quiz3Score');
+            localStorage.removeItem('quiz4Score');
+            localStorage.removeItem('quiz5Score');
+            localStorage.removeItem('level1Complete');
+            localStorage.removeItem('level2Complete');
+            localStorage.removeItem('level3Complete');
+            localStorage.removeItem('level4Complete');
+            localStorage.removeItem('level5Complete');
+            localStorage.removeItem('level2CompletionCount');
+            localStorage.removeItem('currentRank');
+            localStorage.removeItem('totalUserScore');
+
+            // Ladda om sidan
+            window.location.reload();
         });
     </script>
-    
 </body>
 </html>
