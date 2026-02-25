@@ -15,9 +15,9 @@
 
     <!-- NAVIGERING - full site menu -->
 <!-- NAVIGERING - bara "Hem" och "Andra länder" med dropdown -->
-<nav class="bg-gray-950 shadow-lg sticky top-0 z-50">
+<nav class="bg-gradient-to-b from-blue-950 to-gray-900 shadow-lg sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <a href="index.html" class="text-2xl font-bold text-white hover:text-amber-400 transition">🌍 Fakta om Länder</a>
+        <a href="index.html" class="transition transform hover:scale-105"><img src="faktaomlanderlogo.png" alt="Fakta om Länder" class="h-36"></a>
         
         <!-- HAMBURGER-KNAPP (Syns bara på mobil 'md:hidden') -->
         <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
@@ -122,7 +122,7 @@
         // "answers": En lista med 4 svarsalternativ.
         // "correct": Vilket nummer är rätt? (0 är första, 1 är andra, 2 är tredje, 3 är fjärde).
         
-        const questions = [
+        const allQuestions = [
             
             {
                 question: "Vilket land är detta? 🇫🇷",
@@ -227,6 +227,8 @@
             
         ];
 
+        let questions = [];
+
         // ---------------------------------------------------------
         // 2. VARIABLER FÖR ATT HÅLLA KOLL PÅ SPELET
         // ---------------------------------------------------------
@@ -251,6 +253,21 @@
 
         // Starta spelet
         function startGame() {
+            // Förbered frågor (blanda och välj antal)
+            questions = [...allQuestions];
+            // Blanda
+            for (let i = questions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [questions[i], questions[j]] = [questions[j], questions[i]];
+            }
+            
+            // Fyll på om det fattas frågor och välj exakt antal
+            const targetCount = 20; 
+            while (questions.length < targetCount) {
+                questions = questions.concat(allQuestions);
+            }
+            questions = questions.slice(0, targetCount);
+
             currentQuestionIndex = 0;
             score = 0;
             restartBtn.classList.add('hidden'); // Göm "Spela igen"-knappen

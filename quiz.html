@@ -15,9 +15,9 @@
 
     <!-- NAVIGERING - full site menu -->
 <!-- NAVIGERING - bara "Hem" och "Andra länder" med dropdown -->
-<nav class="bg-gray-950 shadow-lg sticky top-0 z-50">
+<nav class="bg-gradient-to-b from-blue-950 to-gray-900 shadow-lg sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <a href="index.html" class="text-2xl font-bold text-white hover:text-amber-400 transition">🌍 Fakta om Länder</a>
+        <a href="index.html" class="transition transform hover:scale-105"><img src="faktaomlanderlogo.png" alt="Fakta om Länder" class="h-36"></a>
         
         <!-- HAMBURGER-KNAPP (Syns bara på mobil 'md:hidden') -->
         <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
@@ -84,6 +84,9 @@
                 <span id="score-display">Poäng: 0</span>
             </div>
 
+            <!-- TIMER - Visar hur lång tid som är kvar -->
+            <div id="timer-display" class="text-2xl font-bold text-amber-500 mb-4">⏳ 10s</div>
+
             <!-- Här visas frågan -->
             <h2 id="question-text" class="text-5xl font-bold mb-8 text-white">Laddar fråga...</h2>
 
@@ -96,6 +99,10 @@
             <button id="restart-btn" class="hidden mt-8 bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full transition transform hover:scale-105">
                 Spela igen
             </button>
+            <!-- Knapp för att gå tillbaka till menyn -->
+            <a id="menu-btn" href="hemspel.html" class="hidden mt-4 block w-fit mx-auto bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-full transition transform hover:scale-105">
+                Tillbaka till menyn
+            </a>
 
         </div>
     </main>
@@ -110,7 +117,7 @@
         // "answers": En lista med 4 svarsalternativ.
         // "correct": Vilket nummer är rätt? (0 är första, 1 är andra, 2 är tredje, 3 är fjärde).
         
-        const questions = [
+        const allQuestions = [
             {
                 question: "Vilket land är detta? 🇸🇪",
                 answers: ["Norge", "Sverige", "Danmark", "Finland"],
@@ -159,10 +166,12 @@
             },
             {
                 question: "Vilket land är detta? 🇦🇷",
-                answers: ["Italien", "Cypern", "Argentina ", "Kroatien"],
+                answers: ["Italien", "Cypern", "Argentina", "Kroatien"],
                 correct: 2 // Argentina är index 2
             }
         ];
+
+        let questions = [];
 
         // ---------------------------------------------------------
         // 2. VARIABLER FÖR ATT HÅLLA KOLL PÅ SPELET
@@ -170,13 +179,17 @@
         let currentQuestionIndex = 0; // Vilken fråga är vi på?
         let score = 0;                // Hur många poäng har vi?
         let isLocked = false;         // Förhindrar att man klickar flera gånger
+        let timer;                    // Håller koll på klockan (intervallen)
+        let timeLeft = 10;            // Hur många sekunder är kvar?
 
         // Hämta element från HTML så vi kan ändra dem
         const questionText = document.getElementById('question-text');
         const answerButtonsElement = document.getElementById('answer-buttons');
         const scoreDisplay = document.getElementById('score-display');
         const questionCounter = document.getElementById('question-counter');
+        const timerDisplay = document.getElementById('timer-display'); // Hämta timer-texten
         const restartBtn = document.getElementById('restart-btn');
+        const menuBtn = document.getElementById('menu-btn');
 
         // ---------------------------------------------------------
         // 3. FUNKTIONER (VAD SPELET GÖR)
@@ -184,15 +197,32 @@
 
         // Starta spelet
         function startGame() {
+            // Förbered frågor (blanda och välj antal)
+            questions = [...allQuestions];
+            // Blanda
+            for (let i = questions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [questions[i], questions[j]] = [questions[j], questions[i]];
+            }
+            
+            // Fyll på om det fattas frågor och välj exakt antal
+            const targetCount = 10; 
+            while (questions.length < targetCount) {
+                questions = questions.concat(allQuestions);
+            }
+            questions = questions.slice(0, targetCount);
+
             currentQuestionIndex = 0;
             score = 0;
             restartBtn.classList.add('hidden'); // Göm "Spela igen"-knappen
+            menuBtn.classList.add('hidden');    // Göm "Tillbaka"-knappen
             showQuestion(); // Visa första frågan
         }
 
         // Visa nuvarande fråga och skapa knappar
         function showQuestion() {
             isLocked = false; // Lås upp så man kan klicka
+            startTimer();     // Starta klockan för den nya frågan
             
             // Hämta datan för nuvarande fråga
             let q = questions[currentQuestionIndex];
@@ -220,10 +250,41 @@
             });
         }
 
+        // Funktion för att starta timern
+        function startTimer() {
+            clearInterval(timer); // Rensa gammal timer om den finns
+            timeLeft = 10;        // Sätt tiden till 10 sekunder
+            timerDisplay.innerText = `⏳ ${timeLeft}s`; // Visa tiden
+
+            // Starta en loop som körs varje sekund (1000 millisekunder)
+            timer = setInterval(() => {
+                timeLeft--; // Minska tiden med 1
+                timerDisplay.innerText = `⏳ ${timeLeft}s`; // Uppdatera texten
+
+                // Om tiden tar slut (blir 0)
+                if (timeLeft <= 0) {
+                    clearInterval(timer); // Stoppa klockan
+                    handleTimeOut();      // Hantera att tiden är ute
+                }
+            }, 1000);
+        }
+
+        // Vad händer om tiden tar slut?
+        function handleTimeOut() {
+            isLocked = true; // Lås knapparna
+            // Visa rätt svar (markera det grönt)
+            const correctIndex = questions[currentQuestionIndex].correct;
+            answerButtonsElement.children[correctIndex].classList.add('bg-green-600', 'opacity-50');
+            
+            // Gå vidare efter 1.5 sekunder
+            setTimeout(nextQuestion, 1500);
+        }
+
         // När spelaren klickar på ett svar
         function selectAnswer(selectedIndex, button) {
             if (isLocked) return; // Om låst, gör inget (så man inte kan klicka 2 gånger)
             isLocked = true;      // Lås spelet tillfälligt
+            clearInterval(timer); // Stoppa klockan eftersom man svarat!
 
             const correctIndex = questions[currentQuestionIndex].correct;
 
@@ -245,26 +306,48 @@
             }
 
             // Vänta 1,5 sekund, sen gå till nästa fråga
-            setTimeout(() => {
-                currentQuestionIndex++; // Gå framåt ett steg
-                
-                // Finns det fler frågor?
-                if (currentQuestionIndex < questions.length) {
-                    showQuestion(); // Visa nästa
-                } else {
-                    showScore(); // Visa resultatet
-                }
-            }, 1500);
+            setTimeout(nextQuestion, 1500);
+        }
+
+        // Gå till nästa fråga
+        function nextQuestion() {
+            currentQuestionIndex++; // Gå framåt ett steg
+            
+            // Finns det fler frågor?
+            if (currentQuestionIndex < questions.length) {
+                showQuestion(); // Visa nästa
+            } else {
+                showScore(); // Visa resultatet
+            }
         }
 
         // Visa slutresultatet
         function showScore() {
             questionText.innerText = `Du fick ${score} av ${questions.length} poäng!`;
             answerButtonsElement.innerHTML = ''; // Ta bort knapparna
+            timerDisplay.innerText = '';         // Dölj timern
             questionCounter.innerText = "Spelet slut";
+
+            // SPARA POÄNG
+            const oldScore = localStorage.getItem('quiz1Score') || 0;
+            if (score > oldScore) {
+                localStorage.setItem('quiz1Score', score);
+            }
+
+            // LÄGG TILL I TOTAL POÄNG (Du får poäng varje gång du spelar!)
+            let currentTotal = parseInt(localStorage.getItem('totalUserScore') || 0);
+            localStorage.setItem('totalUserScore', currentTotal + score);
+
+            // Om man fick ALLA rätt (score == antal frågor), lås upp nästa nivå
+            if (score === questions.length) {
+                localStorage.setItem('level1Complete', 'true');
+                questionText.innerText += " 🎉 GRATTIS! Du låste upp Medium!";
+            }
+            checkRankUp(); // Kolla om vi fått en ny rank
             
             // Visa "Spela igen"-knappen
             restartBtn.classList.remove('hidden');
+            menuBtn.classList.remove('hidden');
         }
 
         // Koppla "Spela igen"-knappen till start-funktionen
@@ -272,6 +355,36 @@
 
         // Kör igång allt när sidan laddas!
         startGame();
+
+        // Funktion för att kolla om man gått upp i rank
+        function checkRankUp() {
+            const level1Done = localStorage.getItem('level1Complete') === 'true';
+            const level2Done = localStorage.getItem('level2Complete') === 'true';
+            const level3Done = localStorage.getItem('level3Complete') === 'true';
+            const level4Done = localStorage.getItem('level4Complete') === 'true';
+            const level5Done = localStorage.getItem('level5Complete') === 'true';
+            const level2Count = parseInt(localStorage.getItem('level2CompletionCount') || 0);
+            
+            const totalScore = parseInt(localStorage.getItem('totalUserScore') || 0);
+
+            let rank = "Nybörgare";
+            if (level1Done) rank = "Nybörgare 1";
+            if (totalScore >= 50 && level2Done) rank = "Pro";
+            if (totalScore >= 100 && level2Count >= 2) rank = "Pro 1";
+            if (totalScore >= 140 && level3Done && level2Count >= 2) rank = "Expert";
+            if (totalScore >= 110 && level4Done) rank = "Expert 1";
+            if (level1Done && level2Done && level3Done && level4Done && level5Done) rank = "Mästare";
+
+            const oldRank = localStorage.getItem('currentRank') || "Nybörgare";
+
+            if (rank !== oldRank) {
+                // SPELA LJUDEFFEKT
+                const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3');
+                audio.play().catch(e => console.log("Kunde inte spela ljud automatiskt")); // Hantera om webbläsaren blockerar ljud
+                questionText.innerText += `\n\n🎉 GRATTIS! Du har låst upp en ny rank: ${rank}!`;
+                localStorage.setItem('currentRank', rank);
+            }
+        }
 
     </script>
 <script>

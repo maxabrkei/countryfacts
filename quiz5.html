@@ -15,9 +15,9 @@
 
     <!-- NAVIGERING - full site menu -->
 <!-- NAVIGERING - bara "Hem" och "Andra länder" med dropdown -->
-<nav class="bg-gray-950 shadow-lg sticky top-0 z-50">
+<nav class="bg-gradient-to-b from-blue-950 to-gray-900 shadow-lg sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <a href="index.html" class="text-2xl font-bold text-white hover:text-amber-400 transition">🌍 Fakta om Länder</a>
+        <a href="index.html" class="transition transform hover:scale-105"><img src="faktaomlanderlogo.png" alt="Fakta om Länder" class="h-36"></a>
         
         <!-- HAMBURGER-KNAPP (Syns bara på mobil 'md:hidden') -->
         <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
@@ -83,7 +83,7 @@
             </div>
 
             <!-- TIMER - Visar hur lång tid som är kvar -->
-            <div id="timer-display" class="text-2xl font-bold text-amber-500 mb-4">⏳ 60s</div>
+            <div id="timer-display" class="text-2xl font-bold text-amber-500 mb-4">⏳ 45s</div>
 
             <!-- Här visas frågan -->
             <h2 id="question-text" class="text-5xl font-bold mb-8 text-white">Laddar fråga...</h2>
@@ -121,7 +121,7 @@
         // "answers": En lista med 4 svarsalternativ.
         // "correct": Vilket nummer är rätt? (0 är första, 1 är andra, 2 är tredje, 3 är fjärde).
         
-        const questions = [
+        const allQuestions = [
             
             {
                 question: "Vilket land är detta? 🇸🇨",
@@ -626,6 +626,8 @@
             
         ];
 
+        let questions = [];
+
         // ---------------------------------------------------------
         // 2. VARIABLER FÖR ATT HÅLLA KOLL PÅ SPELET
         // ---------------------------------------------------------
@@ -633,7 +635,7 @@
         let score = 0;                // Hur många poäng har vi?
         let isLocked = false;         // Förhindrar att man klickar flera gånger
         let timer;                    // Håller koll på klockan (intervallen)
-        let timeLeft = 60;            // Hur många sekunder är kvar?
+        let timeLeft = 45;            // Hur många sekunder är kvar?
 
         // Hämta element från HTML så vi kan ändra dem
         const questionText = document.getElementById('question-text');
@@ -650,6 +652,21 @@
 
         // Starta spelet
         function startGame() {
+            // Förbered frågor (blanda och välj antal)
+            questions = [...allQuestions];
+            // Blanda
+            for (let i = questions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [questions[i], questions[j]] = [questions[j], questions[i]];
+            }
+            
+            // Fyll på om det fattas frågor och välj exakt antal
+            const targetCount = 100; 
+            while (questions.length < targetCount) {
+                questions = questions.concat(allQuestions);
+            }
+            questions = questions.slice(0, targetCount);
+
             currentQuestionIndex = 0;
             score = 0;
             restartBtn.classList.add('hidden'); // Göm "Spela igen"-knappen
@@ -691,7 +708,7 @@
         // Funktion för att starta timern
         function startTimer() {
             clearInterval(timer); // Rensa gammal timer om den finns
-            timeLeft = 60;        // Sätt tiden till 60 sekunder
+            timeLeft = 45;        // Sätt tiden till 45 sekunder
             timerDisplay.innerText = `⏳ ${timeLeft}s`; // Visa tiden
 
             // Starta en loop som körs varje sekund (1000 millisekunder)
